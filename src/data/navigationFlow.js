@@ -1,0 +1,77 @@
+/**
+ * Navigation Flow Sequence
+ * Defines the sequential page-to-page journey across Navabharath Technologies.
+ * Home (1) -> About Us (2) -> Services (3) -> Portfolio (4) -> Resources (5) -> Careers (6) -> Contact Us (7) -> Home (1)
+ */
+export const pageFlow = [
+  {
+    step: 1,
+    id: 'home',
+    name: 'Home',
+    path: '/',
+    tagline: 'Smarter Solutions for Better Future',
+    description: 'Explore our core software development, AI automation, and end-to-end digital solutions.',
+    highlight: 'Digital Solutions That Drive Results',
+    color: '#FFC928',
+  },
+  {
+    step: 2,
+    id: 'about',
+    name: 'About Us',
+    path: '/about',
+    tagline: 'Executive Leadership & Corporate Vision',
+    description: 'Learn about our journey, corporate mission, core values, and executive leadership.',
+    highlight: 'Empowering Businesses With Scalable Tech',
+    color: '#38BDF8',
+  },
+  {
+    step: 3,
+    id: 'services',
+    name: 'Services',
+    path: '/services',
+    tagline: 'Enterprise Software & Cloud Engineering',
+    description: 'Web development, mobile apps, UI/UX design, QA automation, and cloud architecture.',
+    highlight: 'Engineered for Scalability & Precision',
+    color: '#FFC928',
+  },
+  {
+    step: 4,
+    id: 'portfolio',
+    name: 'Portfolio',
+    path: '/portfolio',
+    tagline: 'Proven Client Work & Digital Engineering',
+    description: 'Real-world case studies and mission-critical software delivered for global clients.',
+    highlight: 'Delivering High-Impact Digital Systems',
+    color: '#38BDF8',
+  },
+  {
+    step: 5,
+    id: 'resources',
+    name: 'Resources',
+    path: '/resources',
+    tagline: 'Engineering Insights & Tech Architecture',
+    description: 'Thought leadership articles, architectural blueprints, developer tools, and tech videos.',
+    highlight: 'Knowledge Base & Industry Insights',
+    color: '#FFC928',
+  },
+  {
+    step: 6,
+    id: 'careers',
+    name: 'Careers',
+    path: '/careers',
+    tagline: 'Build the Future with Us',
+    description: 'Join our team of innovators, creators, and problem solvers. Explore open engineering roles.',
+    highlight: 'Continuous Learning & High Ownership',
+    color: '#38BDF8',
+  },
+  {
+    step: 7,
+    id: 'contact',
+    name: 'Contact Us',
+    path: '/contact',
+    tagline: "Let's Engineer Your Next Breakthrough",
+    description: 'Connect with our senior architects for preliminary consultation and project scoping.',
+    highlight: 'Start Your Project Consultation Today',
+    color: '#FFC928',
+  },
+];

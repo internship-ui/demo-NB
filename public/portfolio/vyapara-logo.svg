@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071B3A" />
+      <stop offset="100%" stop-color="#143A6D" />
+    </linearGradient>
+    <linearGradient id="vGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD555" />
+      <stop offset="100%" stop-color="#FF9800" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="#FFFFFF"/>
+  <g transform="translate(100, 72)">
+    <!-- Stylized "V" icon with business document / phone elements -->
+    <path d="M-36,-38 L-14,-38 L-2,18 L-20,18 Z" fill="url(#vNavy)" />
+    <path d="M-2,18 L14,-38 L36,-38 L12,24 C8,34 -8,34 -12,24 Z" fill="url(#vGold)" />
+    <!-- Center document / screen lines -->
+    <rect x="-3" y="-22" width="16" height="4" rx="2" fill="#FFFFFF" opacity="0.9" />
+    <rect x="-1" y="-14" width="12" height="4" rx="2" fill="#FFFFFF" opacity="0.9" />
+    <rect x="1" y="-6" width="8" height="4" rx="2" fill="#FFFFFF" opacity="0.9" />
+  </g>
+  <text x="100" y="152" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="24" fill="#071B3A" letter-spacing="3">VYAPARA</text>
+  <text x="100" y="172" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#E5B117" letter-spacing="2">BUSINESS SUITE</text>
+</svg>
+
