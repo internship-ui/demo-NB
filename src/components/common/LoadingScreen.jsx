@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getAssetUrl } from '../../utils/assetPath';
 
 export default function LoadingScreen({ onFinish }) {
   const [progress, setProgress] = useState(0);
@@ -40,7 +41,7 @@ export default function LoadingScreen({ onFinish }) {
           className="relative mb-6 p-4 rounded-2xl bg-brand-navy-surface/80 border border-brand-yellow/20 shadow-2xl backdrop-blur-md"
         >
           <img
-            src="/assets/logo.png"
+            src={getAssetUrl('/assets/logo.png')}
             alt="NAVABHARATH TECHNOLOGIES"
             className="h-20 w-auto object-contain"
           />

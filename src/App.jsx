@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Components
@@ -83,12 +83,12 @@ function AnimatedRoutes() {
                 <p className="text-sm text-slate-300 max-w-md mb-8">
                   The page you requested is not available. Please return to the homepage or explore our services catalog.
                 </p>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="px-6 py-3 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover transition-colors"
                 >
                   Return to Homepage
-                </a>
+                </Link>
               </div>
             }
           />
@@ -103,7 +103,7 @@ export default function App() {
 
   return (
     <NotificationProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <AnimatePresence>
           {isLoading && (
             <LoadingScreen onFinish={() => setIsLoading(false)} />

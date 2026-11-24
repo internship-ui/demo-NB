@@ -21,6 +21,7 @@ import SectionHeading from '../components/common/SectionHeading';
 import AnimatedCounter from '../components/common/AnimatedCounter';
 import AboutBackground from '../components/about/AboutBackground';
 import { companyDetails } from '../data/companyData';
+import { getAssetUrl } from '../utils/assetPath';
 
 export default function About() {
   const getValueIcon = (name) => {
@@ -108,7 +109,7 @@ export default function About() {
                 {/* Photo Frame with Hover Zoom & Subtle Lighting */}
                 <div className="relative rounded-2xl overflow-hidden bg-brand-navy-card aspect-[4/3] sm:aspect-[16/11]">
                   <img
-                    src="/assets/dinesh-jk-ceo.png"
+                    src={getAssetUrl('/assets/dinesh-jk-ceo.png')}
                     alt="Dinesh J K (CEO & Founder)"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />

@@ -1,3 +1,5 @@
+import { getAssetUrl } from '../utils/assetPath';
+
 // =======================================================================
 // NAVABHARATH TECHNOLOGIES - RESOURCES & KNOWLEDGE BASE
 // Fully updated with all 21 cards segregated into:
@@ -23,7 +25,7 @@ export const resourcesData = [
     company: 'Navabharath Technologies',
     date: 'June 03, 2026',
     readTime: '5 min',
-    image: '/resources/card-ai-boardrooms.png',
+    image: getAssetUrl('/resources/card-ai-boardrooms.png'),
     summary: 'Explore how Artificial Intelligence is transforming strategic decision-making in modern boardrooms.',
     featured: true,
     content: `Artificial Intelligence has transitioned from the IT back-office directly into executive boardrooms. Modern corporate governance demands unprecedented agility, and directors are increasingly leveraging AI-powered decision support engines to navigate market volatility, uncover hidden synergies, and anticipate operational risks.
@@ -63,7 +65,7 @@ While boardroom AI offers unmatched predictive depth, strategic leadership remai
     company: 'Navabharath Technologies',
     date: 'April 29, 2026',
     readTime: '5 min',
-    image: '/resources/card-metaverse.png',
+    image: getAssetUrl('/resources/card-metaverse.png'),
     summary: 'The metaverse is emerging as a revolutionary paradigm, blending immersive spatial computing, decentralized protocols, and digital twin ecosystems to reshape human interaction.',
     content: `The metaverse represents the convergence of virtually enhanced physical reality and physically persistent virtual space. As spatial hardware advances and WebGPU standards mature, immersive 3D environments are transforming enterprise collaboration, industrial design, and global digital commerce.
 
@@ -90,7 +92,7 @@ Key Architectural Foundations:
     company: 'Navabharath Technologies',
     date: 'April 29, 2026',
     readTime: '5 min',
-    image: '/resources/card-self-healing.png',
+    image: getAssetUrl('/resources/card-self-healing.png'),
     summary: 'Self-healing software systems continuously monitor system health, automatically detecting faults and executing remediation scripts without human intervention.',
     content: `Modern distributed cloud systems generate telemetry at scales impossible for manual human triage. Self-healing software architectures integrate autonomous anomaly detection with dynamic remediation runbooks to achieve true 99.999% system availability.
 
@@ -117,7 +119,7 @@ Core Operational Mechanisms:
     company: 'Navabharath Technologies',
     date: 'April 08, 2026',
     readTime: '6 min',
-    image: '/resources/card-cloud-computing.png',
+    image: getAssetUrl('/resources/card-cloud-computing.png'),
     summary: 'Discover how cloud computing is driving digital transformation, enhancing agility, and enabling businesses to innovate faster than ever before.',
     content: `Cloud infrastructure has evolved from simple virtualized servers into intelligent distributed computing fabrics. Organizations that leverage multi-region edge clouds, serverless event-driven runtimes, and specialized hardware accelerators unlock unparalleled operational speed.
 
@@ -144,7 +146,7 @@ Strategic Cloud Imperatives:
     company: 'Navabharath Technologies',
     date: 'Feb 21, 2026',
     readTime: '6 min',
-    image: '/resources/card-software-testing.png',
+    image: getAssetUrl('/resources/card-software-testing.png'),
     summary: 'Understand the differences between manual testing vs automation testing to choose the right strategy for high-velocity software delivery.',
     content: `High-quality software delivery demands a strategic balance between exploratory manual validation and deterministic automated test pipelines.
 
@@ -171,7 +173,7 @@ Manual vs. Automated Testing Spectrum:
     company: 'Navabharath Technologies',
     date: 'Feb 15, 2026',
     readTime: '6 min',
-    image: '/resources/card-erp-crm.png',
+    image: getAssetUrl('/resources/card-erp-crm.png'),
     summary: 'Investing in custom ERP and CRM development can reduce operational waste, improve sales visibility, and unify business data across departments.',
     content: `Off-the-shelf software often forces businesses into rigid workflows and expensive per-user monthly licensing fees. A custom ERP and CRM solution tailored to proprietary business models delivers measurable return on investment within months of rollout.
 
@@ -198,7 +200,7 @@ Financial and Operational ROI Drivers:
     company: 'Navabharath Technologies',
     date: 'Jan 29, 2026',
     readTime: '6 min',
-    image: '/resources/card-cloud-security.png?v=2',
+    image: getAssetUrl('/resources/card-cloud-security.png?v=2'),
     summary: 'Learn how to protect your digital infrastructure from evolving threats with proactive, layered defense strategies and continuous telemetry monitoring.',
     content: `Cloud migration introduces complex shared responsibility models where misconfigured storage buckets and over-privileged IAM roles represent the leading attack vectors.
 
@@ -225,7 +227,7 @@ Defense-in-Depth Cloud Playbook:
     company: 'Navabharath Technologies',
     date: 'Jan 07, 2026',
     readTime: '6 min',
-    image: '/resources/card-future-web-dev.png?v=2',
+    image: getAssetUrl('/resources/card-future-web-dev.png?v=2'),
     summary: 'Learn how fast-loading pages impact SEO performance, user experience, and conversion rates, along with next-gen edge rendering architectures.',
     content: `Web development is undergoing a generational shift. Today's modern web standards demand lightning-fast sub-second initial load times, edge-side dynamic compute, and accessible interactive user experiences.
 
@@ -252,7 +254,7 @@ Transformative Web Trends:
     company: 'Navabharath Technologies',
     date: 'Jan 03, 2026',
     readTime: '6 min',
-    image: '/resources/card-freshers-job.png?v=2',
+    image: getAssetUrl('/resources/card-freshers-job.png?v=2'),
     summary: 'Discover 10 proven techniques and the exclusive 7-7-7 Fresher Hiring Formula to help you land your first job faster in the competitive tech market.',
     content: `Breaking into the software engineering industry requires more than sending generic resumes. Standing out requires demonstrating practical building capability, clean open-source contributions, and strategic networking.
 
@@ -280,7 +282,7 @@ The 7-7-7 Fresher Hiring Formula:
     company: 'Navabharath Technologies',
     date: 'Dec 15, 2025',
     readTime: '6 min',
-    image: '/resources/card-chatbots.png',
+    image: getAssetUrl('/resources/card-chatbots.png'),
     summary: 'Explore how automation handles quick responses while human agents provide the emotional intelligence needed for complex, high-empathy customer support.',
     content: `Modern AI chatbots powered by Large Language Models and Retrieval-Augmented Generation (RAG) have transcended robotic rule-based decision trees to deliver natural, contextual, 24/7 customer resolution.
 
@@ -312,7 +314,7 @@ The Hybrid Human-AI Support Paradigm:
     company: 'Navabharath Technologies',
     date: 'March 20, 2026',
     readTime: 'Video',
-    image: '/resources/card-digital-marketing.png',
+    image: getAssetUrl('/resources/card-digital-marketing.png'),
     summary: 'Explore how Navabharath Technologies is driving the future of digital marketing with smarter data-driven solutions.',
     videoUrl: 'https://www.youtube.com/@NavabharathTechnologies',
     content: `Watch our complete presentation on modern data-driven digital marketing solutions designed for rapid enterprise growth.
@@ -335,7 +337,7 @@ Key Topics Explored:
     company: 'Navabharath Technologies',
     date: 'Jan 15, 2026',
     readTime: 'Video',
-    image: '/resources/card-ceo-birthday.png',
+    image: getAssetUrl('/resources/card-ceo-birthday.png'),
     summary: 'A glimpse into the culture and celebrations at Navabharath Technologies, honoring visionary leadership and team milestones.',
     videoUrl: 'https://www.youtube.com/@NavabharathTechnologies',
     content: `Experience the vibrant culture and team spirit at Navabharath Technologies as we celebrate our CEO's birthday with team reflections, future company milestones, and community bonding.
@@ -358,7 +360,7 @@ Highlights:
     company: 'Navabharath Technologies',
     date: 'April 10, 2026',
     readTime: 'Video',
-    image: '/resources/card-slow-coding.png',
+    image: getAssetUrl('/resources/card-slow-coding.png'),
     summary: 'Quick tech tips: How to speed up your development workflow using VS Code shortcuts, extensions, and configuration tweaks.',
     videoUrl: 'https://www.youtube.com/@NavabharathTechnologies',
     content: `Speed up your daily coding speed by 3x with these essential Visual Studio Code productivity shortcuts, extensions, and workspace optimizations.
@@ -384,7 +386,7 @@ Featured Techniques:
     company: 'Navabharath Technologies',
     date: 'Just Now',
     readTime: 'AI Tech',
-    image: '/resources/card-gpt5.png',
+    image: getAssetUrl('/resources/card-gpt5.png'),
     summary: "Rumors suggest a massive jump in reasoning capabilities and multi-modal integration. Here's the latest leak from Silicon Valley.",
     content: `Silicon Valley insiders and leading AI researchers report significant breakthroughs in autonomous reasoning chains, multimodal perception, and mathematical problem-solving anticipated in the next generation of frontier AI models.
 
@@ -405,7 +407,7 @@ Key Anticipated Advancements:
     company: 'Navabharath Technologies',
     date: '2 hours ago',
     readTime: 'Quantum',
-    image: '/resources/card-quantum.png',
+    image: getAssetUrl('/resources/card-quantum.png'),
     summary: 'Researchers have successfully maintained qubit stability for a record-breaking duration, paving the way for commercial quantum clusters.',
     content: `Quantum computing has achieved a historic breakthrough: researchers have demonstrated fault-tolerant logical qubits with coherence times exceeding critical commercial operational thresholds.
 
@@ -426,7 +428,7 @@ Significance for Enterprise Technology:
     company: 'Navabharath Technologies',
     date: 'Today',
     readTime: 'CyberSec',
-    image: '/resources/card-iot-security.png',
+    image: getAssetUrl('/resources/card-iot-security.png'),
     summary: 'The ITU has finalized the 2026 security standard for smart home devices to combat the rising tide of edge-network vulnerabilities.',
     content: `The International Telecommunication Union (ITU) in partnership with global cybersecurity authorities has published mandatory security protocols for connected smart devices, firmware encryption, and edge IoT gateways.
 
@@ -449,7 +451,7 @@ Key Standard Requirements:
     author: 'Engineering Team',
     authorInitials: 'ET',
     company: 'Navabharath Technologies',
-    image: '/resources/card-vscode.png',
+    image: getAssetUrl('/resources/card-vscode.png'),
     summary: 'Our primary code editor for building robust, scalable applications with ease and efficiency.',
     toolUrl: 'https://code.visualstudio.com/',
     content: `Visual Studio Code is Navabharath Technologies' designated primary integrated development environment. Lightweight, extensible, and feature-rich, it accelerates frontend, backend, and cloud development workflows.
@@ -469,7 +471,7 @@ Why We Rely on VS Code:
     author: 'Engineering Team',
     authorInitials: 'ET',
     company: 'Navabharath Technologies',
-    image: '/resources/card-postman.png',
+    image: getAssetUrl('/resources/card-postman.png'),
     summary: 'Essential for designing, building, and testing our APIs to ensure seamless integration.',
     toolUrl: 'https://www.postman.com/',
     content: `Postman is an indispensable API platform used across Navabharath Technologies engineering teams to streamline the full lifecycle of REST, GraphQL, and WebSocket APIs.
@@ -489,7 +491,7 @@ Core Engineering Applications:
     author: 'Engineering Team',
     authorInitials: 'ET',
     company: 'Navabharath Technologies',
-    image: '/resources/card-git.png',
+    image: getAssetUrl('/resources/card-git.png'),
     summary: 'The industry standard for distributed version control, keeping our codebase organized.',
     toolUrl: 'https://git-scm.com/',
     content: `Git is the industry-standard distributed version control system powering all source code management, branching workflows, and collaborative software delivery at Navabharath Technologies.
@@ -509,7 +511,7 @@ Why Git is Fundamental:
     author: 'Engineering Team',
     authorInitials: 'ET',
     company: 'Navabharath Technologies',
-    image: '/resources/card-github.png',
+    image: getAssetUrl('/resources/card-github.png'),
     summary: 'Where our teams collaborate on code, manage projects, and automate workflows.',
     toolUrl: 'https://github.com/',
     content: `GitHub serves as the central hub for our software repositories, code reviews, pull requests, automated GitHub Actions pipelines, and team issue tracking.
@@ -529,7 +531,7 @@ Core Enterprise Capabilities:
     author: 'Engineering Team',
     authorInitials: 'ET',
     company: 'Navabharath Technologies',
-    image: '/resources/card-azure.png',
+    image: getAssetUrl('/resources/card-azure.png'),
     summary: 'Powering our cloud solutions with scalable, secure, and reliable enterprise-grade infrastructure.',
     toolUrl: 'https://azure.microsoft.com/',
     content: `Microsoft Azure provides the enterprise-grade cloud foundation for hosting scalable web applications, serverless functions, database clusters, and AI services developed by Navabharath Technologies.

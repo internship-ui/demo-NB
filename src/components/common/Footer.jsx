@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Linkedin, 
-  Twitter, 
-  Github, 
-  Instagram, 
-  Clock, 
-  ShieldCheck 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Twitter,
+  Github,
+  Instagram,
+  Clock,
+  ShieldCheck
 } from 'lucide-react';
 import { companyDetails } from '../../data/companyData';
+import { getAssetUrl } from '../../utils/assetPath';
 import Modal from './Modal';
 
 export default function Footer() {
@@ -47,15 +48,15 @@ export default function Footer() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* 4 Balanced Desktop Columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pb-6">
-            
+
             {/* Col 1: Brand, 2-line Description, Compact Verification & Socials */}
             <div className="space-y-2.5">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="inline-flex items-center gap-2 group cursor-pointer"
               >
                 <img
-                  src="/assets/logo.png"
+                  src={getAssetUrl('/assets/logo.png')}
                   alt="NAVABHARATH TECHNOLOGIES"
                   className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
                 />
@@ -104,56 +105,56 @@ export default function Footer() {
               </h4>
               <ul className="space-y-1 text-[12px]">
                 <li>
-                  <Link 
-                    to="/" 
+                  <Link
+                    to="/"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/about" 
+                  <Link
+                    to="/about"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/services" 
+                  <Link
+                    to="/services"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Services
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/portfolio" 
+                  <Link
+                    to="/portfolio"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/resources" 
+                  <Link
+                    to="/resources"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Resources
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/careers" 
+                  <Link
+                    to="/careers"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Careers
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/contact" 
+                  <Link
+                    to="/contact"
                     className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Contact Us
@@ -169,48 +170,48 @@ export default function Footer() {
               </h4>
               <ul className="space-y-1 text-[12px] text-slate-300">
                 <li>
-                  <Link 
-                    to="/services/web-development" 
+                  <Link
+                    to="/services/web-development"
                     className="hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Web Development
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/services/ai-solutions" 
+                  <Link
+                    to="/services/ai-solutions"
                     className="hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     AI Solutions
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/services/mobile-app-development" 
+                  <Link
+                    to="/services/mobile-app-development"
                     className="hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Mobile App Development
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/services/ui-ux-design" 
+                  <Link
+                    to="/services/ui-ux-design"
                     className="hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     UI/UX Design
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/services/cloud-solutions" 
+                  <Link
+                    to="/services/cloud-solutions"
                     className="hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Cloud Solutions
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/services/digital-marketing" 
+                  <Link
+                    to="/services/digital-marketing"
                     className="hover:text-brand-yellow transition-colors block py-0.5"
                   >
                     Digital Marketing
@@ -292,8 +293,8 @@ export default function Footer() {
           legalModalType === 'privacy'
             ? 'Corporate Privacy Policy'
             : legalModalType === 'terms'
-            ? 'Terms of Service & Engagement'
-            : 'Security & Enterprise Compliance'
+              ? 'Terms of Service & Engagement'
+              : 'Security & Enterprise Compliance'
         }
         subtitle="NAVABHARATH TECHNOLOGIES Corporate Governance"
       >

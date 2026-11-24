@@ -20,6 +20,7 @@ import Modal from '../components/common/Modal';
 import ServicesDataFlowBackground from '../components/services/ServicesDataFlowBackground';
 import TechnologiesWeUse from '../components/services/TechnologiesWeUse';
 import { servicesData } from '../data/servicesData';
+import { getAssetUrl } from '../utils/assetPath';
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -31,7 +32,7 @@ export default function Services() {
       name: 'Shashwath Souharda Co-operative Ltd.',
       domain: 'Banking & Financial Co-operative',
       badge: 'FINANCIAL & CO-OPERATIVE',
-      logo: '/clients/logo1.png',
+      logo: getAssetUrl('/clients/logo1.png'),
       scope: 'Core Digital Banking & Member Management',
       description: 'Enterprise financial management system, secure web portal architecture, and member transaction automation engineered for high reliability and financial compliance.',
       tags: ['Core Banking', 'Member Portal', 'Data Security']
@@ -41,7 +42,7 @@ export default function Services() {
       name: 'A R Hospital Healthcare Services',
       domain: 'Multispeciality Hospital & Medical Care',
       badge: 'HEALTHCARE & MEDICAL',
-      logo: '/clients/logo2.png',
+      logo: getAssetUrl('/clients/logo2.png'),
       scope: 'Hospital Portal & Patient Workflow Support',
       description: 'Specialized healthcare digital presence, multi-department appointment routing, and patient consultation management for leading medical specialists in Mysuru.',
       tags: ['Healthcare IT', 'Patient Portal', 'Doctor Scheduling']
@@ -51,7 +52,7 @@ export default function Services() {
       name: "Shetty's Hi-Tech Multispeciality Dental Clinic",
       domain: 'Advanced Dental Healthcare & Surgery',
       badge: 'ADVANCED DENTAL CARE',
-      logo: '/clients/logo3.png',
+      logo: getAssetUrl('/clients/logo3.png'),
       scope: 'Live Token Booking & Clinic Queue Automation',
       description: 'Custom token booking application with live queue progression tracking, automated SMS/WhatsApp alerts, and operatory chair assignment dashboard.',
       tags: ['Token Booking App', 'Queue Management', 'Clinic Automation']

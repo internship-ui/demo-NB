@@ -20,6 +20,7 @@ import {
 } from '../data/portfolioData';
 import PortfolioDataBackground from '../components/portfolio/PortfolioDataBackground';
 import PortfolioLoadingScreen from '../components/portfolio/PortfolioLoadingScreen';
+import { getAssetUrl } from '../utils/assetPath';
 
 // =========================================================================
 // REUSABLE 3D TILT PROJECT CARD COMPONENT
@@ -452,19 +453,19 @@ export default function Portfolio() {
               {
                 id: 'jkd-mart',
                 name: 'JKD Mart',
-                logo: '/portfolio/jkd-mart-logo.svg',
+                logo: getAssetUrl('/portfolio/jkd-mart-logo.svg'),
                 tag: 'Smart Digital Retail & E-Commerce'
               },
               {
                 id: 'vyapara',
                 name: 'Vyapara',
-                logo: '/portfolio/vyapara-logo.svg',
+                logo: getAssetUrl('/portfolio/vyapara-logo.svg'),
                 tag: 'Smart Business & Billing Platform'
               },
               {
                 id: 'tokens-boy',
                 name: 'Tokens Boy',
-                logo: '/portfolio/tokens-boy-logo.svg',
+                logo: getAssetUrl('/portfolio/tokens-boy-logo.svg'),
                 tag: 'Smart Token & Queue Management'
               }
             ].map((prod, idx) => {

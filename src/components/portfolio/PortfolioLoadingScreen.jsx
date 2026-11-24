@@ -16,6 +16,7 @@ import {
   Sprout,
   Terminal
 } from 'lucide-react';
+import { getAssetUrl } from '../../utils/assetPath';
 
 export default function PortfolioLoadingScreen({ onFinish }) {
   const [progress, setProgress] = useState(0);
@@ -281,7 +282,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                 className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-b from-[#0B254E] to-[#041026] border-2 border-brand-yellow/60 flex items-center justify-center p-4 shadow-[0_0_35px_rgba(255,201,40,0.35)] backdrop-blur-md"
               >
                 <img
-                  src="/assets/logo.png"
+                  src={getAssetUrl('/assets/logo.png')}
                   alt="Navabharath Technologies"
                   className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                 />

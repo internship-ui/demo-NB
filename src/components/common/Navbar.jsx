@@ -11,6 +11,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { companyDetails } from '../../data/companyData';
+import { getAssetUrl } from '../../utils/assetPath';
 import SearchModal from './SearchModal';
 
 export default function Navbar() {
@@ -78,7 +79,7 @@ export default function Navbar() {
             >
               <div className="relative p-1 rounded-xl bg-white/5 border border-white/10 group-hover:border-brand-yellow/50 transition-colors">
                 <img
-                  src="/assets/logo.png"
+                  src={getAssetUrl('/assets/logo.png')}
                   alt="NAVABHARATH TECHNOLOGIES Logo"
                   className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
@@ -193,7 +194,7 @@ export default function Navbar() {
                 {/* Header inside mobile drawer */}
                 <div className="flex items-center justify-between pb-5 border-b border-white/10 mb-5">
                   <div className="flex items-center gap-2">
-                    <img src="/assets/logo.png" alt="NAVABHARATH TECHNOLOGIES" className="h-9 w-auto" />
+                    <img src={getAssetUrl('/assets/logo.png')} alt="NAVABHARATH TECHNOLOGIES" className="h-9 w-auto" />
                     <div>
                       <div className="text-xs font-bold text-white uppercase tracking-wider">NAVABHARATH</div>
                       <div className="text-[9px] font-semibold text-brand-yellow uppercase tracking-widest">TECHNOLOGIES</div>

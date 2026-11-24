@@ -21,6 +21,7 @@ import Modal from '../components/common/Modal';
 import ResourcesBackgroundAnimation from '../components/resources/ResourcesBackgroundAnimation';
 import { resourcesData, resourceCategories } from '../data/resourcesData';
 import { useNotification } from '../context/NotificationContext';
+import { getAssetUrl } from '../utils/assetPath';
 
 // =========================================================================
 // KINETIC LETTER ANIMATION COMPONENT FOR HERO TITLE
@@ -163,7 +164,7 @@ function FeaturedSpotlightCard({ article, onSelect }) {
               className="relative w-full flex items-center justify-center p-2"
             >
               <img
-                src="/resources/ai-in-boardrooms-infographic.png"
+                src={getAssetUrl('/resources/ai-in-boardrooms-infographic.png')}
                 alt={article.title}
                 className="w-full max-w-[420px] max-h-[420px] h-auto object-contain rounded-2xl drop-shadow-md group-hover:scale-105 transition-transform duration-500 ease-out"
               />
