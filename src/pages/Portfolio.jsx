@@ -19,6 +19,7 @@ import {
   ourProjectsData 
 } from '../data/portfolioData';
 import PortfolioDataBackground from '../components/portfolio/PortfolioDataBackground';
+import PortfolioLoadingScreen from '../components/portfolio/PortfolioLoadingScreen';
 
 // =========================================================================
 // REUSABLE 3D TILT PROJECT CARD COMPONENT
@@ -184,6 +185,7 @@ function InteractiveProjectCard({
 // MAIN PORTFOLIO PAGE
 // =========================================================================
 export default function Portfolio() {
+  const [isLoading, setIsLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
@@ -233,7 +235,14 @@ export default function Portfolio() {
     : clientPortfolioData.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="pt-24 pb-20 relative min-h-screen overflow-hidden bg-brand-navy">
+    <>
+      <AnimatePresence>
+        {isLoading && (
+          <PortfolioLoadingScreen onFinish={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      <div className="pt-24 pb-20 relative min-h-screen overflow-hidden bg-brand-navy">
       {/* Premium Floating Digital Data Background Animation */}
       <PortfolioDataBackground />
 
@@ -793,5 +802,6 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 }
