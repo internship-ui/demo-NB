@@ -4,8 +4,15 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     font-family: 'Inter', system-ui, sans-serif;
+    background-color: #F7F9FC;
+    color: #334155;
+  }
+
+  body {
+    background-color: #F7F9FC;
+    color: #334155;
   }
 
   h1,
@@ -15,25 +22,37 @@
   h5,
   h6 {
     font-family: 'Outfit', 'Inter', sans-serif;
+    color: #101F3C;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar matching soft-white and silver theme */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #041026;
+    background: #F7F9FC;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1A3F7A;
+    background: #C4CCD5;
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #FFC928;
+    background: #234F91;
+  }
+
+  /* Global static reset: remove all animations, motion, and transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    animation: none !important;
+    transition-duration: 0.001s !important;
+    transition: none !important;
   }
 }
 
@@ -41,39 +60,39 @@
   .bg-grid-pattern {
     background-size: 40px 40px;
     background-image:
-      linear-gradient(to right, rgba(255, 201, 40, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 201, 40, 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(82, 116, 154, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(82, 116, 154, 0.07) 1px, transparent 1px);
   }
 
   .bg-dots-pattern {
-    background-image: radial-gradient(rgba(255, 201, 40, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(35, 79, 145, 0.08) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
   .glass-card {
-    background: rgba(10, 35, 74, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(196, 204, 213, 0.6);
+    box-shadow: 0 4px 20px -2px rgba(16, 31, 60, 0.04);
   }
 
   .glass-card-hover {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(196, 204, 213, 0.6);
+    box-shadow: 0 4px 20px -2px rgba(16, 31, 60, 0.04);
   }
 
   .glass-card-hover:hover {
-    background: rgba(14, 45, 94, 0.85);
-    border-color: rgba(255, 201, 40, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px -10px rgba(7, 27, 58, 0.7), 0 0 20px rgba(255, 201, 40, 0.15);
+    background: #FFFFFF;
+    border-color: rgba(35, 79, 145, 0.5);
+    box-shadow: 0 16px 32px -10px rgba(16, 31, 60, 0.1), 0 0 15px rgba(35, 79, 145, 0.1);
   }
 
   .text-glow-yellow {
-    text-shadow: 0 0 20px rgba(255, 201, 40, 0.5);
+    text-shadow: 0 0 15px rgba(35, 79, 145, 0.3);
   }
 
   /* ========================================================= */
-  /* From Uiverse.io by Pravins01 - For Our Projects Only      */
+  /* Static Cards for Our Projects                             */
   /* ========================================================= */
   .uiverse-card {
     position: relative;
@@ -82,23 +101,21 @@
     height: 360px;
     border-radius: 12px;
     cursor: pointer;
-    color: white;
-    transition: transform 0.3s ease;
+    color: #101F3C;
   }
 
   .uiverse-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    left: -5px;
+    left: -2px;
     margin: auto;
-    width: 280px;
-    height: 370px;
+    width: 274px;
+    height: 364px;
     border-radius: 14px;
-    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+    background: linear-gradient(135deg, #234F91 0%, #52749A 50%, #C4CCD5 100%);
     z-index: -2;
     pointer-events: none;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .uiverse-card::after {
@@ -106,19 +123,8 @@
     z-index: -1;
     position: absolute;
     inset: 0;
-    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
-    transform: translate3d(0, 0, 0) scale(0.95);
-    filter: blur(20px);
+    background: #FFFFFF;
     border-radius: 12px;
-    transition: filter 0.4s ease;
-  }
-
-  .uiverse-card:hover::after {
-    filter: blur(30px);
-  }
-
-  .uiverse-card:hover::before {
-    transform: rotate(-90deg) scaleX(1.33) scaleY(0.75);
   }
 
   .uiverse-card-content {
@@ -126,61 +132,57 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: #000000;
+    background-color: #FFFFFF;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 22px 20px;
     box-sizing: border-box;
+    border: 1px solid rgba(196, 204, 213, 0.5);
   }
 
   .uiverse-card .heading {
     font-size: 20px;
     text-transform: capitalize;
     font-weight: 700;
-    color: #FFFFFF;
+    color: #101F3C;
     letter-spacing: -0.01em;
   }
 
   .uiverse-card p:not(.heading) {
     font-size: 13.5px;
-    color: #CBD5E1;
+    color: #475569;
     line-height: 1.45;
   }
 
   .uiverse-card p:last-child {
-    color: #e81cff;
+    color: #234F91;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 4px;
     margin-top: auto;
-    transition: all 0.2s ease;
   }
 
   .uiverse-card:hover p:last-child {
-    color: #40c9ff;
-    gap: 7px;
+    color: #101F3C;
   }
 
   /* ========================================================= */
-  /* From Uiverse.io by javierBarroso - For All Resources Cards */
-  /* Re-themed to Brand Dark Navy #071B3A, Brand Yellow #FFC928 & White */
+  /* Static Cards for All Resources Cards                      */
   /* ========================================================= */
   .uiverse-clay-card {
-    background: #0B2247;
+    background: #FFFFFF;
     overflow: hidden;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+    border-radius: 20px;
+    border: 1px solid #C4CCD5;
+    box-shadow: 0 4px 20px rgba(16, 31, 60, 0.06);
   }
 
   .uiverse-clay-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 201, 40, 0.6);
-    box-shadow: 0 20px 45px rgba(7, 27, 58, 0.8), 0 0 25px rgba(255, 201, 40, 0.2);
+    border-color: #234F91;
+    box-shadow: 0 16px 36px rgba(16, 31, 60, 0.12);
   }
 
   .uiverse-ticker-wrapper {
@@ -188,29 +190,26 @@
     width: 100%;
     height: 42px;
     overflow: hidden;
-    background: #071B3A;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: #F7F9FC;
+    border-top: 1px solid #C4CCD5;
+    border-bottom: 1px solid #C4CCD5;
   }
 
   .uiverse-clay-card .content,
   .uiverse-ticker-content {
     position: relative;
     display: flex;
-    width: 300%;
-    min-width: 300%;
+    width: 100%;
     height: 100%;
     align-items: center;
-    transform: translateX(0%);
-    animation: anim 6s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    justify-content: center;
   }
 
   .uiverse-clay-card .word,
   .uiverse-ticker-word {
-    width: 33.333333%;
-    flex: 0 0 33.333333%;
+    width: 100%;
     text-align: center;
-    color: #FFC928;
+    color: #234F91;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -220,32 +219,5 @@
     text-overflow: ellipsis;
     padding: 0 20px;
     box-sizing: border-box;
-    text-shadow: 0 0 12px rgba(255, 201, 40, 0.4);
-  }
-
-  @keyframes anim {
-    0% {
-      transform: translateX(0%);
-    }
-
-    20% {
-      transform: translateX(0%);
-    }
-
-    30% {
-      transform: translateX(-33.33%);
-    }
-
-    70% {
-      transform: translateX(-33.33%);
-    }
-
-    80% {
-      transform: translateX(-66.66%);
-    }
-
-    100% {
-      transform: translateX(-66.66%);
-    }
   }
 }

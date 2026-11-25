@@ -8,11 +8,11 @@ import {
   Zap, 
   Users, 
   Award, 
-  Sparkles,
-  LifeBuoy,
-  TrendingUp,
-  Cpu,
-  Clock
+  Sparkles, 
+  LifeBuoy, 
+  TrendingUp, 
+  Cpu, 
+  Clock 
 } from 'lucide-react';
 import SectionHeading from '../components/common/SectionHeading';
 import ServiceCard from '../components/common/ServiceCard';
@@ -84,258 +84,224 @@ export default function Services() {
 
   const getPillarIcon = (name) => {
     switch (name) {
-      case 'Cpu': return <Cpu className="w-6 h-6 text-brand-yellow" />;
-      case 'Zap': return <Zap className="w-6 h-6 text-brand-yellow" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-6 h-6 text-brand-yellow" />;
-      default: return <LifeBuoy className="w-6 h-6 text-brand-yellow" />;
+      case 'Cpu': return <Cpu className="w-6 h-6 text-brand-royal" />;
+      case 'Zap': return <Zap className="w-6 h-6 text-brand-royal" />;
+      case 'ShieldCheck': return <ShieldCheck className="w-6 h-6 text-brand-royal" />;
+      default: return <LifeBuoy className="w-6 h-6 text-brand-royal" />;
     }
   };
 
   return (
-    <div className="pt-28 pb-20 relative min-h-screen overflow-hidden bg-brand-navy">
+    <div className="pt-28 pb-20 relative min-h-screen overflow-hidden bg-brand-light">
       {/* Premium Digital Data Flow Background Animation */}
       <ServicesDataFlowBackground />
 
       <div className="relative z-10">
         {/* ===================== HERO SECTION ===================== */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Subtle Background Grid & Gradients */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-navy-surface/90 border border-brand-yellow/30 text-brand-yellow text-xs sm:text-sm font-semibold tracking-wide shadow-glow-yellow mb-6 backdrop-blur-md"
-          >
-            <Sparkles className="w-4 h-4 text-brand-yellow animate-spin-slow" />
-            <span>End-to-End Enterprise Technology Solutions</span>
-          </motion.div>
-
-          {/* Title: Our Services */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight mb-4"
-          >
-            Our{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-amber-300 to-yellow-400">
-              Services
-            </span>
-          </motion.h1>
-
-          {/* Subtitle: Innovative Technology Solutions That Empower Your Business */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl font-semibold text-brand-yellow mb-4 font-heading"
-          >
-            Innovative Technology Solutions That Empower Your Business.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-sm sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            From autonomous AI agents and cloud infrastructure to high-speed web apps, mobile ecosystems, brand marketing, and intelligent IVR telephony—we provide comprehensive digital engineering to accelerate your operational velocity.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ===================== RESPONSIVE SERVICE CARDS GRID ===================== */}
-      {/* 3 columns on desktop, 2 on tablet, 1 on mobile */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {servicesData.map((service, idx) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                idx={idx}
-                variant="services"
-                onSelect={(svc) => navigate(`/services/${svc.id}`)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== OUR TRUSTED CLIENTS ===================== */}
-      {/* Placed below the service cards (IVR Solutions) following company dark navy & brand yellow colour code */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Heading & Subtitle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-brand-yellow text-xs font-semibold uppercase tracking-wider mb-4 shadow-glow-yellow">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>STRATEGIC CLIENT SUCCESS</span>
+        <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          <div className="relative max-w-5xl mx-auto text-center">
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 border border-brand-royal/30 text-brand-royal text-xs sm:text-sm font-semibold tracking-wide shadow-sm mb-6 backdrop-blur-md"
+            >
+              <Sparkles className="w-4 h-4 text-brand-royal" />
+              <span>End-to-End Enterprise Technology Solutions</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight mb-3">
-              Our Trusted <span className="text-brand-yellow">Clients</span>
-            </h2>
-            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-normal">
-              Empowering growth and delivering transformative software solutions for industry leaders across the globe.
+
+            {/* Title: Our Services */}
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4"
+            >
+              Our{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
+                Services
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              className="text-lg sm:text-xl md:text-2xl font-semibold text-brand-royal mb-4 font-heading"
+            >
+              Innovative Technology Solutions That Empower Your Business.
             </p>
-          </motion.div>
 
-          {/* 3 Client Cards Grid - Following Company Colour Code (Dark Navy, Brand Yellow, White) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            {trustedClients.map((client, idx) => (
-              <motion.div
-                key={client.id}
-                initial={{ opacity: 0, y: 25, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: idx * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="group relative bg-brand-navy-surface border border-white/10 hover:border-brand-yellow/50 rounded-3xl p-6 sm:p-8 hover:shadow-glow-yellow transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Top Header: Category Badge & Logo Emblem */}
-                  <div className="flex items-center justify-between gap-4 mb-5">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-brand-yellow/10 text-brand-yellow border border-brand-yellow/30">
-                      {client.badge}
-                    </span>
+            <p
+              className="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto leading-relaxed"
+            >
+              From autonomous AI agents and cloud infrastructure to high-speed web apps, mobile ecosystems, brand marketing, and intelligent IVR telephony—we provide comprehensive digital engineering to accelerate your operational velocity.
+            </p>
+          </div>
+        </section>
 
-                    {/* Logo Emblem Container: Clean White Rounded Frame */}
-                    <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shadow-lg border border-white/20 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(255,201,40,0.3)] transition-all duration-300 flex-shrink-0">
-                      <img
-                        src={client.logo}
-                        alt={client.name}
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    </div>
-                  </div>
+        {/* ===================== RESPONSIVE SERVICE CARDS GRID ===================== */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {servicesData.map((service, idx) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  idx={idx}
+                  variant="services"
+                  onSelect={(svc) => navigate(`/services/${svc.id}`)}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
 
-                  {/* Title & Domain */}
-                  <h3 className="text-lg sm:text-xl font-bold text-white font-heading mb-1.5 group-hover:text-brand-yellow transition-colors leading-snug">
-                    {client.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-brand-yellow mb-3 tracking-wide">
-                    {client.scope}
-                  </p>
+        {/* ===================== OUR TRUSTED CLIENTS ===================== */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-brand-silver/40 bg-white relative">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Heading & Subtitle */}
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-royal/10 border border-brand-royal/25 text-brand-royal text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>STRATEGIC CLIENT SUCCESS</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3">
+                Our Trusted <span className="text-brand-royal">Clients</span>
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-normal">
+                Empowering growth and delivering transformative software solutions for industry leaders across the globe.
+              </p>
+            </div>
 
-                  {/* Details / Description */}
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
-                    {client.description}
-                  </p>
-                </div>
-
-                <div>
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mb-5">
-                    {client.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-lg bg-brand-navy-card border border-white/5 text-[11px] font-medium text-slate-300"
-                      >
-                        {tag}
+            {/* 3 Client Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+              {trustedClients.map((client, idx) => (
+                <div
+                  key={client.id}
+                  className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/50 rounded-3xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Top Header: Category Badge & Logo Emblem */}
+                    <div className="flex items-center justify-between gap-4 mb-5">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-brand-royal/10 text-brand-royal border border-brand-royal/20">
+                        {client.badge}
                       </span>
-                    ))}
+
+                      {/* Logo Emblem Container */}
+                      <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shadow-sm border border-brand-silver/50 group-hover:scale-105 transition-all duration-300 flex-shrink-0">
+                        <img
+                          src={client.logo}
+                          alt={client.name}
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title & Domain */}
+                    <h3 className="text-lg sm:text-xl font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors leading-snug">
+                      {client.name}
+                    </h3>
+                    <p className="text-xs font-semibold text-brand-steel mb-3 tracking-wide">
+                      {client.scope}
+                    </p>
+
+                    {/* Details / Description */}
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+                      {client.description}
+                    </p>
                   </div>
 
-                  {/* Action Link to Portfolio */}
-                  <Link
-                    to="/portfolio"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-brand-yellow hover:text-white transition-colors group/link"
-                  >
-                    <span>View Case Study</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
+                  <div>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-brand-silver/40 mb-5">
+                      {client.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-lg bg-brand-light border border-brand-silver/50 text-[11px] font-medium text-slate-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Link to Portfolio */}
+                    <Link
+                      to="/portfolio"
+                      className="inline-flex items-center gap-2 text-xs font-bold text-brand-royal hover:text-brand-navy transition-colors group/link"
+                    >
+                      <span>View Case Study</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ===================== TECHNOLOGIES WE USE ===================== */}
-      {/* Interactive enterprise tech stack directly below Our Trusted Clients */}
-      <TechnologiesWeUse />
+        {/* ===================== TECHNOLOGIES WE USE ===================== */}
+        <TechnologiesWeUse />
 
-      {/* ===================== WHY CHOOSE US ===================== */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-navy-dark/80 border-t border-white/5 relative">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading
-            badge="The Navabharath Standard"
-            title="Why Choose Us for"
-            titleHighlight="Enterprise Technology"
-            description="We bridge strategic technology leadership with rigorous engineering standards to guarantee tangible operational outcomes."
-          />
+        {/* ===================== WHY CHOOSE US ===================== */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-light border-t border-brand-silver/40 relative">
+          <div className="max-w-7xl mx-auto">
+            <SectionHeading
+              badge="The Navabharath Standard"
+              title="Why Choose Us for"
+              titleHighlight="Enterprise Technology"
+              description="We bridge strategic technology leadership with rigorous engineering standards to guarantee tangible operational outcomes."
+            />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyChooseUsPillars.map((pillar, idx) => (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                className="p-6 rounded-2xl bg-brand-navy-surface border border-white/10 hover:border-brand-yellow/30 transition-colors flex flex-col justify-between"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {whyChooseUsPillars.map((pillar, idx) => (
+                <div
+                  key={pillar.title}
+                  className="p-6 rounded-2xl bg-white border border-brand-silver/60 hover:border-brand-royal/40 shadow-sm transition-colors flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-brand-light border border-brand-silver/50 flex items-center justify-center mb-4">
+                      {getPillarIcon(pillar.icon)}
+                    </div>
+                    <h3 className="text-lg font-bold text-brand-navy mb-2 font-heading">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== FINAL GET IN TOUCH CTA ===================== */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden shadow-2xl text-white">
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
+            
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#C4CCD5] border border-white/20 text-xs font-semibold uppercase tracking-wider mb-6">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Start Your Transformation</span>
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-heading">
+              Ready to Build Your Next <span className="text-[#C4CCD5]">Digital Solution?</span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#C4CCD5] max-w-2xl mx-auto leading-relaxed mb-8">
+              Connect directly with our senior technology consultants to discuss your technical parameters, timeline, and receive a customized architectural proposal.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/contact"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-brand-royal text-white hover:bg-white hover:text-brand-navy shadow-lg transition-all"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-brand-navy-card border border-brand-yellow/30 flex items-center justify-center mb-4">
-                    {getPillarIcon(pillar.icon)}
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2 font-heading">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                Get In Touch With Us
+              </Link>
+              <Link
+                to="/portfolio"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/30 transition-all"
+              >
+                View Client Case Studies
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ===================== FINAL GET IN TOUCH CTA ===================== */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-navy-surface via-brand-navy-card to-brand-navy-surface border border-brand-yellow/30 p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-yellow/15 rounded-full blur-3xl pointer-events-none" />
-          
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow/15 text-brand-yellow text-xs font-semibold uppercase tracking-wider mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Start Your Transformation</span>
-          </span>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-heading">
-            Ready to Build Your Next <span className="text-brand-yellow">Digital Solution?</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
-            Connect directly with our senior technology consultants to discuss your technical parameters, timeline, and receive a customized architectural proposal.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-brand-yellow text-brand-navy hover:bg-brand-yellow-hover shadow-xl hover:shadow-glow-yellow transition-all"
-            >
-              Get In Touch With Us
-            </Link>
-            <Link
-              to="/portfolio"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-all"
-            >
-              View Client Case Studies
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
       </div>
 
       {/* Optional Quick Modal Preview */}
@@ -347,39 +313,39 @@ export default function Services() {
           subtitle={selectedService.tagline}
           maxWidth="max-w-3xl"
         >
-          <div className="space-y-6 text-sm text-slate-300">
+          <div className="space-y-6 text-sm text-slate-700">
             <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2">
+              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-2">
                 Executive Overview
               </h4>
-              <p className="leading-relaxed">{selectedService.fullDesc}</p>
+              <p className="leading-relaxed text-slate-600">{selectedService.fullDesc}</p>
             </div>
 
             <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-3">
-                Key Features & Architectural Capabilities
+              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-3">
+                Key Features &amp; Architectural Capabilities
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {selectedService.features.map((feat, i) => (
-                  <div key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-white/5 border border-white/5">
-                    <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-slate-200">{feat}</span>
+                  <div key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-brand-light border border-brand-silver/50">
+                    <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0 mt-0.5" />
+                    <span className="text-xs text-slate-700">{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between">
               <button
                 onClick={() => setSelectedService(null)}
-                className="text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+                className="text-xs font-semibold text-slate-500 hover:text-brand-navy transition-colors"
               >
                 Close Window
               </button>
               <Link
                 to={`/services/${selectedService.id}`}
                 onClick={() => setSelectedService(null)}
-                className="px-6 py-2.5 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover shadow-lg transition-colors flex items-center gap-1.5"
+                className="px-6 py-2.5 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy shadow-md transition-colors flex items-center gap-1.5"
               >
                 <span>Open Dedicated Service Page</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -23,64 +23,18 @@ import PortfolioLoadingScreen from '../components/portfolio/PortfolioLoadingScre
 import { getAssetUrl } from '../utils/assetPath';
 
 // =========================================================================
-// REUSABLE 3D TILT PROJECT CARD COMPONENT
+// REUSABLE PROJECT CARD COMPONENT
 // =========================================================================
 function InteractiveProjectCard({
   project,
   idx = 0,
   onSelect,
   onImageClick,
-  prefersReducedMotion = false,
-  isTouchDevice = false,
-  badgeColor = "border-white/10 hover:border-brand-yellow/50"
+  badgeColor = "border-brand-silver/60 hover:border-brand-royal/50"
 }) {
-  const cardRef = useRef(null);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e) => {
-    if (prefersReducedMotion || isTouchDevice || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotX = -((y - centerY) / centerY) * 6; // max 6 deg
-    const rotY = ((x - centerX) / centerX) * 6;
-    setRotateX(rotX);
-    setRotateY(rotY);
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setRotateX(0);
-    setRotateY(0);
-  };
-
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ 
-        duration: prefersReducedMotion ? 0.2 : 0.5, 
-        delay: prefersReducedMotion ? 0 : idx * 0.08, 
-        ease: [0.16, 1, 0.3, 1] 
-      }}
-      className="h-full"
-      style={{ perspective: 1000 }}
-    >
+    <div className="h-full">
       <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         onClick={() => onSelect(project)}
         role="button"
         tabIndex={0}
@@ -91,23 +45,10 @@ function InteractiveProjectCard({
           }
         }}
         aria-label={`View ${project.title} case study`}
-        className={`relative h-full rounded-3xl bg-brand-navy-surface border ${badgeColor} overflow-hidden cursor-pointer flex flex-col justify-between group focus:outline-none focus:ring-2 focus:ring-brand-yellow/60 transition-all duration-300 ${
-          isHovered ? 'shadow-card-hover -translate-y-2 border-brand-yellow/60' : 'shadow-xl'
-        }`}
-        style={{
-          transform: !prefersReducedMotion && !isTouchDevice && isHovered
-            ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
-            : 'rotateX(0deg) rotateY(0deg)',
-          transition: isHovered 
-            ? 'transform 0.12s ease-out, box-shadow 0.3s ease, border-color 0.3s ease' 
-            : 'transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease'
-        }}
+        className={`relative h-full rounded-3xl bg-white border ${badgeColor} overflow-hidden cursor-pointer flex flex-col justify-between group focus:outline-none focus:ring-2 focus:ring-brand-royal/50 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300`}
       >
-        {/* Subtle Ambient Hover Glow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-yellow/[0.08] via-transparent to-brand-navy-card/[0.1] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
         {/* Top Header Banner + Overlapping Logo */}
-        <div className="relative h-44 overflow-hidden bg-brand-navy-card">
+        <div className="relative h-44 overflow-hidden bg-brand-light">
           <img
             src={project.bannerImage}
             alt={project.title}
@@ -115,8 +56,7 @@ function InteractiveProjectCard({
             loading="lazy"
           />
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-surface via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60" />
 
           {/* Image Lightbox Trigger Prompt Button */}
           <button
@@ -127,13 +67,13 @@ function InteractiveProjectCard({
             }}
             title="Click to view full image in lightbox"
             aria-label="Enlarge image in lightbox"
-            className="absolute top-3 right-3 p-2 rounded-xl bg-brand-navy-dark/80 hover:bg-brand-yellow text-slate-300 hover:text-brand-navy backdrop-blur-md border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-200 z-20 shadow-md"
+            className="absolute top-3 right-3 p-2 rounded-xl bg-white/90 hover:bg-brand-royal text-brand-navy hover:text-white backdrop-blur-md border border-brand-silver/50 opacity-0 group-hover:opacity-100 transition-all duration-200 z-20 shadow-sm cursor-pointer"
           >
             <ZoomIn className="w-4 h-4" />
           </button>
 
           {/* Floating Client Logo Badge */}
-          <div className="absolute -bottom-5 left-6 w-14 h-14 rounded-2xl bg-white p-1.5 shadow-2xl border-2 border-brand-navy-surface flex items-center justify-center overflow-hidden z-10 group-hover:scale-110 transition-transform duration-300">
+          <div className="absolute -bottom-5 left-6 w-14 h-14 rounded-2xl bg-white p-1.5 shadow-md border-2 border-brand-silver/50 flex items-center justify-center overflow-hidden z-10 group-hover:scale-105 transition-transform duration-300">
             <img
               src={project.logoImage}
               alt={`${project.title} logo`}
@@ -147,7 +87,7 @@ function InteractiveProjectCard({
         <div className="pt-8 pb-6 px-6 flex-1 flex flex-col justify-between">
           <div>
             {/* Project Title */}
-            <h3 className="text-xl font-bold text-white mb-3 font-heading group-hover:text-brand-yellow transition-colors leading-snug">
+            <h3 className="text-xl font-bold text-brand-navy mb-3 font-heading group-hover:text-brand-royal transition-colors leading-snug">
               {project.title}
             </h3>
 
@@ -156,7 +96,7 @@ function InteractiveProjectCard({
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[11px] font-medium px-3 py-1 rounded-lg bg-white/5 text-slate-200 border border-white/10 group-hover:border-brand-yellow/30 transition-colors"
+                  className="text-[11px] font-medium px-3 py-1 rounded-lg bg-brand-light text-slate-700 border border-brand-silver/50 group-hover:border-brand-royal/30 transition-colors"
                 >
                   {tag}
                 </span>
@@ -164,21 +104,21 @@ function InteractiveProjectCard({
             </div>
 
             {/* Short Description */}
-            <p className="text-sm text-slate-300 leading-relaxed mb-6 line-clamp-2">
+            <p className="text-sm text-slate-600 leading-relaxed mb-6 line-clamp-2">
               {project.shortDesc}
             </p>
           </div>
 
-          {/* Animated Action Button: View Case Study */}
+          {/* Action Button: View Case Study */}
           <div>
-            <div className="w-full py-3 rounded-xl bg-white/5 group-hover:bg-brand-yellow text-slate-200 group-hover:text-brand-navy font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2 border border-white/10 group-hover:border-brand-yellow shadow-md group-hover:shadow-glow-yellow">
+            <div className="w-full py-3 rounded-xl bg-brand-light group-hover:bg-brand-royal text-brand-navy group-hover:text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2 border border-brand-silver/60 group-hover:border-brand-royal shadow-sm">
               <span>View Case Study</span>
-              <ArrowUpRight className="w-4 h-4 text-brand-yellow group-hover:text-brand-navy transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="w-4 h-4 text-brand-royal group-hover:text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -190,21 +130,6 @@ export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  // Detect accessibility and device touch capabilities
-  useEffect(() => {
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(motionQuery.matches);
-    const motionHandler = (e) => setPrefersReducedMotion(e.matches);
-    motionQuery.addEventListener('change', motionHandler);
-
-    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    setIsTouchDevice(touch);
-
-    return () => motionQuery.removeEventListener('change', motionHandler);
-  }, []);
 
   // Keyboard navigation: Escape key closes modal & lightbox
   useEffect(() => {
@@ -243,152 +168,63 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
-      <div className="pt-24 pb-20 relative min-h-screen overflow-hidden bg-brand-navy">
+      <div className="pt-24 pb-20 relative min-h-screen overflow-hidden bg-brand-light">
       {/* Premium Floating Digital Data Background Animation */}
       <PortfolioDataBackground />
 
       <div className="relative z-10">
         {/* ===================== HERO / HEADER: CLIENT PORTFOLIO ===================== */}
-      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Subtle Background Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
+        <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          <div className="relative max-w-5xl mx-auto text-center">
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-brand-royal/25 text-brand-royal text-xs sm:text-sm font-semibold uppercase tracking-wider mb-6 shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
+              <span>Proven Client Work &amp; Digital Engineering</span>
+            </div>
 
-        {/* Radial Gradient Glows */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/4 -right-20 w-[450px] h-[450px] bg-brand-yellow/5 rounded-full blur-3xl pointer-events-none" />
+            {/* Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 flex flex-wrap items-center justify-center gap-x-3.5">
+              <span>Client</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
+                Portfolio
+              </span>
+            </h1>
 
-        {/* Floating Subtle Ambient Particles */}
-        {!prefersReducedMotion && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[
-              { top: '20%', left: '15%', size: 6, delay: 0 },
-              { top: '35%', left: '80%', size: 8, delay: 1.2 },
-              { top: '65%', left: '10%', size: 5, delay: 2.1 },
-              { top: '75%', left: '85%', size: 7, delay: 0.6 },
-              { top: '80%', left: '50%', size: 6, delay: 1.8 }
-            ].map((p, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  y: [-12, 12, -12],
-                  x: [-6, 6, -6],
-                  opacity: [0.2, 0.6, 0.2]
-                }}
-                transition={{
-                  duration: 6 + i,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: p.delay
-                }}
-                style={{
-                  top: p.top,
-                  left: p.left,
-                  width: p.size,
-                  height: p.size
-                }}
-                className="absolute rounded-full bg-brand-yellow"
-              />
-            ))}
+            {/* Description */}
+            <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Explore our trusted client partnerships across healthcare, sustainable organisations, and local businesses—delivering reliable website maintenance, digital presence, and specialized software.
+            </p>
           </div>
-        )}
+        </section>
 
-        <div className="relative max-w-5xl mx-auto text-center">
-          {/* Badge: On page load entrance */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.88, y: -15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-brand-yellow text-xs sm:text-sm font-semibold uppercase tracking-wider mb-6 shadow-glow-yellow"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-brand-yellow animate-spin-slow" />
-            <span>Proven Client Work &amp; Digital Engineering</span>
-          </motion.div>
-
-          {/* Heading: 'Client' smoothly slides up; yellow 'Portfolio' animates separately */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight mb-6 flex flex-wrap items-center justify-center gap-x-3.5">
-            <motion.span
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Client
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-amber-300 to-yellow-400 drop-shadow-sm"
-            >
-              Portfolio
-            </motion.span>
-          </h1>
-
-          {/* Description Fade In */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            Explore our trusted client partnerships across healthcare, sustainable organisations, and local businesses—delivering reliable website maintenance, digital presence, and specialized software.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ===================== CATEGORY FILTER TABS (ANIMATED ACTIVE PILL) ===================== */}
-      <section className="px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-          {clientPortfolioCategories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <motion.button
-                key={cat}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setActiveCategory(cat)}
-                className="relative px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-yellow/50"
-              >
-                {/* Smooth Animated Yellow Pill Background */}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeFilterPill"
-                    className="absolute inset-0 bg-brand-yellow rounded-xl shadow-glow-yellow"
-                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                  />
-                )}
-
-                {/* Animated underline indicator when active */}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeFilterUnderline"
-                    className="absolute -bottom-1 left-3 right-3 h-0.5 bg-brand-yellow rounded-full shadow-glow-yellow"
-                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                  />
-                )}
-
-                <span
-                  className={`relative z-10 transition-colors duration-200 ${
-                    isActive 
-                      ? 'text-brand-navy font-bold' 
-                      : 'text-slate-300 hover:text-white'
+        {/* ===================== CATEGORY FILTER TABS ===================== */}
+        <section className="px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            {clientPortfolioCategories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                    isActive
+                      ? 'bg-brand-royal text-white font-bold shadow-md border border-brand-royal'
+                      : 'bg-white border border-brand-silver/60 text-slate-700 hover:text-brand-royal hover:bg-brand-light'
                   }`}
                 >
                   {cat}
-                </span>
-              </motion.button>
-            );
-          })}
-        </div>
-      </section>
+                </button>
+              );
+            })}
+          </div>
+        </section>
 
-      {/* ===================== CLIENT PORTFOLIO GALLERY GRID ===================== */}
-      <section className="px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence mode="popLayout">
+        {/* ===================== CLIENT PORTFOLIO GALLERY GRID ===================== */}
+        <section className="px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredClientProjects.map((project, idx) => (
                 <InteractiveProjectCard
                   key={project.id}
@@ -396,168 +232,140 @@ export default function Portfolio() {
                   idx={idx}
                   onSelect={setSelectedProject}
                   onImageClick={(p) => setLightboxImage({ src: p.bannerImage, title: p.title })}
-                  prefersReducedMotion={prefersReducedMotion}
-                  isTouchDevice={isTouchDevice}
                 />
               ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ======================================================================= */}
-      {/* ============ DEDICATED SECTION UNDER CLIENT PORTFOLIO: OUR PROJECTS === */}
-      {/* ======================================================================= */}
-      <section className="mt-28 py-16 px-4 sm:px-6 lg:px-8 bg-brand-navy-dark/90 border-t border-brand-yellow/20 relative">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header: Our Projects + Tagline "Real solutions delivered for real businesses" */}
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow/15 border border-brand-yellow/40 text-brand-yellow text-xs font-semibold uppercase tracking-wider mb-4 shadow-glow-yellow"
-            >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>Proprietary Platforms &amp; Products</span>
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight mb-3"
-            >
-              Our{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-amber-300 to-yellow-400">
-                Projects
-              </span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl font-medium text-slate-200"
-            >
-              Real solutions delivered for real businesses
-            </motion.p>
+            </div>
           </div>
+        </section>
 
-          {/* Platform Showcase: Uiverse.io Animated Cards (Our Projects Only) */}
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 max-w-5xl mx-auto py-8">
-            {[
-              {
-                id: 'jkd-mart',
-                name: 'JKD Mart',
-                logo: getAssetUrl('/portfolio/jkd-mart-logo.svg'),
-                tag: 'Smart Digital Retail & E-Commerce'
-              },
-              {
-                id: 'vyapara',
-                name: 'Vyapara',
-                logo: getAssetUrl('/portfolio/vyapara-logo.svg'),
-                tag: 'Smart Business & Billing Platform'
-              },
-              {
-                id: 'tokens-boy',
-                name: 'Tokens Boy',
-                logo: getAssetUrl('/portfolio/tokens-boy-logo.svg'),
-                tag: 'Smart Token & Queue Management'
-              }
-            ].map((prod, idx) => {
-              const projectObj = ourProjectsData.find((p) => p.id === prod.id);
-              return (
-                <motion.div
-                  key={prod.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.12 }}
-                  className="uiverse-card group"
-                  onClick={() => projectObj && setSelectedProject(projectObj)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      projectObj && setSelectedProject(projectObj);
-                    }
-                  }}
-                >
-                  <div className="uiverse-card-content">
-                    <div className="flex items-center justify-between w-full">
-                      <div className="w-12 h-12 rounded-xl bg-white/10 p-2 flex items-center justify-center border border-white/10 group-hover:border-brand-yellow/50 transition-colors">
-                        <img
-                          src={prod.logo}
-                          alt={prod.name}
-                          className="max-h-full max-w-full object-contain"
-                        />
+        {/* ======================================================================= */}
+        {/* ============ DEDICATED SECTION UNDER CLIENT PORTFOLIO: OUR PROJECTS === */}
+        {/* ======================================================================= */}
+        <section className="mt-28 py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 relative">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <div
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-royal/10 border border-brand-royal/20 text-brand-royal text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm"
+              >
+                <Code2 className="w-3.5 h-3.5" />
+                <span>Proprietary Platforms &amp; Products</span>
+              </div>
+
+              <h2
+                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3"
+              >
+                Our <span className="text-brand-royal">Projects</span>
+              </h2>
+
+              <p className="text-lg sm:text-xl font-medium text-slate-600">
+                Real solutions delivered for real businesses
+              </p>
+            </div>
+
+            {/* Platform Showcase: Uiverse.io Cards */}
+            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 max-w-5xl mx-auto py-8">
+              {[
+                {
+                  id: 'jkd-mart',
+                  name: 'JKD Mart',
+                  logo: getAssetUrl('/portfolio/jkd-mart-logo.svg'),
+                  tag: 'Smart Digital Retail & E-Commerce'
+                },
+                {
+                  id: 'vyapara',
+                  name: 'Vyapara',
+                  logo: getAssetUrl('/portfolio/vyapara-logo.svg'),
+                  tag: 'Smart Business & Billing Platform'
+                },
+                {
+                  id: 'tokens-boy',
+                  name: 'Tokens Boy',
+                  logo: getAssetUrl('/portfolio/tokens-boy-logo.svg'),
+                  tag: 'Smart Token & Queue Management'
+                }
+              ].map((prod) => {
+                const projectObj = ourProjectsData.find((p) => p.id === prod.id);
+                return (
+                  <div
+                    key={prod.id}
+                    className="uiverse-card group"
+                    onClick={() => projectObj && setSelectedProject(projectObj)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        projectObj && setSelectedProject(projectObj);
+                      }
+                    }}
+                  >
+                    <div className="uiverse-card-content">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="w-12 h-12 rounded-xl bg-brand-light p-2 flex items-center justify-center border border-brand-silver/50 group-hover:border-brand-royal/50 transition-colors">
+                          <img
+                            src={prod.logo}
+                            alt={prod.name}
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-brand-royal bg-brand-royal/10 px-2 py-0.5 rounded-full border border-brand-royal/30 uppercase tracking-wider">
+                          {projectObj?.badge || 'PRODUCT'}
+                        </span>
                       </div>
-                      <span className="text-[10px] font-mono font-bold text-brand-yellow bg-brand-yellow/10 px-2 py-0.5 rounded-full border border-brand-yellow/30 uppercase tracking-wider">
-                        {projectObj?.badge || 'PRODUCT'}
-                      </span>
-                    </div>
 
-                    <div className="my-2">
-                      <p className="heading group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-brand-yellow transition-all">
-                        {prod.name}
-                      </p>
-                      <span className="text-[11px] font-semibold text-slate-400 block mt-0.5 mb-2">
-                        {prod.tag}
-                      </span>
-                      <p>
-                        {projectObj?.shortDesc}
+                      <div className="my-2">
+                        <p className="heading group-hover:text-brand-royal transition-colors">
+                          {prod.name}
+                        </p>
+                        <span className="text-[11px] font-semibold text-slate-500 block mt-0.5 mb-2">
+                          {prod.tag}
+                        </span>
+                        <p className="text-slate-600 text-xs line-clamp-3">
+                          {projectObj?.shortDesc}
+                        </p>
+                      </div>
+
+                      <p className="group-hover:translate-x-1 transition-transform text-xs font-bold text-brand-royal flex items-center">
+                        <span>View Case Study</span>
+                        <ArrowUpRight className="w-4 h-4 ml-1 inline-block" />
                       </p>
                     </div>
-
-                    <p className="group-hover:translate-x-1 transition-transform">
-                      <span>View Case Study</span>
-                      <ArrowUpRight className="w-4 h-4 ml-1 inline-block" />
-                    </p>
                   </div>
-                </motion.div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ===================== BOTTOM CTA BANNER ===================== */}
-      <section className="mt-20 px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-brand-navy-surface border border-brand-yellow/30 text-center relative overflow-hidden shadow-2xl"
-        >
-          <div className="absolute -top-24 -right-24 w-60 h-60 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none" />
-
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow/10 text-brand-yellow text-xs font-semibold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Grow Your Digital Presence</span>
-          </span>
-
-          <h3 className="text-2xl sm:text-3xl font-bold text-white font-heading mb-3">
-            Ready to Build or Elevate Your Online Footprint?
-          </h3>
-          <p className="text-sm sm:text-base text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed">
-            From complete website maintenance and social media management to tailored token booking and workflow applications, we empower businesses with reliable technology solutions.
-          </p>
-
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover shadow-lg hover:shadow-glow-yellow transition-all duration-200 active:scale-95 group"
+        {/* ===================== BOTTOM CTA BANNER ===================== */}
+        <section className="mt-20 px-4 sm:px-6 lg:px-8">
+          <div
+            className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 text-center relative overflow-hidden shadow-2xl text-white"
           >
-            <span>Get In Touch With Us</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
-      </section>
+            <div className="absolute -top-24 -right-24 w-60 h-60 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
+
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#C4CCD5] border border-white/20 text-xs font-semibold uppercase tracking-wider mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Grow Your Digital Presence</span>
+            </span>
+
+            <h3 className="text-2xl sm:text-3xl font-bold text-white font-heading mb-3">
+              Ready to Build or Elevate Your Online Footprint?
+            </h3>
+            <p className="text-sm sm:text-base text-[#C4CCD5] mb-8 max-w-xl mx-auto leading-relaxed">
+              From complete website maintenance and social media management to tailored token booking and workflow applications, we empower businesses with reliable technology solutions.
+            </p>
+
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-white hover:text-brand-navy shadow-lg transition-all duration-200 active:scale-95 group"
+            >
+              <span>Get In Touch With Us</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </section>
       </div>
 
       {/* ======================================================================= */}
@@ -566,53 +374,41 @@ export default function Portfolio() {
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Backdrop with Blur and Fade */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+            {/* Backdrop */}
+            <div
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-brand-navy-dark/85 backdrop-blur-md"
+              className="fixed inset-0 bg-brand-navy/60 backdrop-blur-sm"
               aria-hidden="true"
             />
 
-            {/* Animated Modal Container (Scale-Up + Fade-In) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.88, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ 
-                type: 'spring', 
-                damping: 26, 
-                stiffness: 320 
-              }}
-              className="relative w-full max-w-3xl bg-brand-navy-surface border border-brand-yellow/30 rounded-3xl shadow-2xl shadow-black/90 overflow-hidden z-10 my-8 flex flex-col max-h-[90vh]"
+            {/* Modal Container */}
+            <div
+              className="relative w-full max-w-3xl bg-white border border-brand-silver/60 rounded-3xl shadow-2xl overflow-hidden z-10 my-8 flex flex-col max-h-[90vh]"
             >
               {/* Modal Top Header with Close Button */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-brand-navy-card/80 backdrop-blur-sm">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-brand-silver/40 bg-brand-light">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse" />
-                  <span className="text-xs font-bold text-brand-yellow uppercase tracking-wider">
+                  <span className="w-2 h-2 rounded-full bg-brand-royal" />
+                  <span className="text-xs font-bold text-brand-royal uppercase tracking-wider">
                     {selectedProject.badge || selectedProject.category}
                   </span>
                 </div>
 
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="p-2 rounded-xl text-slate-400 hover:text-brand-yellow hover:bg-white/10 transition-colors group"
+                  className="p-2 rounded-xl text-slate-400 hover:text-brand-royal hover:bg-brand-royal/10 transition-colors group cursor-pointer"
                   aria-label="Close modal window"
                 >
-                  <X className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90" />
+                  <X className="w-5 h-5 transition-transform duration-200 group-hover:rotate-90" />
                 </button>
               </div>
 
               {/* Modal Scrollable Body */}
-              <div className="p-6 overflow-y-auto space-y-6 custom-scrollbar">
-                {/* Large Project Image Banner (Clickable to Lightbox) */}
+              <div className="p-6 overflow-y-auto space-y-6 custom-scrollbar text-slate-700">
+                {/* Large Project Image Banner */}
                 <div 
                   onClick={() => setLightboxImage({ src: selectedProject.bannerImage, title: selectedProject.title })}
-                  className="relative h-56 sm:h-64 overflow-hidden rounded-2xl border border-white/10 bg-brand-navy-card cursor-pointer group"
+                  className="relative h-56 sm:h-64 overflow-hidden rounded-2xl border border-brand-silver/50 bg-brand-light cursor-pointer group"
                   title="Click to expand image in full-screen lightbox"
                 >
                   <img
@@ -620,17 +416,17 @@ export default function Portfolio() {
                     alt={selectedProject.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/95 via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80" />
 
                   {/* Zoom Badge prompt */}
-                  <div className="absolute top-3 right-3 px-3 py-1.5 rounded-xl bg-brand-navy-dark/80 text-white text-xs font-semibold flex items-center gap-1.5 backdrop-blur-md border border-white/15 group-hover:bg-brand-yellow group-hover:text-brand-navy transition-colors">
+                  <div className="absolute top-3 right-3 px-3 py-1.5 rounded-xl bg-white/90 text-brand-navy text-xs font-semibold flex items-center gap-1.5 backdrop-blur-md border border-brand-silver/50 group-hover:bg-brand-royal group-hover:text-white transition-colors">
                     <ZoomIn className="w-3.5 h-3.5" />
                     <span>Click to Enlarge</span>
                   </div>
 
                   {/* Overlapping Client Logo and Title */}
                   <div className="absolute bottom-4 left-4 flex items-center gap-3.5">
-                    <div className="w-14 h-14 rounded-2xl bg-white p-1.5 shadow-2xl border-2 border-white/20 flex-shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-white p-1.5 shadow-md border-2 border-brand-silver/50 flex-shrink-0">
                       <img
                         src={selectedProject.logoImage}
                         alt={selectedProject.title}
@@ -638,10 +434,10 @@ export default function Portfolio() {
                       />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-brand-yellow uppercase tracking-widest block">
+                      <span className="text-[10px] font-bold text-white uppercase tracking-widest block drop-shadow-sm">
                         {selectedProject.category}
                       </span>
-                      <h4 className="text-xl sm:text-2xl font-bold text-white font-heading">
+                      <h4 className="text-xl sm:text-2xl font-bold text-white font-heading drop-shadow-sm">
                         {selectedProject.title}
                       </h4>
                     </div>
@@ -650,31 +446,31 @@ export default function Portfolio() {
 
                 {/* Executive Overview */}
                 <div>
-                  <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow" />
+                  <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-royal" />
                     Executive Overview
                   </h4>
-                  <p className="leading-relaxed text-slate-300 text-sm">
+                  <p className="leading-relaxed text-slate-600 text-sm">
                     {selectedProject.fullDesc}
                   </p>
                 </div>
 
                 {/* Challenge & Solution Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                    <h5 className="text-brand-yellow font-bold text-xs uppercase tracking-wider mb-2">
+                  <div className="p-4 rounded-2xl bg-brand-light border border-brand-silver/50">
+                    <h5 className="text-brand-royal font-bold text-xs uppercase tracking-wider mb-2">
                       The Objective / Challenge
                     </h5>
-                    <p className="text-xs leading-relaxed text-slate-300">
+                    <p className="text-xs leading-relaxed text-slate-600">
                       {selectedProject.challenge}
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                    <h5 className="text-brand-yellow font-bold text-xs uppercase tracking-wider mb-2">
+                  <div className="p-4 rounded-2xl bg-brand-light border border-brand-silver/50">
+                    <h5 className="text-brand-royal font-bold text-xs uppercase tracking-wider mb-2">
                       Our Delivered Solution
                     </h5>
-                    <p className="text-xs leading-relaxed text-slate-300">
+                    <p className="text-xs leading-relaxed text-slate-600">
                       {selectedProject.solution}
                     </p>
                   </div>
@@ -682,17 +478,17 @@ export default function Portfolio() {
 
                 {/* Measurable Deliverables / Outcomes */}
                 <div>
-                  <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow" />
+                  <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-royal" />
                     Key Deliverables &amp; Impact
                   </h4>
                   <div className="space-y-2">
                     {selectedProject.results.map((res, i) => (
                       <div 
                         key={i} 
-                        className="flex items-center gap-2.5 p-3 rounded-xl bg-brand-yellow/5 border border-brand-yellow/15 text-xs text-slate-200"
+                        className="flex items-center gap-2.5 p-3 rounded-xl bg-brand-royal/5 border border-brand-royal/15 text-xs text-slate-700"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0" />
                         <span>{res}</span>
                       </div>
                     ))}
@@ -701,15 +497,15 @@ export default function Portfolio() {
 
                 {/* Service Scope Tags */}
                 <div>
-                  <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow" />
+                  <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-royal" />
                     Service Scope &amp; Deliverables
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.tags.map((t) => (
                       <span
                         key={t}
-                        className="text-xs font-medium px-3 py-1 rounded-lg bg-white/5 text-brand-yellow border border-brand-yellow/30"
+                        className="text-xs font-medium px-3 py-1 rounded-lg bg-brand-light text-brand-royal border border-brand-silver/50"
                       >
                         {t}
                       </span>
@@ -719,19 +515,19 @@ export default function Portfolio() {
               </div>
 
               {/* Modal Bottom Actions */}
-              <div className="p-6 border-t border-white/10 bg-brand-navy-card/50 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="p-6 border-t border-brand-silver/40 bg-brand-light flex flex-col sm:flex-row items-center justify-between gap-3">
                 {selectedProject.link && selectedProject.link.startsWith('http') ? (
                   <a
                     href={selectedProject.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-brand-yellow hover:text-white flex items-center gap-1.5 transition-colors"
+                    className="text-xs font-semibold text-brand-royal hover:underline flex items-center gap-1.5 transition-colors"
                   >
                     <span>Visit Live Website</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 ) : (
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-slate-500">
                     Engineered with dedicated continuous support SLA
                   </span>
                 )}
@@ -739,12 +535,12 @@ export default function Portfolio() {
                 <Link
                   to={`/contact?service=${encodeURIComponent(selectedProject.title)}`}
                   onClick={() => setSelectedProject(null)}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover shadow-lg hover:shadow-glow-yellow transition-all text-center active:scale-95"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy shadow-md transition-all text-center active:scale-95"
                 >
                   Inquire For Similar Build
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
@@ -754,13 +550,9 @@ export default function Portfolio() {
       {/* ======================================================================= */}
       <AnimatePresence>
         {lightboxImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+          <div
             onClick={() => setLightboxImage(null)}
-            className="fixed inset-0 z-[70] bg-black/92 backdrop-blur-xl flex flex-col items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-[70] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8"
           >
             {/* Top Close Button */}
             <div className="absolute top-5 right-6 z-10 flex items-center gap-4">
@@ -769,37 +561,33 @@ export default function Portfolio() {
               </span>
               <button
                 onClick={() => setLightboxImage(null)}
-                className="p-2.5 rounded-2xl bg-white/10 hover:bg-brand-yellow text-white hover:text-brand-navy transition-colors shadow-xl"
+                className="p-2.5 rounded-2xl bg-white/10 hover:bg-white text-white hover:text-brand-navy transition-colors shadow-xl cursor-pointer"
                 aria-label="Close image lightbox"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            {/* Animated Large Image Container */}
-            <motion.div
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            {/* Image Container */}
+            <div
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl max-h-[85vh] rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-brand-navy-dark"
+              className="relative max-w-5xl max-h-[85vh] rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-brand-navy"
             >
               <img
                 src={lightboxImage.src}
                 alt={lightboxImage.title}
                 className="w-full h-full max-h-[82vh] object-contain"
               />
-              <div className="p-4 bg-brand-navy-card/90 border-t border-white/10 flex items-center justify-between">
+              <div className="p-4 bg-brand-navy border-t border-white/10 flex items-center justify-between">
                 <span className="text-sm font-bold text-white font-heading">
                   {lightboxImage.title}
                 </span>
-                <span className="text-xs text-brand-yellow font-semibold">
+                <span className="text-xs text-[#C4CCD5] font-semibold">
                   High-Resolution Asset
                 </span>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
     </div>

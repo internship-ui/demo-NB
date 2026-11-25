@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Layers } from 'lucide-react';
 
 // =========================================================================
@@ -103,177 +102,67 @@ const TechLogos = {
       <rect x="49" y="40" width="10" height="9" rx="1" fill="#2496ED" />
       <rect x="62" y="40" width="10" height="9" rx="1" fill="#2496ED" />
       <rect x="75" y="52" width="10" height="9" rx="1" fill="#2496ED" />
-      <rect x="88" y="52" width="10" height="9" rx="1" fill="#2496ED" />
       <path
-        d="M123.5 66.5c-2.5-1.5-7.5-1.5-11.5 0-1-6.5-6.5-11-13-11-1 0-2 .2-3 .5V64H22.5c-2.5 0-4 1.5-4 4 0 16 12 30 33 30 25 0 45-12.5 52-31.5 7 0 14-2.5 20-7.5v-2.5h0z"
+        d="M117 62c-2.5-1.5-8-1.5-12.5.5-2.5-9-10-14.5-10-14.5s-4.5 7-1 15c-3 2-8 2-12 1.5H11v14c0 18.5 15 33.5 33.5 33.5 25.5 0 46.5-14 53-33 7.5 0 14-4 19.5-17z"
         fill="#2496ED"
       />
     </svg>
   ),
-  git: () => (
+  kubernetes: () => (
     <svg viewBox="0 0 128 128" className="w-7 h-7">
       <path
-        d="M120.5 57.5L70.5 7.5c-3.5-3.5-9.5-3.5-13 0L44 21l16.5 16.5c3.5-1 7.5 0 10.5 2.5 3 3 4 7 2.5 10.5l16 16c3.5-1.5 7.5-.5 10.5 2.5 4 4 4 10.5 0 14.5s-10.5 4-14.5 0c-3-3-4-7.5-2.5-11l-15-15v31.5c1 1.5 1.5 3 1.5 5 0 5.5-4.5 10-10 10s-10-4.5-10-10c0-3.5 2-6.5 5-8.5v-32c-3-1.5-5-4.5-5-8.5 0-2 .5-4 1.5-5.5L34 29.5 7.5 56c-3.5 3.5-3.5 9.5 0 13l50 50c3.5 3.5 9.5 3.5 13 0l50-50c3.5-3.5 3.5-9.5 0-11.5z"
-        fill="#F05032"
+        d="M64 12l45 26v52l-45 26-45-26V38l45-26z"
+        fill="#326CE5"
       />
+      <circle cx="64" cy="64" r="14" fill="#FFFFFF" />
+      <path d="M64 42v10m0 24v10m-16-22l8.7 5m14.6 8.4l8.7 5m-32 0l8.7-5m14.6-8.4l8.7-5" stroke="#326CE5" strokeWidth="4" strokeLinecap="round" />
     </svg>
   ),
   mongodb: () => (
     <svg viewBox="0 0 128 128" className="w-7 h-7">
       <path
-        d="M63.5 7c-2 2-19 25.5-19 49.5 0 24 15.5 39 18 43 1.5 2.5 1 16.5 1 21.5h1c0-5-.5-19 1-21.5 2.5-4 18-19 18-43C83.5 32.5 65.5 9 63.5 7z"
+        d="M64 6c-2 2-24 24-24 58 0 28 17 48 24 58 7-10 24-30 24-58 0-34-22-56-24-58z"
         fill="#47A248"
       />
-      <path
-        d="M64 7v114c0-5-.5-19 1-21.5 2.5-4 18-19 18-43C83 32.5 66 9 64 7z"
-        fill="#499D4A"
-      />
+      <path d="M64 6v116c1-2 24-24 24-58 0-34-22-56-24-58z" fill="#499D4A" />
+      <path d="M64 6v116c-1-2-24-24-24-58 0-34 22-56 24-58z" fill="#58AA50" />
+      <path d="M64 88c-1 0-8-5-8-12 0-9 8-15 8-15s8 6 8 15c0 7-7 12-8 12z" fill="#FFFFFF" />
     </svg>
   ),
   sql: () => (
     <svg viewBox="0 0 128 128" className="w-7 h-7">
       <ellipse cx="64" cy="28" rx="44" ry="16" fill="#00758F" />
-      <path d="M20 28v24c0 9 20 16 44 16s44-7 44-16V28H20z" fill="#008EA8" />
-      <path d="M20 52v24c0 9 20 16 44 16s44-7 44-16V52H20z" fill="#00A2BF" />
-      <path d="M20 76v24c0 9 20 16 44 16s44-7 44-16V76H20z" fill="#00B8D9" />
+      <path d="M20 28v36c0 8.8 19.7 16 44 16s44-7.2 44-16V28H20z" fill="#F29111" />
+      <path d="M20 64v36c0 8.8 19.7 16 44 16s44-7.2 44-16V64H20z" fill="#00758F" />
     </svg>
   ),
   figma: () => (
     <svg viewBox="0 0 128 128" className="w-7 h-7">
-      <path d="M43 21h21v21H43c-6 0-11-5-11-10.5S37 21 43 21z" fill="#F24E1E" />
-      <path d="M64 21h21c6 0 11 5 11 10.5S91 42 85 42H64V21z" fill="#FF7262" />
-      <path d="M64 42h21c6 0 11 5 11 10.5S91 63 85 63H64V42z" fill="#1ABCFE" />
-      <circle cx="74.5" cy="74.5" r="10.5" fill="#0ACF83" />
-      <path d="M43 42h21v21H43c-6 0-11-5-11-10.5S37 42 43 42z" fill="#A259FF" />
-      <path d="M43 63h21v21H43c-6 0-11-5-11-10.5S37 63 43 63z" fill="#F24E1E" />
+      <path d="M43 124c11.6 0 21-9.4 21-21V82H43c-11.6 0-21 9.4-21 21s9.4 21 21 21z" fill="#0ACF83" />
+      <path d="M22 61c0-11.6 9.4-21 21-21h21v42H43c-11.6 0-21-9.4-21-21z" fill="#A259FF" />
+      <path d="M22 19c0-11.6 9.4-21 21-21h21v42H43C31.4 40 22 30.6 22 19z" fill="#F24E1E" />
+      <path d="M64 -2h21c11.6 0 21 9.4 21 21s-9.4 21-21 21H64V-2z" fill="#FF7262" />
+      <circle cx="85" cy="61" r="21" fill="#1ABCFE" />
     </svg>
   ),
 };
 
-// =========================================================================
-// 15 TECHNOLOGIES WITH EXACT METADATA FROM USER IMAGE
-// =========================================================================
 const techData = [
-  // 1. React JS
-  {
-    id: 'react',
-    name: 'React JS',
-    role: 'UI Framework',
-    category: 'Frontend & Mobile',
-    icon: TechLogos.react,
-  },
-  // 2. TypeScript
-  {
-    id: 'typescript',
-    name: 'TypeScript',
-    role: 'Type-Safe Web',
-    category: 'Frontend & Mobile',
-    icon: TechLogos.typescript,
-  },
-  // 3. JavaScript
-  {
-    id: 'javascript',
-    name: 'JavaScript',
-    role: 'ES6+ Dynamic',
-    category: 'Frontend & Mobile',
-    icon: TechLogos.javascript,
-  },
-  // 4. Angular
-  {
-    id: 'angular',
-    name: 'Angular',
-    role: 'SPA Platform',
-    category: 'Frontend & Mobile',
-    icon: TechLogos.angular,
-  },
-  // 5. Node.js
-  {
-    id: 'nodejs',
-    name: 'Node.js',
-    role: 'Runtime & APIs',
-    category: 'Backend & APIs',
-    icon: TechLogos.nodejs,
-  },
-  // 6. Python
-  {
-    id: 'python',
-    name: 'Python',
-    role: 'AI & Backend',
-    category: 'Backend & APIs',
-    icon: TechLogos.python,
-  },
-  // 7. Java
-  {
-    id: 'java',
-    name: 'Java',
-    role: 'Enterprise Core',
-    category: 'Backend & APIs',
-    icon: TechLogos.java,
-  },
-  // 8. PHP
-  {
-    id: 'php',
-    name: 'PHP',
-    role: 'Web Services',
-    category: 'Backend & APIs',
-    icon: TechLogos.php,
-  },
-  // 9. AWS
-  {
-    id: 'aws',
-    name: 'AWS',
-    role: 'Cloud Infra',
-    category: 'Cloud & DevOps',
-    icon: TechLogos.aws,
-  },
-  // 10. Azure
-  {
-    id: 'azure',
-    name: 'Azure',
-    role: 'Cloud Solutions',
-    category: 'Cloud & DevOps',
-    icon: TechLogos.azure,
-  },
-  // 11. Docker
-  {
-    id: 'docker',
-    name: 'Docker',
-    role: 'Containers',
-    category: 'Cloud & DevOps',
-    icon: TechLogos.docker,
-  },
-  // 12. Git
-  {
-    id: 'git',
-    name: 'Git',
-    role: 'Version Control',
-    category: 'Cloud & DevOps',
-    icon: TechLogos.git,
-  },
-  // 13. MongoDB
-  {
-    id: 'mongodb',
-    name: 'MongoDB',
-    role: 'NoSQL Database',
-    category: 'Databases & UI',
-    icon: TechLogos.mongodb,
-  },
-  // 14. SQL
-  {
-    id: 'sql',
-    name: 'SQL',
-    role: 'Relational Data',
-    category: 'Databases & UI',
-    icon: TechLogos.sql,
-  },
-  // 15. Figma
-  {
-    id: 'figma',
-    name: 'Figma',
-    role: 'UI/UX Systems',
-    category: 'Databases & UI',
-    icon: TechLogos.figma,
-  },
+  { id: 'react', name: 'React.js', role: 'Frontend & SPAs', category: 'Frontend & Mobile', icon: TechLogos.react },
+  { id: 'typescript', name: 'TypeScript', role: 'Strict Typing', category: 'Frontend & Mobile', icon: TechLogos.typescript },
+  { id: 'javascript', name: 'JavaScript', role: 'Dynamic Engine', category: 'Frontend & Mobile', icon: TechLogos.javascript },
+  { id: 'angular', name: 'Angular', role: 'Enterprise UI', category: 'Frontend & Mobile', icon: TechLogos.angular },
+  { id: 'nodejs', name: 'Node.js', role: 'High-Concurrency APIs', category: 'Backend & APIs', icon: TechLogos.nodejs },
+  { id: 'python', name: 'Python', role: 'AI & Data Engineering', category: 'Backend & APIs', icon: TechLogos.python },
+  { id: 'java', name: 'Java', role: 'Robust Microservices', category: 'Backend & APIs', icon: TechLogos.java },
+  { id: 'php', name: 'PHP', role: 'Server-Side Web', category: 'Backend & APIs', icon: TechLogos.php },
+  { id: 'aws', name: 'AWS Cloud', role: 'Hyperscale Cloud', category: 'Cloud & DevOps', icon: TechLogos.aws },
+  { id: 'azure', name: 'Microsoft Azure', role: 'Enterprise Cloud', category: 'Cloud & DevOps', icon: TechLogos.azure },
+  { id: 'docker', name: 'Docker', role: 'Containerization', category: 'Cloud & DevOps', icon: TechLogos.docker },
+  { id: 'kubernetes', name: 'Kubernetes', role: 'Cluster Orchestration', category: 'Cloud & DevOps', icon: TechLogos.kubernetes },
+  { id: 'mongodb', name: 'MongoDB', role: 'Document NoSQL', category: 'Databases & UI', icon: TechLogos.mongodb },
+  { id: 'sql', name: 'SQL', role: 'Relational Data', category: 'Databases & UI', icon: TechLogos.sql },
+  { id: 'figma', name: 'Figma', role: 'UI/UX Systems', category: 'Databases & UI', icon: TechLogos.figma },
 ];
 
 const categories = [
@@ -293,44 +182,29 @@ export default function TechnologiesWeUse() {
   }, [selectedCategory]);
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative overflow-hidden bg-brand-navy">
-      {/* Background Cyber Accents */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-brand-yellow/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-brand-silver/40 relative overflow-hidden bg-gradient-to-b from-brand-light to-white">
       <div className="max-w-7xl mx-auto relative z-10 text-center">
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-brand-yellow text-xs font-semibold uppercase tracking-wider mb-4 shadow-glow-yellow"
+        <div
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-royal/10 border border-brand-royal/25 text-brand-royal text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm"
         >
           <Sparkles className="w-3.5 h-3.5" />
           <span>Enterprise Tech Stack</span>
-        </motion.div>
+        </div>
 
         {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.08 }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight mb-3"
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3"
         >
-          Technologies <span className="text-brand-yellow">We Use</span>
-        </motion.h2>
+          Technologies <span className="text-brand-royal">We Use</span>
+        </h2>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.15 }}
-          className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-normal mb-10"
+        <p
+          className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-normal mb-10"
         >
           We leverage modern and powerful stacks to build scalable products.
-        </motion.p>
+        </p>
 
         {/* Category Filter Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
@@ -341,10 +215,10 @@ export default function TechnologiesWeUse() {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   isSelected
-                    ? 'bg-brand-yellow text-brand-navy shadow-glow-yellow font-bold scale-105 border border-brand-yellow'
-                    : 'bg-brand-navy-surface/80 border border-white/10 text-slate-300 hover:text-white hover:border-brand-yellow/40 hover:bg-white/5'
+                    ? 'bg-brand-royal text-white font-bold shadow-md border border-brand-royal scale-105'
+                    : 'bg-white border border-brand-silver/60 text-slate-700 hover:text-brand-royal hover:border-brand-royal/40 hover:bg-brand-light'
                 }`}
               >
                 {cat}
@@ -354,46 +228,34 @@ export default function TechnologiesWeUse() {
         </div>
 
         {/* Technology Cards Grid */}
-        <motion.div
-          layout
+        <div
           className="flex flex-wrap justify-center gap-3 sm:gap-3.5 max-w-6xl mx-auto"
         >
-          <AnimatePresence mode="popLayout">
-            {filteredTech.map((tech) => {
-              const LogoComponent = tech.icon;
-              return (
-                <motion.div
-                  key={tech.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -5, scale: 1.03 }}
-                  className="group relative bg-brand-navy-surface border border-white/10 hover:border-brand-yellow/60 rounded-2xl p-3 sm:p-3.5 shadow-md hover:shadow-[0_12px_28px_rgba(7,27,58,0.4),0_0_18px_rgba(255,201,40,0.18)] transition-all duration-300 flex items-center gap-2.5 text-left cursor-default overflow-hidden w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.75rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(16.666%-0.75rem)] min-w-[155px] max-w-[178px]"
-                >
-                  {/* Subtle hover gradient sheen */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-yellow/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          {filteredTech.map((tech) => {
+            const LogoComponent = tech.icon;
+            return (
+              <div
+                key={tech.id}
+                className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/50 rounded-2xl p-3 sm:p-3.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2.5 text-left cursor-default overflow-hidden w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.75rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(16.666%-0.75rem)] min-w-[155px] max-w-[178px]"
+              >
+                {/* Logo Container */}
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-light border border-brand-silver/40 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-105 group-hover:border-brand-royal/40 transition-all duration-200">
+                  <LogoComponent />
+                </div>
 
-                  {/* Logo Container */}
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-navy-card/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 group-hover:border-brand-yellow/40 transition-all duration-300">
-                    <LogoComponent />
-                  </div>
-
-                  {/* Title & Subtitle */}
-                  <div className="min-w-0 flex-1">
-                    <h4 className="text-xs sm:text-[13px] font-bold text-white font-heading group-hover:text-brand-yellow transition-colors truncate">
-                      {tech.name}
-                    </h4>
-                    <p className="text-[10px] sm:text-[11px] text-slate-400 group-hover:text-slate-300 transition-colors truncate mt-0.5">
-                      {tech.role}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
+                {/* Title & Subtitle */}
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-xs sm:text-[13px] font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors truncate">
+                    {tech.name}
+                  </h4>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 transition-colors truncate mt-0.5">
+                    {tech.role}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

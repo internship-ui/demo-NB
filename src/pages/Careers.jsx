@@ -86,67 +86,52 @@ export default function Careers() {
   const getWhyIcon = (iconName) => {
     switch (iconName) {
       case 'Rocket': 
-        return <Rocket className="w-7 h-7 text-brand-yellow" />;
+        return <Rocket className="w-7 h-7 text-brand-royal" />;
       case 'TrendingUp': 
-        return <TrendingUp className="w-7 h-7 text-brand-yellow" />;
+        return <TrendingUp className="w-7 h-7 text-brand-royal" />;
       case 'HeartHandshake': 
-        return <HeartHandshake className="w-7 h-7 text-brand-yellow" />;
+        return <HeartHandshake className="w-7 h-7 text-brand-royal" />;
       default: 
-        return <Rocket className="w-7 h-7 text-brand-yellow" />;
+        return <Rocket className="w-7 h-7 text-brand-royal" />;
     }
   };
 
   const getPerkIcon = (iconName) => {
     switch (iconName) {
-      case 'Stethoscope': 
-        return <Stethoscope className="w-8 h-8 text-brand-yellow" />;
-      case 'Trophy': 
-        return <Trophy className="w-8 h-8 text-brand-yellow" />;
-      case 'BookOpen': 
-        return <BookOpen className="w-8 h-8 text-brand-yellow" />;
-      case 'Laptop': 
-        return <Laptop className="w-8 h-8 text-brand-yellow" />;
-      case 'Coffee': 
-        return <Coffee className="w-8 h-8 text-brand-yellow" />;
-      default: 
-        return <Trophy className="w-8 h-8 text-brand-yellow" />;
+      case 'Stethoscope': return <Stethoscope className="w-6 h-6" />;
+      case 'TrendingUp': return <TrendingUp className="w-6 h-6" />;
+      case 'BookOpen': return <BookOpen className="w-6 h-6" />;
+      case 'Laptop': return <Laptop className="w-6 h-6" />;
+      default: return <Coffee className="w-6 h-6" />;
     }
   };
 
-  const handleOpenApplyModal = (jobTitle = '') => {
-    setTargetJobTitle(jobTitle || 'General Engineering Application');
+  const handleOpenApplyModal = (jobTitle) => {
+    setTargetJobTitle(jobTitle);
     setIsApplyModalOpen(true);
-    setFormErrors({});
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        addToast('File size must be under 5MB.', 'error');
-        return;
-      }
-      const allowedTypes = [
-        'application/pdf', 
-        'application/msword', 
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      ];
-      if (!allowedTypes.includes(file.type)) {
-        addToast('Please upload a PDF or Word document (.pdf, .doc, .docx).', 'error');
+        setFormErrors((prev) => ({ ...prev, resume: 'File exceeds 5MB limit.' }));
         return;
       }
       setResumeFile(file);
-      addToast(`Attached: ${file.name}`, 'info');
+      setFormErrors((prev) => ({ ...prev, resume: null }));
     }
   };
 
   const validateForm = () => {
     const errors = {};
-    if (!formData.fullName.trim()) errors.fullName = 'Full Name is required.';
-    if (!formData.email.trim() || !formData.email.includes('@') || !formData.email.includes('.')) {
+    if (!formData.fullName.trim()) {
+      errors.fullName = 'Please enter your legal full name.';
+    }
+    if (!formData.email.trim() || !formData.email.includes('@')) {
       errors.email = 'Please provide a valid email address.';
     }
-    if (!formData.phone.trim() || formData.phone.length < 8) {
+    if (!formData.phone.trim() || formData.phone.length < 7) {
       errors.phone = 'Please provide a valid contact number.';
     }
     if (!resumeFile) {
@@ -190,86 +175,74 @@ export default function Careers() {
   };
 
   return (
-    <div className="pt-24 pb-0 bg-brand-navy">
+    <div className="pt-24 pb-0 bg-brand-light min-h-screen">
       {/* ===================== HERO: BUILD THE FUTURE WITH US ===================== */}
-      <section className="relative min-h-[75vh] flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#071B3A]">
-        {/* Professional Technology Background Animation */}
+      <section className="relative min-h-[75vh] flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F7F9FC] to-[#EDF2F7]">
+        {/* Technology Background Animation */}
         <CareersBackgroundAnimation />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight mb-6"
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6"
           >
-            Build the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-amber-300 to-yellow-400">Future</span> with Us
-          </motion.h1>
+            Build the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">Future</span> with Us
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-            className="text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 font-normal"
+          <p
+            className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10 font-normal"
           >
             Start your career growth with us. Join a team of innovators, creators, and problem solvers dedicated to shaping the digital world.
-          </motion.p>
+          </p>
 
           {/* Action CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+          <div
             className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mb-12"
           >
             <button
               onClick={scrollToOpenRoles}
-              className="px-7 sm:px-8 py-3.5 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-navy font-bold text-sm sm:text-base shadow-lg hover:shadow-glow-yellow hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="px-7 sm:px-8 py-3.5 rounded-xl bg-brand-royal hover:bg-brand-navy text-white font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer"
             >
               View Open Roles
             </button>
             <button
               onClick={scrollToHiringProcess}
-              className="px-7 sm:px-8 py-3.5 rounded-xl border border-brand-yellow/40 bg-brand-navy-surface/80 hover:bg-white/10 text-white font-semibold text-sm sm:text-base backdrop-blur-sm hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="px-7 sm:px-8 py-3.5 rounded-xl border border-brand-silver/80 bg-white hover:bg-brand-light text-brand-navy font-semibold text-sm sm:text-base shadow-sm transition-all cursor-pointer"
             >
               Our Hiring Process
             </button>
-          </motion.div>
+          </div>
 
           {/* Value Checkmarks */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col items-center gap-3 text-white text-sm sm:text-[15px]"
+          <div
+            className="flex flex-col items-center gap-3 text-slate-700 text-sm sm:text-[15px]"
           >
             <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0" />
-                <span className="font-medium tracking-wide text-slate-200">Continuous Learning</span>
+                <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0" />
+                <span className="font-medium tracking-wide">Continuous Learning</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0" />
-                <span className="font-medium tracking-wide text-slate-200">Inclusive Culture</span>
+                <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0" />
+                <span className="font-medium tracking-wide">Inclusive Culture</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0" />
-              <span className="font-medium tracking-wide text-slate-200">High Ownership</span>
+              <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0" />
+              <span className="font-medium tracking-wide">High Ownership</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ===================== SECTION 1: WHY NAVABHARATH TECHNOLOGIES? ===================== */}
-      <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-brand-navy border-t border-white/5 relative">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight">
-              Why <span className="text-brand-yellow">Navabharath Technologies</span>?
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight">
+              Why <span className="text-brand-royal">Navabharath Technologies</span>?
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-3 font-normal">
+            <p className="text-sm sm:text-base text-slate-600 mt-3 font-normal">
               We're not just building software; we're building careers.
             </p>
           </div>
@@ -278,18 +251,15 @@ export default function Careers() {
             {whyNavabharathData.map((item) => (
               <div
                 key={item.id}
-                className="bg-brand-navy-surface rounded-[28px] p-8 sm:p-10 shadow-xl border border-white/10 hover:border-brand-yellow/60 hover:shadow-[0_16px_40px_rgba(7,27,58,0.7),0_0_24px_rgba(255,201,40,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-start text-left group overflow-hidden relative"
+                className="bg-brand-light rounded-[28px] p-8 sm:p-10 shadow-sm border border-brand-silver/60 hover:border-brand-royal/40 hover:shadow-md transition-all duration-300 flex flex-col items-start text-left group overflow-hidden relative"
               >
-                {/* Subtle Sheen */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-yellow/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                <div className="w-14 h-14 rounded-2xl bg-brand-navy-card border border-brand-yellow/30 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:border-brand-yellow group-hover:shadow-glow-yellow transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-white border border-brand-silver/50 flex items-center justify-center mb-6 shadow-sm">
                   {getWhyIcon(item.icon)}
                 </div>
-                <h3 className="text-2xl font-bold text-white font-heading mb-3 group-hover:text-brand-yellow transition-colors">
+                <h3 className="text-2xl font-bold text-brand-navy font-heading mb-3 group-hover:text-brand-royal transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-[15px] leading-relaxed font-normal">
+                <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>
@@ -299,55 +269,34 @@ export default function Careers() {
       </section>
 
       {/* ===================== SECTION 2: PERKS & BENEFITS ===================== */}
-      <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-brand-navy-dark border-t border-white/5 relative">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-brand-light to-white border-t border-brand-silver/40 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight">
-              Perks & <span className="text-brand-yellow">Benefits</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight">
+              Perks &amp; <span className="text-brand-royal">Benefits</span>
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-3 font-normal">
+            <p className="text-sm sm:text-base text-slate-600 mt-3 font-normal">
               We take care of our team so they can take care of our customers.
             </p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-            {perksAndBenefitsData.map((perk, idx) => (
-              <motion.div
+            {perksAndBenefitsData.map((perk) => (
+              <div
                 key={perk.id}
-                initial={{ opacity: 0, y: 25, scale: 0.94 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: idx * 0.08, 
-                  ease: [0.16, 1, 0.3, 1] 
-                }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.25, ease: 'easeOut' }
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="relative bg-brand-navy-surface rounded-2xl p-6 sm:p-8 shadow-lg border border-white/10 hover:border-brand-yellow/70 hover:shadow-[0_16px_32px_rgba(7,27,58,0.6),0_0_20px_rgba(255,201,40,0.22)] transition-all duration-300 flex flex-col items-center justify-center text-center gap-4 group cursor-pointer overflow-hidden"
+                className="relative bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-brand-silver/60 hover:border-brand-royal/50 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center gap-4 group cursor-pointer overflow-hidden"
               >
-                {/* Subtle Sheen Highlight on Card Hover */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-brand-yellow/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                {/* Animated Icon with Glow Halo */}
-                <div className="relative text-brand-yellow group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 transform">
-                  <div className="relative">
-                    {getPerkIcon(perk.icon)}
-                  </div>
+                <div className="relative text-brand-royal group-hover:scale-105 transition-all duration-200">
+                  {getPerkIcon(perk.icon)}
                 </div>
 
                 <div className="relative z-10 flex flex-col items-center">
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading leading-snug group-hover:text-brand-yellow transition-colors">
+                  <h4 className="text-sm sm:text-base font-bold text-brand-navy font-heading leading-snug group-hover:text-brand-royal transition-colors">
                     {perk.title}
                   </h4>
-                  {/* Expanding Accent Bar */}
-                  <span className="w-0 group-hover:w-8 h-0.5 bg-brand-yellow rounded-full transition-all duration-300 mt-2 block shadow-glow-yellow" />
+                  <span className="w-0 group-hover:w-8 h-0.5 bg-brand-royal rounded-full transition-all duration-200 mt-2 block" />
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -357,13 +306,13 @@ export default function Careers() {
       <section 
         ref={openRolesRef}
         id="open-roles"
-        className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-brand-navy border-t border-white/5 text-white"
+        className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 text-slate-700"
       >
         <div className="max-w-6xl mx-auto">
           {/* Part A: Open Roles */}
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight mb-6">
-              Open <span className="text-brand-yellow">Roles</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-6">
+              Open <span className="text-brand-royal">Roles</span>
             </h2>
 
             {/* Dropdown Menu & Filter Pill */}
@@ -371,20 +320,16 @@ export default function Careers() {
               <button
                 type="button"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="border border-brand-yellow/40 hover:border-brand-yellow rounded-xl px-6 py-2.5 bg-brand-navy-surface text-white font-semibold text-sm inline-flex items-center gap-4 shadow-md hover:shadow-glow-yellow transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/40 cursor-pointer min-w-[180px] justify-between"
+                className="border border-brand-silver/70 hover:border-brand-royal rounded-xl px-6 py-2.5 bg-white text-brand-navy font-semibold text-sm inline-flex items-center gap-4 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-royal/40 cursor-pointer min-w-[180px] justify-between"
               >
                 <span>{selectedTeam}</span>
-                <ChevronDown className={`w-4 h-4 text-brand-yellow transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 text-brand-royal transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               <AnimatePresence>
                 {isDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-brand-navy-surface rounded-xl shadow-2xl border border-brand-yellow/30 py-2 z-30"
+                  <div
+                    className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl border border-brand-silver/60 py-2 z-30"
                   >
                     {teamsList.map((team) => (
                       <button
@@ -395,15 +340,15 @@ export default function Careers() {
                         }}
                         className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${
                           selectedTeam === team
-                            ? 'bg-brand-yellow/15 text-brand-yellow font-bold'
-                            : 'text-slate-300 hover:text-white hover:bg-white/10'
+                            ? 'bg-brand-royal/10 text-brand-royal font-bold'
+                            : 'text-slate-700 hover:text-brand-navy hover:bg-brand-light'
                         }`}
                       >
                         <span>{team}</span>
-                        {selectedTeam === team && <CheckCircle2 className="w-4 h-4 text-brand-yellow" />}
+                        {selectedTeam === team && <CheckCircle2 className="w-4 h-4 text-brand-royal" />}
                       </button>
                     ))}
-                  </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
             </div>
@@ -416,8 +361,8 @@ export default function Careers() {
                   onClick={() => setSelectedTeam(team)}
                   className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                     selectedTeam === team
-                      ? 'bg-brand-yellow text-brand-navy font-bold shadow-glow-yellow border border-brand-yellow scale-105'
-                      : 'bg-brand-navy-surface text-slate-300 border border-white/10 hover:border-brand-yellow/40 hover:text-white hover:bg-white/5'
+                      ? 'bg-brand-royal text-white font-bold shadow-md border border-brand-royal scale-105'
+                      : 'bg-brand-light text-slate-700 border border-brand-silver/60 hover:border-brand-royal/40 hover:text-brand-navy hover:bg-white'
                   }`}
                 >
                   {team}
@@ -426,113 +371,88 @@ export default function Careers() {
             </div>
           </div>
 
-          {/* Job Openings Cards List with Dynamic Animations */}
-          <motion.div 
-            layout
-            className="space-y-5 mb-24"
-          >
+          {/* Job Openings Cards List */}
+          <div className="space-y-5 mb-24">
             {filteredJobs.length > 0 ? (
-              <AnimatePresence mode="popLayout">
-                {filteredJobs.map((job, idx) => (
-                  <motion.div
-                    key={job.id}
-                    layout
-                    initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-                    transition={{ 
-                      duration: 0.45, 
-                      delay: idx * 0.06, 
-                      ease: [0.16, 1, 0.3, 1] 
-                    }}
-                    whileHover={{ 
-                      y: -5,
-                      transition: { duration: 0.25, ease: 'easeOut' }
-                    }}
-                    className="relative p-6 sm:p-8 rounded-2xl bg-brand-navy-surface border border-white/10 hover:border-brand-yellow/60 shadow-xl hover:shadow-[0_16px_36px_rgba(7,27,58,0.7),0_0_24px_rgba(255,201,40,0.18)] transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 group overflow-hidden"
-                  >
-                    {/* Left Accent Border Bar */}
-                    <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-brand-yellow via-amber-300 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Ambient Hover Gradient Sheen */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-brand-yellow/[0.04] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                    <div className="space-y-2.5 flex-1 relative z-10 pl-0 sm:group-hover:pl-1 transition-all duration-300">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-yellow/15 text-brand-yellow border border-brand-yellow/30">
-                          {job.department}
-                        </span>
-                        <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">
-                          {job.type}
-                        </span>
-                        <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">
-                          {job.experience}
-                        </span>
-                      </div>
-
-                      <h3 className="text-xl sm:text-2xl font-bold text-white font-heading group-hover:text-brand-yellow transition-colors duration-200">
-                        {job.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                        {job.overview}
-                      </p>
-
-                      <div className="flex items-center gap-2 text-xs text-slate-400 pt-1 font-medium">
-                        <MapPin className="w-3.5 h-3.5 text-brand-yellow group-hover:scale-110 transition-transform duration-200" />
-                        <span>{job.location}</span>
-                      </div>
+              filteredJobs.map((job) => (
+                <div
+                  key={job.id}
+                  className="relative p-6 sm:p-8 rounded-2xl bg-white border border-brand-silver/60 hover:border-brand-royal/50 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col lg:flex-row lg:items-center justify-between gap-6 group overflow-hidden"
+                >
+                  <div className="space-y-2.5 flex-1 relative z-10">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-royal/10 text-brand-royal border border-brand-royal/20">
+                        {job.department}
+                      </span>
+                      <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-brand-light text-slate-600 border border-brand-silver/50">
+                        {job.type}
+                      </span>
+                      <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-brand-light text-slate-600 border border-brand-silver/50">
+                        {job.experience}
+                      </span>
                     </div>
 
-                    <div className="flex flex-row lg:flex-col sm:flex-row gap-3 pt-2 lg:pt-0 relative z-10">
-                      <button
-                        onClick={() => setSelectedJob(job)}
-                        className="group/btn px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-slate-200 hover:text-white border border-white/10 hover:border-brand-yellow/40 text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
-                      >
-                        <span>Job Specs</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-slate-200 group-hover/btn:translate-x-1 group-hover/btn:text-brand-yellow transition-transform duration-200" />
-                      </button>
+                    <h3 className="text-xl sm:text-2xl font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors duration-200">
+                      {job.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
+                      {job.overview}
+                    </p>
 
-                      <button
-                        onClick={() => handleOpenApplyModal(job.title)}
-                        className="px-6 py-2.5 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-navy font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-glow-yellow hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-                      >
-                        Apply Now
-                      </button>
+                    <div className="flex items-center gap-2 text-xs text-slate-500 pt-1 font-medium">
+                      <MapPin className="w-3.5 h-3.5 text-brand-royal" />
+                      <span>{job.location}</span>
                     </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+                  </div>
+
+                  <div className="flex flex-row lg:flex-col sm:flex-row gap-3 pt-2 lg:pt-0 relative z-10">
+                    <button
+                      onClick={() => setSelectedJob(job)}
+                      className="group/btn px-5 py-2.5 rounded-xl bg-brand-light hover:bg-white text-slate-700 hover:text-brand-navy border border-brand-silver/60 hover:border-brand-royal/40 text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shadow-sm"
+                    >
+                      <span>Job Specs</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover/btn:translate-x-1 group-hover/btn:text-brand-royal transition-transform duration-200" />
+                    </button>
+
+                    <button
+                      onClick={() => handleOpenApplyModal(job.title)}
+                      className="px-6 py-2.5 rounded-xl bg-brand-royal hover:bg-brand-navy text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+              ))
             ) : (
-              <div className="p-12 text-center bg-brand-navy-surface rounded-2xl border border-white/10">
-                <Briefcase className="w-12 h-12 text-brand-yellow mx-auto mb-3" />
-                <h4 className="text-lg font-bold text-white mb-1">No Openings in {selectedTeam} Right Now</h4>
-                <p className="text-sm text-slate-400 mb-4">We are actively expanding. Submit a general application or check other teams.</p>
+              <div className="p-12 text-center bg-white rounded-2xl border border-brand-silver/60 shadow-sm">
+                <Briefcase className="w-12 h-12 text-brand-royal mx-auto mb-3" />
+                <h4 className="text-lg font-bold text-brand-navy mb-1">No Openings in {selectedTeam} Right Now</h4>
+                <p className="text-sm text-slate-500 mb-4">We are actively expanding. Submit a general application or check other teams.</p>
                 <button
                   onClick={() => setSelectedTeam('All Teams')}
-                  className="px-5 py-2 rounded-xl bg-brand-yellow text-brand-navy hover:bg-brand-yellow-hover text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="px-5 py-2 rounded-xl bg-brand-royal text-white hover:bg-brand-navy text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-sm"
                 >
                   View All Roles
                 </button>
               </div>
             )}
-          </motion.div>
+          </div>
 
           {/* Part B: Our Hiring Process */}
           <div 
             ref={hiringProcessRef}
             id="hiring-process"
-            className="pt-10 border-t border-white/10"
+            className="pt-10 border-t border-brand-silver/40"
           >
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight">
-                Our <span className="text-brand-yellow">Hiring Process</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight">
+                Our <span className="text-brand-royal">Hiring Process</span>
               </h2>
             </div>
 
             <div className="relative max-w-5xl mx-auto">
               {/* Connecting line on desktop */}
-              <div className="hidden lg:block absolute top-6 left-12 right-12 h-0.5 border-t-2 border-dashed border-white/15 -z-0" />
+              <div className="hidden lg:block absolute top-6 left-12 right-12 h-0.5 border-t-2 border-dashed border-brand-silver/60 -z-0" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 relative z-10">
                 {hiringProcessSteps.map((step) => (
@@ -542,18 +462,18 @@ export default function Careers() {
                   >
                     {/* Circle badge */}
                     <div 
-                      className={`w-12 h-12 rounded-full bg-brand-navy-card text-brand-yellow border-2 border-brand-yellow/40 font-bold text-lg flex items-center justify-center shadow-md transition-all duration-300 group-hover:scale-110 group-hover:border-brand-yellow group-hover:shadow-glow-yellow ${
-                        step.step === 4 ? 'ring-4 ring-brand-yellow/30 border-brand-yellow' : ''
+                      className={`w-12 h-12 rounded-full bg-brand-light text-brand-royal border-2 border-brand-royal/30 font-bold text-lg flex items-center justify-center shadow-sm transition-all duration-200 group-hover:bg-brand-royal group-hover:text-white ${
+                        step.step === 4 ? 'ring-4 ring-brand-royal/20 border-brand-royal' : ''
                       }`}
                     >
                       {step.step}
                     </div>
 
-                    <h3 className="font-bold text-white font-heading text-base sm:text-lg mt-4 mb-1 group-hover:text-brand-yellow transition-colors">
+                    <h3 className="font-bold text-brand-navy font-heading text-base sm:text-lg mt-4 mb-1 group-hover:text-brand-royal transition-colors">
                       {step.title}
                     </h3>
 
-                    <p className="text-slate-300 text-xs sm:text-[13px] leading-relaxed max-w-[170px]">
+                    <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed max-w-[170px]">
                       {step.description}
                     </p>
                   </div>
@@ -565,17 +485,17 @@ export default function Careers() {
       </section>
 
       {/* ===================== GENERAL APPLICATION BANNER ===================== */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-navy">
-        <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-brand-navy-surface border border-white/10 text-center">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-light">
+        <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 text-center text-white shadow-xl">
           <h3 className="text-2xl sm:text-3xl font-bold text-white font-heading mb-2">
             Don't See Your Exact Specialty?
           </h3>
-          <p className="text-sm text-slate-300 max-w-lg mx-auto mb-6 leading-relaxed">
+          <p className="text-sm text-[#C4CCD5] max-w-lg mx-auto mb-6 leading-relaxed">
             We are always interested in connecting with passionate software engineers, cloud architects, and product specialists.
           </p>
           <button
             onClick={() => handleOpenApplyModal('General Open Talent Application')}
-            className="px-8 py-3.5 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover shadow-lg transition-colors cursor-pointer"
+            className="px-8 py-3.5 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-white hover:text-brand-navy shadow-md transition-colors cursor-pointer"
           >
             Send Spontaneous Application
           </button>
@@ -591,22 +511,22 @@ export default function Careers() {
           subtitle={`${selectedJob.department} • ${selectedJob.location}`}
           maxWidth="max-w-3xl"
         >
-          <div className="space-y-6 text-sm text-slate-300">
+          <div className="space-y-6 text-sm text-slate-700">
             <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2">
+              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-2">
                 Position Overview
               </h4>
-              <p className="leading-relaxed">{selectedJob.overview}</p>
+              <p className="leading-relaxed text-slate-600">{selectedJob.overview}</p>
             </div>
 
             <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-3">
+              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-3">
                 Core Responsibilities
               </h4>
               <ul className="space-y-2 text-xs">
                 {selectedJob.responsibilities.map((r, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0 mt-0.5" />
                     <span>{r}</span>
                   </li>
                 ))}
@@ -614,13 +534,13 @@ export default function Careers() {
             </div>
 
             <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-3">
+              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-3">
                 Candidate Requirements
               </h4>
               <ul className="space-y-2 text-xs">
                 {selectedJob.requirements.map((req, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0 mt-0.5" />
                     <span>{req}</span>
                   </li>
                 ))}
@@ -628,20 +548,20 @@ export default function Careers() {
             </div>
 
             <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2">
+              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-2">
                 Position Benefits
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedJob.benefits.map((b, i) => (
-                  <span key={i} className="text-xs px-2.5 py-1 rounded bg-brand-yellow/10 text-brand-yellow border border-brand-yellow/20">
+                  <span key={i} className="text-xs px-2.5 py-1 rounded bg-brand-light text-slate-700 border border-brand-silver/50">
                     {b}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-slate-400">
+            <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between">
+              <span className="text-xs text-slate-500">
                 Contact: {companyDetails.careersEmail}
               </span>
               <button
@@ -650,7 +570,7 @@ export default function Careers() {
                   setSelectedJob(null);
                   handleOpenApplyModal(title);
                 }}
-                className="px-6 py-2.5 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover shadow-lg transition-colors cursor-pointer"
+                className="px-6 py-2.5 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy shadow-md transition-colors cursor-pointer"
               >
                 Apply for this Position
               </button>
@@ -667,64 +587,64 @@ export default function Careers() {
         subtitle={`Role: ${targetJobTitle}`}
         maxWidth="max-w-xl"
       >
-        <form onSubmit={handleSubmitApplication} className="space-y-4 text-xs text-slate-300">
+        <form onSubmit={handleSubmitApplication} className="space-y-4 text-xs text-slate-700">
           <div>
-            <label className="block font-semibold text-white mb-1">
-              Full Legal Name <span className="text-brand-yellow">*</span>
+            <label className="block font-semibold text-brand-navy mb-1">
+              Full Legal Name <span className="text-brand-royal">*</span>
             </label>
             <input
               type="text"
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               placeholder="e.g. John Doe"
-              className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-navy-card border ${
-                formErrors.fullName ? 'border-red-400' : 'border-white/10'
-              } text-white focus:outline-none focus:border-brand-yellow text-xs`}
+              className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-light border ${
+                formErrors.fullName ? 'border-red-400' : 'border-brand-silver/60'
+              } text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal text-xs`}
             />
-            {formErrors.fullName && <p className="text-red-400 text-[11px] mt-1">{formErrors.fullName}</p>}
+            {formErrors.fullName && <p className="text-red-500 text-[11px] mt-1">{formErrors.fullName}</p>}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-white mb-1">
-                Email Address <span className="text-brand-yellow">*</span>
+              <label className="block font-semibold text-brand-navy mb-1">
+                Email Address <span className="text-brand-royal">*</span>
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@company.com"
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-navy-card border ${
-                  formErrors.email ? 'border-red-400' : 'border-white/10'
-                } text-white focus:outline-none focus:border-brand-yellow text-xs`}
+                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-light border ${
+                  formErrors.email ? 'border-red-400' : 'border-brand-silver/60'
+                } text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal text-xs`}
               />
-              {formErrors.email && <p className="text-red-400 text-[11px] mt-1">{formErrors.email}</p>}
+              {formErrors.email && <p className="text-red-500 text-[11px] mt-1">{formErrors.email}</p>}
             </div>
 
             <div>
-              <label className="block font-semibold text-white mb-1">
-                Phone Number <span className="text-brand-yellow">*</span>
+              <label className="block font-semibold text-brand-navy mb-1">
+                Phone Number <span className="text-brand-royal">*</span>
               </label>
               <input
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+91 98765 43210"
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-navy-card border ${
-                  formErrors.phone ? 'border-red-400' : 'border-white/10'
-                } text-white focus:outline-none focus:border-brand-yellow text-xs`}
+                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-light border ${
+                  formErrors.phone ? 'border-red-400' : 'border-brand-silver/60'
+                } text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal text-xs`}
               />
-              {formErrors.phone && <p className="text-red-400 text-[11px] mt-1">{formErrors.phone}</p>}
+              {formErrors.phone && <p className="text-red-500 text-[11px] mt-1">{formErrors.phone}</p>}
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-white mb-1">Relevant Experience</label>
+              <label className="block font-semibold text-brand-navy mb-1">Relevant Experience</label>
               <select
                 value={formData.experience}
                 onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-brand-navy-card border border-white/10 text-white focus:outline-none focus:border-brand-yellow text-xs"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-brand-light border border-brand-silver/60 text-brand-navy focus:outline-none focus:border-brand-royal text-xs"
               >
                 <option value="1-3 years">1 - 3 Years</option>
                 <option value="3-5 years">3 - 5 Years</option>
@@ -734,23 +654,23 @@ export default function Careers() {
             </div>
 
             <div>
-              <label className="block font-semibold text-white mb-1">LinkedIn / Portfolio URL</label>
+              <label className="block font-semibold text-brand-navy mb-1">LinkedIn / Portfolio URL</label>
               <input
                 type="url"
                 value={formData.portfolioUrl}
                 onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
                 placeholder="https://linkedin.com/in/username"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-brand-navy-card border border-white/10 text-white focus:outline-none focus:border-brand-yellow text-xs"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-brand-light border border-brand-silver/60 text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal text-xs"
               />
             </div>
           </div>
 
           {/* Resume Upload Picker */}
           <div>
-            <label className="block font-semibold text-white mb-1">
-              Resume Document (PDF / Word, Max 5MB) <span className="text-brand-yellow">*</span>
+            <label className="block font-semibold text-brand-navy mb-1">
+              Resume Document (PDF / Word, Max 5MB) <span className="text-brand-royal">*</span>
             </label>
-            <div className="relative border-2 border-dashed border-white/20 hover:border-brand-yellow/50 rounded-xl p-4 text-center cursor-pointer transition-colors">
+            <div className="relative border-2 border-dashed border-brand-silver/80 hover:border-brand-royal/60 rounded-xl p-4 text-center cursor-pointer transition-colors bg-brand-light">
               <input
                 type="file"
                 accept=".pdf,.doc,.docx"
@@ -758,53 +678,53 @@ export default function Careers() {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
               {resumeFile ? (
-                <div className="flex items-center justify-center gap-2 text-brand-yellow">
+                <div className="flex items-center justify-center gap-2 text-brand-royal">
                   <FileText className="w-5 h-5" />
-                  <span className="font-semibold text-xs">{resumeFile.name} ({(resumeFile.size / 1024).toFixed(0)} KB)</span>
+                  <span className="font-semibold text-xs text-brand-navy">{resumeFile.name} ({(resumeFile.size / 1024).toFixed(0)} KB)</span>
                 </div>
               ) : (
-                <div className="flex flex-col items-center gap-1 text-slate-400">
-                  <Upload className="w-5 h-5 text-brand-yellow mb-1" />
-                  <span className="text-xs text-white font-medium">Click or drag resume file here</span>
+                <div className="flex flex-col items-center gap-1 text-slate-500">
+                  <Upload className="w-5 h-5 text-brand-royal mb-1" />
+                  <span className="text-xs text-brand-navy font-medium">Click or drag resume file here</span>
                   <span className="text-[10px]">PDF, DOC, DOCX supported up to 5MB</span>
                 </div>
               )}
             </div>
-            {formErrors.resume && <p className="text-red-400 text-[11px] mt-1">{formErrors.resume}</p>}
+            {formErrors.resume && <p className="text-red-500 text-[11px] mt-1">{formErrors.resume}</p>}
           </div>
 
           <div>
-            <label className="block font-semibold text-white mb-1">Candidate Statement / Cover Note</label>
+            <label className="block font-semibold text-brand-navy mb-1">Candidate Statement / Cover Note</label>
             <textarea
               rows={3}
               value={formData.coverNote}
               onChange={(e) => setFormData({ ...formData, coverNote: e.target.value })}
               placeholder="Tell us briefly about your primary technical strengths and why you're interested in Navabharath Technologies..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-brand-navy-card border border-white/10 text-white focus:outline-none focus:border-brand-yellow text-xs"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-brand-light border border-brand-silver/60 text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal text-xs resize-none"
             />
           </div>
 
           {isSubmitting && (
             <div className="space-y-1">
-              <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-brand-yellow h-full transition-all duration-200" style={{ width: `${uploadProgress}%` }} />
+              <div className="w-full bg-brand-silver/40 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-brand-royal h-full transition-all duration-200" style={{ width: `${uploadProgress}%` }} />
               </div>
-              <p className="text-center text-[10px] text-slate-400 font-mono">Uploading Application Package... {uploadProgress}%</p>
+              <p className="text-center text-[10px] text-slate-500 font-mono">Uploading Application Package... {uploadProgress}%</p>
             </div>
           )}
 
-          <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+          <div className="pt-3 border-t border-brand-silver/40 flex items-center justify-between">
             <button
               type="button"
               onClick={() => setIsApplyModalOpen(false)}
-              className="text-xs text-slate-400 hover:text-white cursor-pointer"
+              className="text-xs text-slate-500 hover:text-brand-navy cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2.5 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover shadow-lg flex items-center gap-2 disabled:opacity-50 transition-colors cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy shadow-md flex items-center gap-2 disabled:opacity-50 transition-colors cursor-pointer"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Submit Application</span>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   X, 
@@ -64,7 +63,7 @@ export default function SearchModal({ isOpen, onClose }) {
         description: p.description,
         path: p.path,
         icon: Compass,
-        badgeColor: 'bg-brand-yellow/15 text-brand-yellow border-brand-yellow/30',
+        badgeColor: 'bg-brand-royal/10 text-brand-royal border-brand-royal/20',
       });
     });
 
@@ -78,7 +77,7 @@ export default function SearchModal({ isOpen, onClose }) {
         description: s.shortDesc,
         path: `/services/${s.id}`,
         icon: Cpu,
-        badgeColor: 'bg-brand-navy-card text-brand-yellow border-brand-yellow/30',
+        badgeColor: 'bg-brand-royal/10 text-brand-royal border-brand-royal/20',
       });
     });
 
@@ -92,7 +91,7 @@ export default function SearchModal({ isOpen, onClose }) {
         description: p.shortDesc,
         path: '/portfolio',
         icon: Briefcase,
-        badgeColor: 'bg-brand-yellow/15 text-brand-yellow border-brand-yellow/30',
+        badgeColor: 'bg-brand-royal/10 text-brand-royal border-brand-royal/20',
       });
     });
 
@@ -102,11 +101,11 @@ export default function SearchModal({ isOpen, onClose }) {
         id: `resource-${r.id}`,
         title: r.title,
         category: 'Resources',
-        subtitle: `${r.type} • ${r.readTime || 'Resource'}`,
-        description: r.excerpt || r.summary || r.title,
+        subtitle: `${r.category} • ${r.readTime || 'Research'}`,
+        description: r.description,
         path: '/resources',
         icon: BookOpen,
-        badgeColor: 'bg-white/10 text-white border-white/20',
+        badgeColor: 'bg-brand-royal/10 text-brand-royal border-brand-royal/20',
       });
     });
 
@@ -116,38 +115,36 @@ export default function SearchModal({ isOpen, onClose }) {
         id: `career-${j.id}`,
         title: j.title,
         category: 'Careers',
-        subtitle: `${j.department} • ${j.experience}`,
-        description: j.overview,
+        subtitle: `${j.department} • ${j.type} • ${j.location}`,
+        description: j.description,
         path: '/careers',
         icon: Users,
-        badgeColor: 'bg-brand-yellow/20 text-brand-yellow border-brand-yellow/40',
+        badgeColor: 'bg-brand-royal/10 text-brand-royal border-brand-royal/20',
       });
     });
 
     return items;
   }, []);
 
-  // Filter items based on query & category
+  // Filter based on search query and category
   const filteredResults = useMemo(() => {
-    let list = allSearchItems;
+    let results = allSearchItems;
+
     if (activeCategory !== 'All') {
-      list = list.filter((i) => i.category === activeCategory);
+      results = results.filter((item) => item.category === activeCategory);
     }
 
     if (!query.trim()) {
-      // If no query, show featured top picks
-      return list.slice(0, 8);
+      return results.slice(0, 8); // Top default suggestions
     }
 
     const q = query.toLowerCase().trim();
-    return list.filter((item) => {
-      return (
+    return results.filter(
+      (item) =>
         item.title.toLowerCase().includes(q) ||
         item.subtitle.toLowerCase().includes(q) ||
-        (item.description && item.description.toLowerCase().includes(q)) ||
-        item.category.toLowerCase().includes(q)
-      );
-    });
+        item.description.toLowerCase().includes(q)
+    );
   }, [allSearchItems, query, activeCategory]);
 
   const handleSelect = (path) => {
@@ -158,64 +155,57 @@ export default function SearchModal({ isOpen, onClose }) {
   const categories = ['All', 'Pages', 'Services', 'Portfolio', 'Resources', 'Careers'];
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 pb-6 overflow-y-auto">
           {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             onClick={onClose}
-            className="fixed inset-0 bg-brand-navy-dark/85 backdrop-blur-md"
+            className="fixed inset-0 bg-brand-navy/60 backdrop-blur-sm"
             aria-hidden="true"
           />
 
           {/* Modal Container */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-2xl bg-brand-navy-surface border border-brand-yellow/30 rounded-3xl shadow-2xl overflow-hidden z-10"
+          <div
+            className="relative w-full max-w-2xl bg-white border border-brand-silver/60 rounded-3xl shadow-2xl overflow-hidden z-10"
           >
             {/* Top Search Input Bar */}
-            <div className="relative flex items-center px-5 py-4 border-b border-white/10 bg-brand-navy-card/80">
-              <Search className="w-5 h-5 text-brand-yellow flex-shrink-0 mr-3" />
+            <div className="relative flex items-center px-5 py-4 border-b border-brand-silver/40 bg-brand-light">
+              <Search className="w-5 h-5 text-brand-royal flex-shrink-0 mr-3" />
               <input
                 ref={inputRef}
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search services, portfolio, resources, career roles..."
-                className="w-full bg-transparent text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none"
+                className="w-full bg-transparent text-brand-navy placeholder-slate-400 text-sm sm:text-base focus:outline-none"
               />
               {query && (
                 <button
                   onClick={() => setQuery('')}
-                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 mr-2"
+                  className="p-1 rounded-lg text-slate-400 hover:text-brand-navy hover:bg-brand-royal/10 mr-2"
                 >
                   <X className="w-4 h-4" />
                 </button>
               )}
               <button
                 onClick={onClose}
-                className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white text-xs font-mono"
+                className="px-2 py-1 rounded-lg bg-white border border-brand-silver/50 text-slate-500 hover:text-brand-navy text-xs font-mono"
               >
                 ESC
               </button>
             </div>
 
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-1.5 px-5 py-3 border-b border-white/5 bg-brand-navy-surface/90 overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-1.5 px-5 py-3 border-b border-brand-silver/30 bg-white overflow-x-auto scrollbar-none">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
                     activeCategory === cat
-                      ? 'bg-brand-yellow text-brand-navy shadow-sm font-bold'
-                      : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10'
+                      ? 'bg-brand-royal text-white shadow-sm font-bold'
+                      : 'bg-brand-light text-slate-600 hover:text-brand-navy hover:bg-brand-royal/10 border border-brand-silver/40'
                   }`}
                 >
                   {cat}
@@ -224,7 +214,7 @@ export default function SearchModal({ isOpen, onClose }) {
             </div>
 
             {/* Search Results List */}
-            <div className="max-h-[380px] overflow-y-auto p-3 space-y-1.5">
+            <div className="max-h-[380px] overflow-y-auto p-3 space-y-1.5 bg-brand-light/50">
               {filteredResults.length > 0 ? (
                 filteredResults.map((item) => {
                   const Icon = item.icon;
@@ -232,15 +222,15 @@ export default function SearchModal({ isOpen, onClose }) {
                     <div
                       key={item.id}
                       onClick={() => handleSelect(item.path)}
-                      className="group flex items-center justify-between p-3 rounded-2xl hover:bg-white/5 border border-transparent hover:border-brand-yellow/30 cursor-pointer transition-all duration-200"
+                      className="group flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-brand-royal/5 border border-brand-silver/40 hover:border-brand-royal/40 shadow-sm cursor-pointer transition-all duration-200"
                     >
                       <div className="flex items-start gap-3 min-w-0 pr-3">
-                        <div className="p-2 rounded-xl bg-brand-navy-card border border-white/10 text-brand-yellow group-hover:border-brand-yellow/50 group-hover:scale-105 transition-all mt-0.5 flex-shrink-0">
+                        <div className="p-2 rounded-xl bg-brand-light border border-brand-silver/50 text-brand-royal group-hover:border-brand-royal/40 group-hover:scale-105 transition-all mt-0.5 flex-shrink-0">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-bold text-white font-heading group-hover:text-brand-yellow transition-colors truncate">
+                            <span className="text-sm font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors truncate">
                               {item.title}
                             </span>
                             <span
@@ -249,14 +239,14 @@ export default function SearchModal({ isOpen, onClose }) {
                               {item.category}
                             </span>
                           </div>
-                          <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">
+                          <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">
                             {item.subtitle} — {item.description}
                           </p>
                         </div>
                       </div>
 
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 pl-2">
-                        <div className="w-7 h-7 rounded-lg bg-brand-yellow text-brand-navy flex items-center justify-center">
+                        <div className="w-7 h-7 rounded-lg bg-brand-royal text-white flex items-center justify-center shadow-sm">
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>
                       </div>
@@ -264,29 +254,29 @@ export default function SearchModal({ isOpen, onClose }) {
                   );
                 })
               ) : (
-                <div className="py-12 text-center text-slate-400">
-                  <Search className="w-10 h-10 text-slate-500 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm font-semibold text-slate-300">No results found for "{query}"</p>
+                <div className="py-12 text-center text-slate-500">
+                  <Search className="w-10 h-10 text-slate-400 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm font-semibold text-brand-navy">No results found for "{query}"</p>
                   <p className="text-xs text-slate-500 mt-1">Try searching for Web Development, AI, Case Studies, or Careers.</p>
                 </div>
               )}
             </div>
 
             {/* Modal Footer */}
-            <div className="px-5 py-3 border-t border-white/10 bg-brand-navy-dark/90 flex items-center justify-between text-xs text-slate-400">
+            <div className="px-5 py-3 border-t border-brand-silver/40 bg-brand-light flex items-center justify-between text-xs text-slate-500">
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1 font-mono text-[11px]">
-                  <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-slate-300">↵</kbd> select
+                  <kbd className="px-1.5 py-0.5 rounded bg-white text-slate-600 border border-brand-silver/50">↵</kbd> select
                 </span>
                 <span className="flex items-center gap-1 font-mono text-[11px]">
-                  <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-slate-300">esc</kbd> close
+                  <kbd className="px-1.5 py-0.5 rounded bg-white text-slate-600 border border-brand-silver/50">esc</kbd> close
                 </span>
               </div>
-              <span className="text-[11px] text-brand-yellow/80">NAVABHARATH Search Engine</span>
+              <span className="text-[11px] text-brand-royal font-semibold">NAVABHARATH Search</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

@@ -41,9 +41,9 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="relative bg-brand-navy-dark text-slate-300 border-t border-brand-yellow/15 pt-8 pb-4 overflow-hidden">
+      <footer className="relative bg-[#101F3C] text-slate-300 border-t border-[#52749A]/30 pt-8 pb-4 overflow-hidden">
         {/* Subtle background texture */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* 4 Balanced Desktop Columns */}
@@ -61,23 +61,23 @@ export default function Footer() {
                   className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
                 />
                 <div className="flex flex-col">
-                  <span className="text-sm font-extrabold text-white tracking-wider font-heading leading-tight group-hover:text-brand-yellow transition-colors">
+                  <span className="text-sm font-extrabold text-white tracking-wider font-heading leading-tight group-hover:text-brand-royal transition-colors">
                     NAVABHARATH
                   </span>
-                  <span className="text-[9px] font-semibold text-brand-yellow tracking-widest uppercase leading-none">
+                  <span className="text-[9px] font-semibold text-[#C4CCD5] tracking-widest uppercase leading-none">
                     TECHNOLOGIES
                   </span>
                 </div>
               </Link>
 
               {/* Maximum 2-line description */}
-              <p className="text-[12px] text-slate-300 leading-snug line-clamp-2">
+              <p className="text-[12px] text-[#C4CCD5] leading-snug line-clamp-2">
                 Delivering innovative digital products, robust enterprise software, and scalable modern web solutions.
               </p>
 
               {/* Compact Corporate Verification without large background box */}
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-mono">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-yellow flex-shrink-0" />
+              <div className="flex items-center gap-1.5 text-[11px] text-[#C4CCD5]/80 font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-royal flex-shrink-0" />
                 <span className="truncate">{companyDetails.cin}</span>
               </div>
 
@@ -89,7 +89,7 @@ export default function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-brand-navy hover:bg-brand-yellow hover:border-brand-yellow transition-all"
+                    className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#C4CCD5] hover:text-white hover:bg-brand-royal hover:border-brand-royal transition-all"
                     aria-label={`Visit our ${social.name}`}
                   >
                     {getSocialIcon(social.name)}
@@ -100,14 +100,14 @@ export default function Footer() {
 
             {/* Col 2: Quick Links */}
             <div>
-              <h4 className="text-[14px] font-bold uppercase tracking-wider text-white mb-2.5 border-l-2 border-brand-yellow pl-2">
+              <h4 className="text-[14px] font-bold uppercase tracking-wider text-white mb-2.5 border-l-2 border-brand-royal pl-2">
                 Quick Links
               </h4>
               <ul className="space-y-1 text-[12px]">
                 <li>
                   <Link
                     to="/"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Home
                   </Link>
@@ -115,7 +115,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/about"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     About Us
                   </Link>
@@ -123,7 +123,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/services"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Services
                   </Link>
@@ -131,7 +131,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/portfolio"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Portfolio
                   </Link>
@@ -139,7 +139,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/resources"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Resources
                   </Link>
@@ -147,7 +147,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/careers"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Careers
                   </Link>
@@ -155,7 +155,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/contact"
-                    className="text-slate-300 hover:text-brand-yellow transition-colors block py-0.5"
+                    className="text-[#C4CCD5] hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Contact Us
                   </Link>
@@ -165,14 +165,14 @@ export default function Footer() {
 
             {/* Col 3: Expertise */}
             <div>
-              <h4 className="text-[14px] font-bold uppercase tracking-wider text-white mb-2.5 border-l-2 border-brand-yellow pl-2">
+              <h4 className="text-[14px] font-bold uppercase tracking-wider text-white mb-2.5 border-l-2 border-brand-royal pl-2">
                 Expertise
               </h4>
-              <ul className="space-y-1 text-[12px] text-slate-300">
+              <ul className="space-y-1 text-[12px] text-[#C4CCD5]">
                 <li>
                   <Link
                     to="/services/web-development"
-                    className="hover:text-brand-yellow transition-colors block py-0.5"
+                    className="hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Web Development
                   </Link>
@@ -180,7 +180,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/services/ai-solutions"
-                    className="hover:text-brand-yellow transition-colors block py-0.5"
+                    className="hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     AI Solutions
                   </Link>
@@ -188,7 +188,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/services/mobile-app-development"
-                    className="hover:text-brand-yellow transition-colors block py-0.5"
+                    className="hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Mobile App Development
                   </Link>
@@ -196,7 +196,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/services/ui-ux-design"
-                    className="hover:text-brand-yellow transition-colors block py-0.5"
+                    className="hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     UI/UX Design
                   </Link>
@@ -204,7 +204,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/services/cloud-solutions"
-                    className="hover:text-brand-yellow transition-colors block py-0.5"
+                    className="hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Cloud Solutions
                   </Link>
@@ -212,7 +212,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/services/digital-marketing"
-                    className="hover:text-brand-yellow transition-colors block py-0.5"
+                    className="hover:text-white hover:underline transition-colors block py-0.5"
                   >
                     Digital Marketing
                   </Link>
@@ -222,33 +222,33 @@ export default function Footer() {
 
             {/* Col 4: Contact Details */}
             <div>
-              <h4 className="text-[14px] font-bold uppercase tracking-wider text-white mb-2.5 border-l-2 border-brand-yellow pl-2">
+              <h4 className="text-[14px] font-bold uppercase tracking-wider text-white mb-2.5 border-l-2 border-brand-royal pl-2">
                 Contact
               </h4>
-              <div className="space-y-2 text-[12px] text-slate-300">
+              <div className="space-y-2 text-[12px] text-[#C4CCD5]">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-brand-yellow flex-shrink-0 mt-0.5" />
+                  <MapPin className="w-3.5 h-3.5 text-brand-royal flex-shrink-0 mt-0.5" />
                   <span className="leading-tight">{companyDetails.officialAddress}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-brand-yellow flex-shrink-0" />
-                  <a href={`mailto:${companyDetails.email}`} className="hover:text-brand-yellow transition-colors truncate">
+                  <Mail className="w-3.5 h-3.5 text-brand-royal flex-shrink-0" />
+                  <a href={`mailto:${companyDetails.email}`} className="hover:text-white transition-colors truncate">
                     {companyDetails.email}
                   </a>
                 </div>
                 <div className="flex items-start gap-2">
-                  <Phone className="w-3.5 h-3.5 text-brand-yellow flex-shrink-0 mt-0.5" />
+                  <Phone className="w-3.5 h-3.5 text-brand-royal flex-shrink-0 mt-0.5" />
                   <div className="flex flex-col gap-0.5">
-                    <a href="tel:+917996078472" className="hover:text-brand-yellow transition-colors">
+                    <a href="tel:+917996078472" className="hover:text-white transition-colors">
                       +91-7996078472
                     </a>
-                    <a href="tel:+918213128831" className="hover:text-brand-yellow transition-colors">
+                    <a href="tel:+918213128831" className="hover:text-white transition-colors">
                       +91-8213128831
                     </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-slate-400">
-                  <Clock className="w-3.5 h-3.5 text-brand-yellow flex-shrink-0" />
+                <div className="flex items-center gap-2 text-[#C4CCD5]/80">
+                  <Clock className="w-3.5 h-3.5 text-brand-royal flex-shrink-0" />
                   <span className="truncate">{companyDetails.businessHours}</span>
                 </div>
               </div>
@@ -257,26 +257,26 @@ export default function Footer() {
           </div>
 
           {/* Thin Divider & Single Compact Bottom Row */}
-          <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px] text-slate-400">
+          <div className="pt-3 border-t border-[#52749A]/30 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px] text-[#C4CCD5]/80">
             <div>
               &copy; {new Date().getFullYear()} NAVABHARATH TECHNOLOGIES. All rights reserved.
             </div>
             <div className="flex items-center gap-5">
               <button
                 onClick={() => openLegalModal('privacy')}
-                className="hover:text-brand-yellow transition-colors focus:outline-none"
+                className="hover:text-white transition-colors focus:outline-none"
               >
                 Privacy Policy
               </button>
               <button
                 onClick={() => openLegalModal('terms')}
-                className="hover:text-brand-yellow transition-colors focus:outline-none"
+                className="hover:text-white transition-colors focus:outline-none"
               >
                 Terms of Service
               </button>
               <button
                 onClick={() => openLegalModal('security')}
-                className="hover:text-brand-yellow transition-colors focus:outline-none"
+                className="hover:text-white transition-colors focus:outline-none"
               >
                 Security &amp; Compliance
               </button>
@@ -298,7 +298,7 @@ export default function Footer() {
         }
         subtitle="NAVABHARATH TECHNOLOGIES Corporate Governance"
       >
-        <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
+        <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
           {legalModalType === 'privacy' && (
             <>
               <p>
@@ -307,17 +307,17 @@ export default function Footer() {
               <p>
                 Navabharath Technologies prioritizes the protection and confidentiality of client and visitor data. We adhere strictly to applicable global data privacy regulations including GDPR and Indian Digital Personal Data Protection standards.
               </p>
-              <h4 className="text-white font-bold mt-3">1. Information We Collect</h4>
+              <h4 className="text-brand-navy font-bold mt-3">1. Information We Collect</h4>
               <p>
                 We only collect information voluntarily provided through project inquiry forms, career applications, and newsletter subscriptions (such as name, verified corporate email, and project specifications).
               </p>
-              <h4 className="text-white font-bold mt-3">2. Data Security &amp; Storage</h4>
+              <h4 className="text-brand-navy font-bold mt-3">2. Data Security &amp; Storage</h4>
               <p>
                 All data transmitted across our web platforms is encrypted via TLS 1.3 encryption. We never sell, rent, or trade client contact information to third-party data brokers.
               </p>
-              <h4 className="text-white font-bold mt-3">3. Contacting the Data Protection Officer</h4>
+              <h4 className="text-brand-navy font-bold mt-3">3. Contacting the Data Protection Officer</h4>
               <p>
-                For data access or erasure requests, reach out to <span className="text-brand-yellow">{companyDetails.email}</span>.
+                For data access or erasure requests, reach out to <span className="text-brand-royal font-semibold">{companyDetails.email}</span>.
               </p>
             </>
           )}
@@ -330,11 +330,11 @@ export default function Footer() {
               <p>
                 Welcome to Navabharath Technologies. By accessing our website or engaging our technology consulting services, you agree to comply with our professional terms of engagement.
               </p>
-              <h4 className="text-white font-bold mt-3">1. Intellectual Property</h4>
+              <h4 className="text-brand-navy font-bold mt-3">1. Intellectual Property</h4>
               <p>
                 All proprietary methodologies, source code frameworks, and brand assets developed by Navabharath Technologies remain the exclusive property of the company until assigned under a ratified Statement of Work (SOW).
               </p>
-              <h4 className="text-white font-bold mt-3">2. Service Delivery &amp; SLAs</h4>
+              <h4 className="text-brand-navy font-bold mt-3">2. Service Delivery &amp; SLAs</h4>
               <p>
                 Engagements are executed under mutually agreed timelines, milestone sign-offs, and service level agreements defined in formal project contracts.
               </p>
@@ -357,10 +357,10 @@ export default function Footer() {
             </>
           )}
 
-          <div className="pt-4 border-t border-white/10 flex justify-end">
+          <div className="pt-4 border-t border-brand-silver/50 flex justify-end">
             <button
               onClick={() => setLegalModalOpen(false)}
-              className="px-5 py-2 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover transition-colors"
+              className="px-5 py-2 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy transition-colors shadow-sm"
             >
               Close Document
             </button>

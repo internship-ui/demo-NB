@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // Components
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 import Toast from './components/common/Toast';
-import LoadingScreen from './components/common/LoadingScreen';
-import CustomCursor from './components/common/CustomCursor';
 import PageJourneyLink from './components/common/PageJourneyLink';
 
 // Pages
@@ -24,97 +21,47 @@ import Contact from './pages/Contact';
 // Context
 import { NotificationProvider } from './context/NotificationContext';
 
-// Animated wrapper for routes with bidirectional vertical transitions
-function AnimatedRoutes() {
-  const location = useLocation();
-  const direction = location.state?.direction || 'down';
-
-  const variants = {
-    initial: (dir) => ({
-      opacity: 0,
-      y: dir === 'down' ? 50 : -50,
-    }),
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.35,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    exit: (dir) => ({
-      opacity: 0,
-      y: dir === 'down' ? -50 : 50,
-      transition: {
-        duration: 0.25,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
-  };
-
-  return (
-    <AnimatePresence mode="wait" custom={direction}>
-      <motion.main
-        key={location.pathname}
-        custom={direction}
-        variants={variants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        className="flex-1"
-      >
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:serviceId" element={<ServiceDetail />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/contact" element={<Contact />} />
-
-          {/* Catch-all 404 route */}
-          <Route
-            path="*"
-            element={
-              <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 pt-28">
-                <span className="text-6xl font-extrabold text-brand-yellow font-heading mb-4">404</span>
-                <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">Page Not Found</h1>
-                <p className="text-sm text-slate-300 max-w-md mb-8">
-                  The page you requested is not available. Please return to the homepage or explore our services catalog.
-                </p>
-                <Link
-                  to="/"
-                  className="px-6 py-3 rounded-xl bg-brand-yellow text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-yellow-hover transition-colors"
-                >
-                  Return to Homepage
-                </Link>
-              </div>
-            }
-          />
-        </Routes>
-      </motion.main>
-    </AnimatePresence>
-  );
-}
-
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <NotificationProvider>
       <Router basename={import.meta.env.BASE_URL}>
-        <AnimatePresence>
-          {isLoading && (
-            <LoadingScreen onFinish={() => setIsLoading(false)} />
-          )}
-        </AnimatePresence>
-
-        <div className="flex flex-col min-h-screen bg-brand-navy text-slate-100 selection:bg-brand-yellow selection:text-brand-navy">
-          <CustomCursor />
+        <div className="flex flex-col min-h-screen bg-brand-light text-slate-700 selection:bg-brand-royal/20 selection:text-brand-navy">
           <ScrollToTop />
           <Navbar />
-          <AnimatedRoutes />
+          
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/:serviceId" element={<ServiceDetail />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/contact" element={<Contact />} />
+
+              {/* Catch-all 404 route */}
+              <Route
+                path="*"
+                element={
+                  <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 pt-28 bg-brand-light">
+                    <span className="text-6xl font-extrabold text-brand-royal font-heading mb-4">404</span>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-3">Page Not Found</h1>
+                    <p className="text-sm text-slate-600 max-w-md mb-8">
+                      The page you requested is not available. Please return to the homepage or explore our services catalog.
+                    </p>
+                    <Link
+                      to="/"
+                      className="px-6 py-3 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy shadow-md transition-colors"
+                    >
+                      Return to Homepage
+                    </Link>
+                  </div>
+                }
+              />
+            </Routes>
+          </main>
+
           <PageJourneyLink />
           <Footer />
           <Toast />
