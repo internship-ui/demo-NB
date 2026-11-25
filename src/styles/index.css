@@ -7,8 +7,13 @@
     scroll-behavior: smooth;
     font-family: 'Inter', system-ui, sans-serif;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Outfit', 'Inter', sans-serif;
   }
 
@@ -17,13 +22,16 @@
     width: 8px;
     height: 8px;
   }
+
   ::-webkit-scrollbar-track {
     background: #041026;
   }
+
   ::-webkit-scrollbar-thumb {
     background: #1A3F7A;
     border-radius: 4px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: #FFC928;
   }
@@ -32,7 +40,7 @@
 @layer utilities {
   .bg-grid-pattern {
     background-size: 40px 40px;
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(255, 201, 40, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 201, 40, 0.05) 1px, transparent 1px);
   }
@@ -52,6 +60,7 @@
   .glass-card-hover {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .glass-card-hover:hover {
     background: rgba(14, 45, 94, 0.85);
     border-color: rgba(255, 201, 40, 0.4);
@@ -86,7 +95,7 @@
     width: 280px;
     height: 370px;
     border-radius: 14px;
-    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
     z-index: -2;
     pointer-events: none;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -97,7 +106,7 @@
     z-index: -1;
     position: absolute;
     inset: 0;
-    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
     transform: translate3d(0, 0, 0) scale(0.95);
     filter: blur(20px);
     border-radius: 12px;
@@ -218,22 +227,25 @@
     0% {
       transform: translateX(0%);
     }
+
     20% {
       transform: translateX(0%);
     }
+
     30% {
       transform: translateX(-33.33%);
     }
+
     70% {
       transform: translateX(-33.33%);
     }
+
     80% {
       transform: translateX(-66.66%);
     }
+
     100% {
       transform: translateX(-66.66%);
     }
   }
 }
-
-

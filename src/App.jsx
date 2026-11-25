@@ -72,7 +72,7 @@ function AnimatedRoutes() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
-          
+
           {/* Catch-all 404 route */}
           <Route
             path="*"
