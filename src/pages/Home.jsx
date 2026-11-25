@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Code2, 
-  Smartphone, 
-  Globe, 
-  Palette, 
-  Layers, 
-  TrendingUp, 
-  ShieldCheck, 
-  CheckCircle2, 
-  Star, 
-  Award, 
-  Users, 
-  Cpu, 
+import {
+  ArrowRight,
+  Code2,
+  Smartphone,
+  Globe,
+  Palette,
+  Layers,
+  TrendingUp,
+  ShieldCheck,
+  CheckCircle2,
+  Star,
+  Award,
+  Users,
+  Cpu,
   ExternalLink,
   ChevronRight,
   Shield,
@@ -24,6 +24,7 @@ import {
 import SectionHeading from '../components/common/SectionHeading';
 import AnimatedCounter from '../components/common/AnimatedCounter';
 import Modal from '../components/common/Modal';
+import TechMarketingBackground from '../components/common/TechMarketingBackground';
 import HomeDigitalGridBackground from '../components/home/HomeDigitalGridBackground';
 import ServiceCard from '../components/common/ServiceCard';
 import { servicesData } from '../data/servicesData';
@@ -353,7 +354,7 @@ export default function Home() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative bg-white">
         <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden shadow-2xl text-white">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
-          
+
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 font-heading">
             Ready to Accelerate Your <span className="text-[#C4CCD5]">Digital Transformation?</span>
           </h2>
@@ -393,7 +394,7 @@ export default function Home() {
               alt={selectedProject.title}
               className="w-full h-64 object-cover rounded-xl border border-brand-silver/50"
             />
-            
+
             <div>
               <h4 className="text-brand-navy font-bold text-base mb-1">Project Overview</h4>
               <p className="leading-relaxed text-slate-600">{selectedProject.fullDesc}</p>
