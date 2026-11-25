@@ -10,6 +10,7 @@ import PageJourneyLink from './components/common/PageJourneyLink';
 import CustomCursor from './components/common/CustomCursor';
 
 // Pages
+import SinglePageApp from './pages/SinglePageApp';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -33,14 +34,14 @@ export default function App() {
           
           <main className="flex-1">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
+              <Route path="/" element={<SinglePageApp initialSection="home" />} />
+              <Route path="/about" element={<SinglePageApp initialSection="about" />} />
+              <Route path="/services" element={<SinglePageApp initialSection="services" />} />
               <Route path="/services/:serviceId" element={<ServiceDetail />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/portfolio" element={<SinglePageApp initialSection="portfolio" />} />
+              <Route path="/resources" element={<SinglePageApp initialSection="resources" />} />
+              <Route path="/careers" element={<SinglePageApp initialSection="careers" />} />
+              <Route path="/contact" element={<SinglePageApp initialSection="contact" />} />
 
               {/* Catch-all 404 route */}
               <Route

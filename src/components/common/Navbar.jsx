@@ -19,17 +19,53 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Resources', path: '/resources' },
-    { name: 'Careers', path: '/careers' },
-    { name: 'Contact Us', path: '/contact' }
+    { name: 'Home', path: '/', id: 'home' },
+    { name: 'About Us', path: '/about', id: 'about' },
+    { name: 'Services', path: '/services', id: 'services' },
+    { name: 'Portfolio', path: '/portfolio', id: 'portfolio' },
+    { name: 'Resources', path: '/resources', id: 'resources' },
+    { name: 'Careers', path: '/careers', id: 'careers' },
+    { name: 'Contact Us', path: '/contact', id: 'contact' }
   ];
+
+  // IntersectionObserver to detect which page section is currently on screen
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'services', 'portfolio', 'resources', 'careers', 'contact'];
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: '-15% 0px -55% 0px',
+      threshold: 0
+    });
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
+  const handleNavClick = (e, link) => {
+    const el = document.getElementById(link.id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(link.id);
+      setMobileMenuOpen(false);
+    }
+  };
 
   // Track scroll position to enhance navbar shadow/blur
   useEffect(() => {
@@ -95,41 +131,32 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links - Smooth Scrolling to One-by-One Sections */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  state={{
-                    direction:
-                      navLinks.findIndex((l) => l.path === link.path) >=
-                      navLinks.findIndex((l) => l.path === location.pathname)
-                        ? 'down'
-                        : 'up',
-                  }}
-                  className={({ isActive }) =>
-                    `relative px-3.5 py-2 text-sm font-medium transition-colors rounded-lg ${
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className={`relative px-3.5 py-2 text-sm font-medium transition-colors rounded-lg cursor-pointer ${
                       isActive
                         ? 'text-brand-royal font-bold'
                         : 'text-brand-navy hover:text-brand-royal hover:bg-brand-royal/5'
-                    }`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      <span className="relative z-10">{link.name}</span>
-                      {isActive && (
-                        <motion.span
-                          layoutId="activeNavIndicator"
-                          className="absolute inset-0 bg-brand-royal/10 rounded-lg border-b-2 border-brand-royal shadow-xs z-0"
-                          transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                        />
-                      )}
-                    </>
-                  )}
-                </NavLink>
-              ))}
+                    }`}
+                  >
+                    <span className="relative z-10">{link.name}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNavIndicator"
+                        className="absolute inset-0 bg-brand-royal/10 rounded-lg border-b-2 border-brand-royal shadow-xs z-0"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Action: Search Button & Contact Button & Mobile Trigger */}
@@ -238,34 +265,29 @@ export default function Navbar() {
                   <kbd className="text-[10px] bg-white px-1.5 py-0.5 rounded text-slate-500 font-mono border border-brand-silver/40">⌘K</kbd>
                 </button>
 
-                {/* Nav Links */}
+                {/* Nav Links - Smooth Scrolling to Sections */}
                 <div className="space-y-1">
-                  {navLinks.map((link, idx) => (
-                    <NavLink
-                      key={link.path}
-                      to={link.path}
-                      state={{
-                        direction:
-                          navLinks.findIndex((l) => l.path === link.path) >=
-                          navLinks.findIndex((l) => l.path === location.pathname)
-                            ? 'down'
-                            : 'up',
-                      }}
-                      className={({ isActive }) =>
-                        `flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                  {navLinks.map((link, idx) => {
+                    const isActive = activeSection === link.id;
+                    return (
+                      <Link
+                        key={link.path}
+                        to={link.path}
+                        onClick={(e) => handleNavClick(e, link)}
+                        className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all cursor-pointer ${
                           isActive
                             ? 'bg-brand-royal/10 text-brand-royal border-l-4 border-brand-royal font-bold'
                             : 'text-brand-navy hover:text-brand-royal hover:bg-brand-royal/5'
-                        }`
-                      }
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-xs text-brand-steel/60">/0{idx + 1}</span>
-                        <span>{link.name}</span>
-                      </div>
-                      <ChevronRight className="w-4 h-4 opacity-50" />
-                    </NavLink>
-                  ))}
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-xs text-brand-steel/60">/0{idx + 1}</span>
+                          <span>{link.name}</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 opacity-50" />
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 

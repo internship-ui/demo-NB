@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -14,28 +14,45 @@ import { pageFlow } from '../../data/navigationFlow';
 export default function PageJourneyLink() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [activeStep, setActiveStep] = useState(1);
 
-  // Determine current page index
-  const currentPath = location.pathname;
-  let currentIndex = pageFlow.findIndex((p) => p.path === currentPath);
-  
-  if (currentIndex === -1) {
-    if (currentPath.startsWith('/services/')) {
-      currentIndex = 2; // Services
-    } else {
-      return null;
-    }
-  }
+  // IntersectionObserver to sync floating pill with actual scroll position
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'services', 'portfolio', 'resources', 'careers', 'contact'];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = sectionIds.indexOf(entry.target.id);
+            if (idx !== -1) setActiveStep(idx + 1);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -55% 0px', threshold: 0 }
+    );
 
-  const currentPage = pageFlow[currentIndex];
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
+  const currentIndex = activeStep - 1;
+  const currentPage = pageFlow[currentIndex] || pageFlow[0];
   const nextIndex = (currentIndex + 1) % pageFlow.length;
   const prevIndex = (currentIndex - 1 + pageFlow.length) % pageFlow.length;
   const nextPage = pageFlow[nextIndex];
   const prevPage = pageFlow[prevIndex];
 
-  const handleNavigate = (path) => {
-    navigate(path);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  const handleScrollTo = (page) => {
+    const el = document.getElementById(page.id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(page.path);
+    }
   };
 
   return (
@@ -44,10 +61,10 @@ export default function PageJourneyLink() {
       <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-1.5 p-1.5 rounded-full bg-white/95 border border-brand-silver/80 shadow-xl backdrop-blur-md">
         {/* Previous Page Button */}
         <button
-          onClick={() => handleNavigate(prevPage.path)}
+          onClick={() => handleScrollTo(prevPage)}
           className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-brand-light hover:bg-brand-royal/10 text-slate-700 hover:text-brand-royal text-xs font-semibold cursor-pointer transition-colors"
-          title={`Previous Page: ${prevPage.name}`}
-          aria-label={`Previous Page: ${prevPage.name}`}
+          title={`Previous Section: ${prevPage.name}`}
+          aria-label={`Previous Section: ${prevPage.name}`}
         >
           <ChevronLeft className="w-3.5 h-3.5 text-brand-royal" />
           <span className="hidden md:inline">{prevPage.name}</span>
@@ -60,10 +77,10 @@ export default function PageJourneyLink() {
 
         {/* Next Page Button */}
         <button
-          onClick={() => handleNavigate(nextPage.path)}
+          onClick={() => handleScrollTo(nextPage)}
           className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-brand-royal hover:bg-brand-navy text-white text-xs font-bold cursor-pointer shadow-md transition-colors"
-          title={`Next Page: ${nextPage.name}`}
-          aria-label={`Next Page: ${nextPage.name}`}
+          title={`Next Section: ${nextPage.name}`}
+          aria-label={`Next Section: ${nextPage.name}`}
         >
           <span>{nextPage.name}</span>
           <ChevronRight className="w-3.5 h-3.5" />
@@ -97,7 +114,7 @@ export default function PageJourneyLink() {
                 return (
                   <React.Fragment key={page.id}>
                     <button
-                      onClick={() => handleNavigate(page.path)}
+                      onClick={() => handleScrollTo(page)}
                       className={`relative flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
                         isCurrent
                           ? 'bg-brand-royal text-white font-bold shadow-sm'

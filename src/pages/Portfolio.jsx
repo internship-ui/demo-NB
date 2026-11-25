@@ -126,8 +126,8 @@ function InteractiveProjectCard({
 // =========================================================================
 // MAIN PORTFOLIO PAGE
 // =========================================================================
-export default function Portfolio() {
-  const [isLoading, setIsLoading] = useState(true);
+export default function Portfolio({ showLoader = false }) {
+  const [isLoading, setIsLoading] = useState(showLoader);
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
