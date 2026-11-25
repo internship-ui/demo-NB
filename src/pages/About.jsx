@@ -70,7 +70,7 @@ export default function About() {
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase"
             >
               Architecting <br className="hidden sm:inline" />
-              <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+              <span className="text-brand-royal">
                 Digital Excellence
               </span>
             </h1>

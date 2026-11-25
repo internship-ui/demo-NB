@@ -221,7 +221,7 @@ export default function Resources() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-6 uppercase">
             <span className="text-brand-navy">Engineering Insights &amp;</span>
             <br />
-            <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+            <span className="text-brand-royal">
               Technology Architecture
             </span>
           </h1>

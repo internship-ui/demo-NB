@@ -104,7 +104,7 @@ export default function Contact() {
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3 uppercase"
           >
             Let's Engineer Your{' '}
-            <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+            <span className="text-brand-royal">
               Digital Breakthrough
             </span>
           </h1>
