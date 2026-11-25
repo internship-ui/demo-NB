@@ -257,9 +257,11 @@ export default function Footer() {
           </div>
 
           {/* Thin Divider & Single Compact Bottom Row */}
-          <div className="pt-3 border-t border-[#52749A]/30 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px] text-[#C4CCD5]/80">
-            <div>
-              &copy; {new Date().getFullYear()} NAVABHARATH TECHNOLOGIES. All rights reserved.
+          <div className="pt-3 border-t border-[#52749A]/30 flex flex-col md:flex-row items-center justify-between gap-2.5 text-[11px] text-[#C4CCD5]/80">
+            <div className="flex flex-wrap items-center gap-2">
+              <span>&copy; {new Date().getFullYear()} NAVABHARATH TECHNOLOGIES. All rights reserved.</span>
+              <span className="hidden sm:inline text-brand-steel">·</span>
+              <span className="font-mono text-[10px] text-brand-steel/80 hidden sm:inline">MYSURU 12.2958° N, 76.6394° E</span>
             </div>
             <div className="flex items-center gap-5">
               <button

@@ -146,10 +146,10 @@ export default function Navbar() {
               {/* Navy-to-Royal-Blue Gradient Contact Us CTA Button */}
               <Link
                 to="/contact"
-                className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-brand-navy to-brand-royal text-white hover:opacity-95 shadow-sm hover:shadow-md transition-all active:scale-95"
+                className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-brand-navy to-brand-royal text-white hover:brightness-110 shadow-sm hover:shadow-md transition-all active:scale-95 group"
               >
-                <span>Contact</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>Start Project</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
 
               {/* Mobile Menu Hamburger */}
@@ -223,7 +223,7 @@ export default function Navbar() {
 
               {/* Nav Links */}
               <div className="space-y-1">
-                {navLinks.map((link) => (
+                {navLinks.map((link, idx) => (
                   <NavLink
                     key={link.path}
                     to={link.path}
@@ -242,7 +242,10 @@ export default function Navbar() {
                       }`
                     }
                   >
-                    <span>{link.name}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-xs text-brand-steel/60">/0{idx + 1}</span>
+                      <span>{link.name}</span>
+                    </div>
                     <ChevronRight className="w-4 h-4 opacity-50" />
                   </NavLink>
                 ))}

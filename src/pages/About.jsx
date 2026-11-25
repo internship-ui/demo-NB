@@ -20,6 +20,7 @@ import {
 import SectionHeading from '../components/common/SectionHeading';
 import AnimatedCounter from '../components/common/AnimatedCounter';
 import AboutBackground from '../components/about/AboutBackground';
+import MarqueeBanner from '../components/common/MarqueeBanner';
 import { companyDetails } from '../data/companyData';
 import { getAssetUrl } from '../utils/assetPath';
 
@@ -51,21 +52,26 @@ export default function About() {
               <ShieldCheck className="w-10 h-10 text-brand-royal/50" />
             </div>
 
-            {/* Badge: WHO WE ARE */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-royal/10 border border-brand-royal/25 text-brand-royal text-xs font-semibold uppercase tracking-wider mb-5 shadow-sm"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>WHO WE ARE</span>
+            {/* Badge: WHO WE ARE & Coordinates */}
+            <div className="flex flex-col items-center gap-2 mb-5">
+              <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase">
+                [01 // WHO WE ARE] · MYSURU 12.2958° N, 76.6394° E
+              </div>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-royal/25 text-brand-royal text-xs font-bold uppercase tracking-wider shadow-2xs"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
+                <span>EXCELLENCE IN SOFTWARE ENGINEERING</span>
+              </div>
             </div>
 
             {/* Heading: About Us */}
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase"
             >
-              About{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
-                Us
+              Architecting <br className="hidden sm:inline" />
+              <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+                Digital Excellence
               </span>
             </h1>
 
@@ -203,6 +209,9 @@ export default function About() {
         </div>
       </section>
 
+      {/* Marquee Divider */}
+      <MarqueeBanner />
+
       {/* ===================== MISSION, VISION & VALUES ===================== */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40">
         <div className="max-w-7xl mx-auto">
@@ -211,6 +220,9 @@ export default function About() {
             <div
               className="p-8 rounded-3xl bg-brand-light border border-brand-silver/70 shadow-sm relative overflow-hidden"
             >
+              <div className="font-mono text-xs font-bold text-brand-royal uppercase tracking-widest mb-4">
+                [02 // PURPOSE]
+              </div>
               <div className="w-12 h-12 rounded-xl bg-brand-royal/10 border border-brand-royal/20 flex items-center justify-center mb-6">
                 <Target className="w-6 h-6 text-brand-royal" />
               </div>
@@ -225,6 +237,9 @@ export default function About() {
             <div
               className="p-8 rounded-3xl bg-white border border-brand-silver/70 shadow-sm relative overflow-hidden"
             >
+              <div className="font-mono text-xs font-bold text-brand-royal uppercase tracking-widest mb-4">
+                [03 // ASPIRATION]
+              </div>
               <div className="w-12 h-12 rounded-xl bg-brand-royal/10 border border-brand-royal/20 flex items-center justify-center mb-6">
                 <Compass className="w-6 h-6 text-brand-royal" />
               </div>
@@ -239,6 +254,7 @@ export default function About() {
 
           {/* Core Values */}
           <SectionHeading
+            number="04 // PILLARS"
             badge="Core Principles"
             title="Values That Guide Every"
             titleHighlight="Line of Code"
@@ -249,12 +265,17 @@ export default function About() {
             {companyDetails.values.map((val, idx) => (
               <div
                 key={val.title}
-                className="p-6 rounded-2xl bg-brand-light border border-brand-silver/60 hover:border-brand-royal/40 shadow-sm transition-colors"
+                className="p-6 rounded-2xl bg-brand-light border border-brand-silver/60 hover:border-brand-royal/40 shadow-sm transition-colors group"
               >
-                <div className="w-12 h-12 rounded-xl bg-white border border-brand-silver/50 flex items-center justify-center mb-4 text-brand-royal">
-                  {getValueIcon(val.icon)}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-white border border-brand-silver/50 flex items-center justify-center text-brand-royal">
+                    {getValueIcon(val.icon)}
+                  </div>
+                  <span className="font-mono text-xs font-bold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
+                    /0{idx + 1}
+                  </span>
                 </div>
-                <h4 className="text-lg font-bold text-brand-navy font-heading mb-2">
+                <h4 className="text-lg font-bold text-brand-navy font-heading mb-2 group-hover:text-brand-royal transition-colors">
                   {val.title}
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

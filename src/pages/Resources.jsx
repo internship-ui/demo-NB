@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import SectionHeading from '../components/common/SectionHeading';
 import Modal from '../components/common/Modal';
+import MarqueeBanner from '../components/common/MarqueeBanner';
 import ResourcesBackgroundAnimation from '../components/resources/ResourcesBackgroundAnimation';
 import { resourcesData, resourceCategories } from '../data/resourcesData';
 import { useNotification } from '../context/NotificationContext';
@@ -206,17 +207,21 @@ export default function Resources() {
       {/* ===================== HERO / HEADER ===================== */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden z-10">
         <div className="relative max-w-5xl mx-auto text-center">
+          <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase mb-4">
+            [04 // INTELLIGENCE &amp; RESEARCH] · MYSURU 12.2958° N, 76.6394° E
+          </div>
+
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-brand-royal/25 text-brand-royal text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-royal/25 text-brand-royal text-xs font-bold uppercase tracking-wider mb-6 shadow-2xs"
           >
-            <BookOpen className="w-3.5 h-3.5" />
+            <BookOpen className="w-3.5 h-3.5 text-brand-royal" />
             <span>Knowledge Base &amp; Industry Insights</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-6 uppercase">
             <span className="text-brand-navy">Engineering Insights &amp;</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
+            <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
               Technology Architecture
             </span>
           </h1>
@@ -228,7 +233,7 @@ export default function Resources() {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto relative">
+          <div className="max-w-2xl mx-auto relative mb-10">
             <div className="relative flex items-center">
               <Search className="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" />
               <input
@@ -250,6 +255,9 @@ export default function Resources() {
           </div>
         </div>
       </section>
+
+      {/* Infinite Horizontal Marquee */}
+      <MarqueeBanner className="mb-12 relative z-10" />
 
       {/* ===================== CATEGORY TABS ===================== */}
       <section className="px-4 sm:px-6 lg:px-8 mb-10 relative z-10">

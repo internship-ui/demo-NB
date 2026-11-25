@@ -19,6 +19,7 @@ import ServiceCard from '../components/common/ServiceCard';
 import Modal from '../components/common/Modal';
 import ServicesDataFlowBackground from '../components/services/ServicesDataFlowBackground';
 import TechnologiesWeUse from '../components/services/TechnologiesWeUse';
+import MarqueeBanner from '../components/common/MarqueeBanner';
 import { servicesData } from '../data/servicesData';
 import { getAssetUrl } from '../utils/assetPath';
 
@@ -100,9 +101,14 @@ export default function Services() {
         {/* ===================== HERO SECTION ===================== */}
         <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
           <div className="relative max-w-5xl mx-auto text-center">
+            {/* Editorial Eyebrow */}
+            <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase mb-4">
+              [02 // SERVICES &amp; PRACTICES] · MYSURU 12.2958° N, 76.6394° E
+            </div>
+
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 border border-brand-royal/30 text-brand-royal text-xs sm:text-sm font-semibold tracking-wide shadow-sm mb-6 backdrop-blur-md"
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-brand-royal/30 text-brand-royal text-xs font-bold uppercase tracking-wider shadow-2xs mb-6"
             >
               <Sparkles className="w-4 h-4 text-brand-royal" />
               <span>End-to-End Enterprise Technology Solutions</span>
@@ -110,17 +116,17 @@ export default function Services() {
 
             {/* Title: Our Services */}
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase"
             >
-              Our{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
-                Services
+              Enterprise Engineering <br className="hidden sm:inline" />
+              <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+                Capabilities
               </span>
             </h1>
 
             {/* Subtitle */}
             <p
-              className="text-lg sm:text-xl md:text-2xl font-semibold text-brand-royal mb-4 font-heading"
+              className="text-lg sm:text-xl md:text-2xl font-bold text-brand-navy mb-4 font-heading"
             >
               Innovative Technology Solutions That Empower Your Business.
             </p>
@@ -132,6 +138,9 @@ export default function Services() {
             </p>
           </div>
         </section>
+
+        {/* Infinite Horizontal Marquee */}
+        <MarqueeBanner />
 
         {/* ===================== RESPONSIVE SERVICE CARDS GRID ===================== */}
         <section className="py-12 px-4 sm:px-6 lg:px-8">

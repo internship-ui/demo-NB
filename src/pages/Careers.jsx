@@ -20,6 +20,7 @@ import {
   Briefcase
 } from 'lucide-react';
 import Modal from '../components/common/Modal';
+import MarqueeBanner from '../components/common/MarqueeBanner';
 import CareersBackgroundAnimation from '../components/careers/CareersBackgroundAnimation';
 import { 
   whyNavabharathData, 
@@ -182,10 +183,19 @@ export default function Careers() {
         <CareersBackgroundAnimation />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Editorial Eyebrow */}
+          <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase mb-4">
+            [05 // TALENT &amp; CULTURE] · MYSURU 12.2958° N, 76.6394° E
+          </div>
+
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 uppercase"
           >
-            Build the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">Future</span> with Us
+            Build the{' '}
+            <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+              Future
+            </span>{' '}
+            with Us
           </h1>
 
           <p
@@ -234,6 +244,9 @@ export default function Careers() {
           </div>
         </div>
       </section>
+
+      {/* Marquee Banner */}
+      <MarqueeBanner />
 
       {/* ===================== SECTION 1: WHY NAVABHARATH TECHNOLOGIES? ===================== */}
       <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 relative">

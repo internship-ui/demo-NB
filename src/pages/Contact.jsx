@@ -88,19 +88,24 @@ export default function Contact() {
       {/* ===================== COMPACT HERO HEADER ===================== */}
       <section className="relative pt-4 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden text-center">
         <div className="relative max-w-4xl mx-auto">
+          {/* Editorial Eyebrow */}
+          <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase mb-4">
+            [06 // INITIATE DIALOGUE] · MYSURU 12.2958° N, 76.6394° E
+          </div>
+
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-brand-royal/25 text-brand-royal text-xs font-semibold uppercase tracking-wider mb-3 shadow-sm"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-royal/25 text-brand-royal text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
             <span>Connect With Our Technology Team</span>
           </div>
 
           <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3"
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3 uppercase"
           >
             Let's Engineer Your{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
-              Next Digital Breakthrough
+            <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
+              Digital Breakthrough
             </span>
           </h1>
 

@@ -20,6 +20,7 @@ import {
 } from '../data/portfolioData';
 import PortfolioDataBackground from '../components/portfolio/PortfolioDataBackground';
 import PortfolioLoadingScreen from '../components/portfolio/PortfolioLoadingScreen';
+import MarqueeBanner from '../components/common/MarqueeBanner';
 import { getAssetUrl } from '../utils/assetPath';
 
 // =========================================================================
@@ -176,18 +177,23 @@ export default function Portfolio() {
         {/* ===================== HERO / HEADER: CLIENT PORTFOLIO ===================== */}
         <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
           <div className="relative max-w-5xl mx-auto text-center">
+            {/* Editorial Eyebrow */}
+            <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase mb-4">
+              [03 // SELECTED WORKS] · MYSURU 12.2958° N, 76.6394° E
+            </div>
+
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-brand-royal/25 text-brand-royal text-xs sm:text-sm font-semibold uppercase tracking-wider mb-6 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-royal/25 text-brand-royal text-xs sm:text-sm font-bold uppercase tracking-wider mb-6 shadow-2xs"
             >
               <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
               <span>Proven Client Work &amp; Digital Engineering</span>
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 flex flex-wrap items-center justify-center gap-x-3.5">
-              <span>Client</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 uppercase">
+              Client{' '}
+              <span className="text-brand-royal underline decoration-brand-steel/30 decoration-wavy underline-offset-8">
                 Portfolio
               </span>
             </h1>
@@ -198,6 +204,9 @@ export default function Portfolio() {
             </p>
           </div>
         </section>
+
+        {/* Marquee Banner */}
+        <MarqueeBanner className="mb-12" />
 
         {/* ===================== CATEGORY FILTER TABS ===================== */}
         <section className="px-4 sm:px-6 lg:px-8 mb-12">
