@@ -20,6 +20,7 @@ import SectionHeading from '../components/common/SectionHeading';
 import Modal from '../components/common/Modal';
 import MarqueeBanner from '../components/common/MarqueeBanner';
 import ResourcesBackgroundAnimation from '../components/resources/ResourcesBackgroundAnimation';
+import { WordReveal } from '../components/common/TextReveal';
 import { resourcesData, resourceCategories } from '../data/resourcesData';
 import { useNotification } from '../context/NotificationContext';
 import { getAssetUrl } from '../utils/assetPath';
@@ -219,11 +220,14 @@ export default function Resources() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-6 uppercase">
-            <span className="text-brand-navy">Engineering Insights &amp;</span>
+            <WordReveal text="Engineering Insights &" delay={0.1} />
             <br />
-            <span className="text-brand-royal">
-              Technology Architecture
-            </span>
+            <WordReveal 
+              text="Technology Architecture" 
+              delay={0.25} 
+              highlightWords={['Technology', 'Architecture']}
+              highlightClassName="text-brand-royal"
+            />
           </h1>
 
           <p

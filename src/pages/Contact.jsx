@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import { companyDetails } from '../data/companyData';
 import { useNotification } from '../context/NotificationContext';
+import MagneticButton from '../components/common/MagneticButton';
+import { WordReveal } from '../components/common/TextReveal';
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -103,10 +105,13 @@ export default function Contact() {
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3 uppercase"
           >
-            Let's Engineer Your{' '}
-            <span className="text-brand-royal">
-              Digital Breakthrough
-            </span>
+            <WordReveal text="Let's Engineer Your" delay={0.1} /> <br className="hidden sm:inline" />
+            <WordReveal 
+              text="Digital Breakthrough" 
+              delay={0.25} 
+              highlightWords={['Digital', 'Breakthrough']}
+              highlightClassName="text-brand-royal"
+            />
           </h1>
 
           <p
@@ -384,23 +389,25 @@ export default function Contact() {
 
                 {/* Submit Consultation Request Button */}
                 <div className="pt-1">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3 rounded-xl bg-gradient-to-r from-brand-navy to-brand-royal text-white hover:opacity-95 font-bold text-xs uppercase tracking-wider shadow-md transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 active:scale-98 cursor-pointer"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Transmitting Inquiry...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-3.5 h-3.5" />
-                        <span>Submit Consultation Request</span>
-                      </>
-                    )}
-                  </button>
+                  <MagneticButton strength={0.15} className="w-full">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3 rounded-xl bg-gradient-to-r from-brand-navy to-brand-royal text-white hover:opacity-95 font-bold text-xs uppercase tracking-wider shadow-md transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 active:scale-98 cursor-pointer"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span>Transmitting Inquiry...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-3.5 h-3.5" />
+                          <span>Submit Consultation Request</span>
+                        </>
+                      )}
+                    </button>
+                  </MagneticButton>
                 </div>
 
                 <p className="text-[10px] text-center text-slate-500 mt-1">

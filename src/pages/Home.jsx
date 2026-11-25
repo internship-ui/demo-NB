@@ -31,6 +31,8 @@ import Modal from '../components/common/Modal';
 import MarqueeBanner from '../components/common/MarqueeBanner';
 import HomeDigitalGridBackground from '../components/home/HomeDigitalGridBackground';
 import ServiceCard from '../components/common/ServiceCard';
+import MagneticButton from '../components/common/MagneticButton';
+import { WordReveal } from '../components/common/TextReveal';
 import { servicesData } from '../data/servicesData';
 import { portfolioData } from '../data/portfolioData';
 import { testimonialsData } from '../data/testimonialsData';
@@ -105,53 +107,68 @@ export default function Home() {
             {/* Left Column: Bold Headline & Editorial Copy */}
             <div className="lg:col-span-8 space-y-6">
               {/* Badge */}
-              <motion.div variants={itemVariants}>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-royal/30 text-brand-royal text-xs font-bold uppercase tracking-widest shadow-2xs">
                   <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
                   <span>Digital Solutions That Drive Results</span>
                 </span>
               </motion.div>
 
-              {/* High-Impact Editorial Heading */}
-              <motion.h1
-                variants={itemVariants}
-                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-brand-navy font-heading leading-[1.02] uppercase"
-              >
-                Smarter Solutions <br className="hidden sm:inline" />
-                For{' '}
-                <span className="text-brand-royal">
-                  Better Future
+              {/* High-Impact Editorial Heading with Word-by-Word Reveal */}
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-brand-navy font-heading leading-[1.02] uppercase">
+                <WordReveal text="Smarter Solutions" delay={0.15} />
+                <br className="hidden sm:inline" />
+                <span className="inline-flex items-baseline gap-x-3">
+                  <WordReveal text="For" delay={0.35} />
+                  <WordReveal 
+                    text="Better Future" 
+                    delay={0.45} 
+                    highlightWords={['Better', 'Future']}
+                    highlightClassName="text-brand-royal"
+                  />
                 </span>
-              </motion.h1>
+              </h1>
 
-              {/* Lede Paragraph */}
+              {/* Lede Paragraph with Smooth Entrance */}
               <motion.p
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed"
               >
                 Navabharath Technologies is a <strong className="text-brand-navy font-semibold">Mysuru-based Software Company</strong> helping businesses adapt, grow, and stay secure in a digital-first world. We design practical IT solutions that simplify operations and support long-term growth. From custom web development and mobile applications to AI-driven automation and strategic digital marketing, we provide end-to-end services tailored to your unique goals.
               </motion.p>
 
-              {/* Strong Editorial Call-to-Action Group */}
+              {/* Strong Editorial Call-to-Action Group with Magnetic Buttons */}
               <motion.div
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.75 }}
                 className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
               >
-                <Link
-                  to="/services"
-                  className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-brand-navy via-brand-navy to-brand-royal text-white hover:brightness-110 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group active:scale-95"
-                >
-                  <span>Explore Practice Areas</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+                <MagneticButton strength={0.15}>
+                  <Link
+                    to="/services"
+                    className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-brand-navy via-brand-navy to-brand-royal text-white hover:brightness-110 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group active:scale-95"
+                  >
+                    <span>Explore Practice Areas</span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </MagneticButton>
 
-                <Link
-                  to="/contact"
-                  className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white hover:bg-slate-50 text-brand-navy border border-brand-silver/80 hover:border-brand-royal/50 shadow-sm transition-all flex items-center justify-center gap-2 group active:scale-95"
-                >
-                  <span>Schedule Consultation</span>
-                  <ArrowRight className="w-4 h-4 text-brand-royal transition-transform group-hover:translate-x-1" />
-                </Link>
+                <MagneticButton strength={0.15}>
+                  <Link
+                    to="/contact"
+                    className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white hover:bg-slate-50 text-brand-navy border border-brand-silver/80 hover:border-brand-royal/50 shadow-sm transition-all flex items-center justify-center gap-2 group active:scale-95"
+                  >
+                    <span>Schedule Consultation</span>
+                    <ArrowRight className="w-4 h-4 text-brand-royal transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </MagneticButton>
 
                 <Link
                   to="/portfolio"
@@ -165,11 +182,17 @@ export default function Home() {
 
             {/* Right Column: Architectural Visual Card & Live Metrics */}
             <motion.div
-              variants={itemVariants}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="lg:col-span-4 flex flex-col gap-4"
             >
-              {/* Feature Pill Card */}
-              <div className="p-6 rounded-3xl bg-white border border-brand-silver/60 shadow-xl shadow-brand-navy/5 relative overflow-hidden group">
+              {/* Feature Pill Card with subtle floating motion */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                className="p-6 rounded-3xl bg-white border border-brand-silver/60 shadow-xl shadow-brand-navy/5 relative overflow-hidden group"
+              >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-royal/5 rounded-full blur-2xl pointer-events-none" />
                 
                 <div className="flex items-center justify-between mb-4">
@@ -204,7 +227,7 @@ export default function Home() {
                     <span className="font-mono text-emerald-600 font-bold">100% Client Transfer</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Quick Tech Badge Bar */}
               <div className="p-4 rounded-2xl bg-white/70 backdrop-blur-sm border border-brand-silver/50 shadow-sm flex items-center justify-between">
@@ -364,7 +387,7 @@ export default function Home() {
                       S/0{idx + 1}
                     </span>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-royal group-hover:after:w-full after:transition-all after:duration-300">
                         {service.title}
                       </h3>
                       <p className="text-xs text-slate-500 leading-relaxed">
@@ -566,8 +589,12 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
             {companyDetails.stats.map((stat, idx) => (
-              <div
+              <motion.div
                 key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center relative overflow-hidden group hover:border-brand-silver/40 transition-colors"
               >
                 <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-2 font-heading">
@@ -580,7 +607,7 @@ export default function Home() {
                 <p className="text-xs sm:text-sm font-medium text-brand-silver tracking-wide">
                   {stat.label}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -640,8 +667,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== MARQUEE BANNER (DARK CONTRAST) ===================== */}
-      <MarqueeBanner isDark={true} />
+      {/* ===================== MARQUEE BANNER (DARK CONTRAST & REVERSE DIRECTION) ===================== */}
+      <MarqueeBanner isDark={true} direction="right" speed="slow" />
 
       {/* ===================== SECTION 06: CALL TO ACTION ===================== */}
       <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
@@ -660,18 +687,22 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white text-brand-navy hover:bg-slate-100 shadow-md hover:shadow-lg transition-all"
-            >
-              Schedule Consultation
-            </Link>
-            <Link
-              to="/services"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/30 transition-all"
-            >
-              Review Service Catalog
-            </Link>
+            <MagneticButton strength={0.2}>
+              <Link
+                to="/contact"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white text-brand-navy hover:bg-slate-100 shadow-md hover:shadow-lg transition-all inline-block"
+              >
+                Schedule Consultation
+              </Link>
+            </MagneticButton>
+            <MagneticButton strength={0.2}>
+              <Link
+                to="/services"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/30 transition-all inline-block"
+              >
+                Review Service Catalog
+              </Link>
+            </MagneticButton>
           </div>
         </div>
       </section>

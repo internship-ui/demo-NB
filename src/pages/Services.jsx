@@ -20,6 +20,7 @@ import Modal from '../components/common/Modal';
 import ServicesDataFlowBackground from '../components/services/ServicesDataFlowBackground';
 import TechnologiesWeUse from '../components/services/TechnologiesWeUse';
 import MarqueeBanner from '../components/common/MarqueeBanner';
+import { WordReveal } from '../components/common/TextReveal';
 import { servicesData } from '../data/servicesData';
 import { getAssetUrl } from '../utils/assetPath';
 
@@ -114,14 +115,17 @@ export default function Services() {
               <span>End-to-End Enterprise Technology Solutions</span>
             </div>
 
-            {/* Title: Our Services */}
+            {/* Title: Our Services with Word-by-Word Reveal */}
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase"
             >
-              Enterprise Engineering <br className="hidden sm:inline" />
-              <span className="text-brand-royal">
-                Capabilities
-              </span>
+              <WordReveal text="Enterprise Engineering" delay={0.1} /> <br className="hidden sm:inline" />
+              <WordReveal 
+                text="Capabilities" 
+                delay={0.25} 
+                highlightWords={['Capabilities']}
+                highlightClassName="text-brand-royal"
+              />
             </h1>
 
             {/* Subtitle */}

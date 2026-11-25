@@ -59,7 +59,7 @@
   }
 }
 
-/* Infinite Marquee Animation */
+/* Infinite Marquee Animation (Forward & Reverse) */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -69,13 +69,57 @@
   }
 }
 
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 
-.animate-marquee:hover {
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee 18s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 28s linear infinite;
+}
+
+.animate-marquee-reverse-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 42s linear infinite;
+}
+
+.animate-marquee-reverse-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 18s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-slow:hover,
+.animate-marquee-fast:hover,
+.animate-marquee-reverse:hover,
+.animate-marquee-reverse-slow:hover,
+.animate-marquee-reverse-fast:hover {
   animation-play-state: paused;
 }
 

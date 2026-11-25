@@ -81,7 +81,7 @@ export default function Footer() {
                 <span className="truncate">{companyDetails.cin}</span>
               </div>
 
-              {/* Compact Social Icons */}
+              {/* Compact Social Icons with animated hover effect */}
               <div className="flex items-center gap-2 pt-0.5">
                 {companyDetails.socials.map((social) => (
                   <a
@@ -89,7 +89,7 @@ export default function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#C4CCD5] hover:text-white hover:bg-brand-royal hover:border-brand-royal transition-all"
+                    className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#C4CCD5] hover:text-white hover:bg-brand-royal hover:border-brand-royal hover:scale-115 active:scale-95 transition-all duration-200 cursor-pointer"
                     aria-label={`Visit our ${social.name}`}
                   >
                     {getSocialIcon(social.name)}

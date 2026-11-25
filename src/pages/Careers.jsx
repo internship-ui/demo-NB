@@ -22,6 +22,8 @@ import {
 import Modal from '../components/common/Modal';
 import MarqueeBanner from '../components/common/MarqueeBanner';
 import CareersBackgroundAnimation from '../components/careers/CareersBackgroundAnimation';
+import MagneticButton from '../components/common/MagneticButton';
+import { WordReveal } from '../components/common/TextReveal';
 import { 
   whyNavabharathData, 
   perksAndBenefitsData, 
@@ -191,11 +193,14 @@ export default function Careers() {
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 uppercase"
           >
-            Build the{' '}
-            <span className="text-brand-royal">
-              Future
-            </span>{' '}
-            with Us
+            <WordReveal text="Build the" delay={0.1} />{' '}
+            <WordReveal 
+              text="Future" 
+              delay={0.2} 
+              highlightWords={['Future']}
+              highlightClassName="text-brand-royal"
+            />{' '}
+            <WordReveal text="with Us" delay={0.3} />
           </h1>
 
           <p
@@ -208,18 +213,22 @@ export default function Careers() {
           <div
             className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mb-12"
           >
-            <button
-              onClick={scrollToOpenRoles}
-              className="px-7 sm:px-8 py-3.5 rounded-xl bg-brand-royal hover:bg-brand-navy text-white font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer"
-            >
-              View Open Roles
-            </button>
-            <button
-              onClick={scrollToHiringProcess}
-              className="px-7 sm:px-8 py-3.5 rounded-xl border border-brand-silver/80 bg-white hover:bg-brand-light text-brand-navy font-semibold text-sm sm:text-base shadow-sm transition-all cursor-pointer"
-            >
-              Our Hiring Process
-            </button>
+            <MagneticButton strength={0.15}>
+              <button
+                onClick={scrollToOpenRoles}
+                className="px-7 sm:px-8 py-3.5 rounded-xl bg-brand-royal hover:bg-brand-navy text-white font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer inline-block"
+              >
+                View Open Roles
+              </button>
+            </MagneticButton>
+            <MagneticButton strength={0.15}>
+              <button
+                onClick={scrollToHiringProcess}
+                className="px-7 sm:px-8 py-3.5 rounded-xl border border-brand-silver/80 bg-white hover:bg-brand-light text-brand-navy font-semibold text-sm sm:text-base shadow-sm transition-all cursor-pointer inline-block"
+              >
+                Our Hiring Process
+              </button>
+            </MagneticButton>
           </div>
 
           {/* Value Checkmarks */}
