@@ -22,7 +22,6 @@ import AnimatedCounter from '../components/common/AnimatedCounter';
 import AboutBackground from '../components/about/AboutBackground';
 import MarqueeBanner from '../components/common/MarqueeBanner';
 import MagneticButton from '../components/common/MagneticButton';
-import { WordReveal } from '../components/common/TextReveal';
 import { companyDetails } from '../data/companyData';
 import { getAssetUrl } from '../utils/assetPath';
 
@@ -67,17 +66,14 @@ export default function About() {
               </div>
             </div>
 
-            {/* Heading: About Us with Word-by-Word Reveal */}
+            {/* Heading: About Us - 100% Solid & Visible */}
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase"
             >
-              <WordReveal text="Architecting" delay={0.1} /> <br className="hidden sm:inline" />
-              <WordReveal 
-                text="Digital Excellence" 
-                delay={0.25} 
-                highlightWords={['Digital', 'Excellence']}
-                highlightClassName="text-brand-royal"
-              />
+              Architecting <br className="hidden sm:inline" />
+              <span className="text-brand-royal">
+                Digital Excellence
+              </span>
             </h1>
 
             {/* Subtitle */}

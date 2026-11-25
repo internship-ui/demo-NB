@@ -32,7 +32,6 @@ import MarqueeBanner from '../components/common/MarqueeBanner';
 import HomeDigitalGridBackground from '../components/home/HomeDigitalGridBackground';
 import ServiceCard from '../components/common/ServiceCard';
 import MagneticButton from '../components/common/MagneticButton';
-import { WordReveal } from '../components/common/TextReveal';
 import { servicesData } from '../data/servicesData';
 import { portfolioData } from '../data/portfolioData';
 import { testimonialsData } from '../data/testimonialsData';
@@ -107,49 +106,29 @@ export default function Home() {
             {/* Left Column: Bold Headline & Editorial Copy */}
             <div className="lg:col-span-8 space-y-6">
               {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
+              <div>
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-royal/30 text-brand-royal text-xs font-bold uppercase tracking-widest shadow-2xs">
                   <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
                   <span>Digital Solutions That Drive Results</span>
                 </span>
-              </motion.div>
+              </div>
 
-              {/* High-Impact Editorial Heading with Word-by-Word Reveal */}
+              {/* High-Impact Editorial Heading - Always 100% Visible */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-brand-navy font-heading leading-[1.02] uppercase">
-                <WordReveal text="Smarter Solutions" delay={0.15} />
-                <br className="hidden sm:inline" />
-                <span className="inline-flex items-baseline gap-x-3">
-                  <WordReveal text="For" delay={0.35} />
-                  <WordReveal 
-                    text="Better Future" 
-                    delay={0.45} 
-                    highlightWords={['Better', 'Future']}
-                    highlightClassName="text-brand-royal"
-                  />
+                Smarter Solutions <br className="hidden sm:inline" />
+                For{' '}
+                <span className="text-brand-royal">
+                  Better Future
                 </span>
               </h1>
 
-              {/* Lede Paragraph with Smooth Entrance */}
-              <motion.p
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed"
-              >
+              {/* Lede Paragraph - Always 100% Visible */}
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed font-normal">
                 Navabharath Technologies is a <strong className="text-brand-navy font-semibold">Mysuru-based Software Company</strong> helping businesses adapt, grow, and stay secure in a digital-first world. We design practical IT solutions that simplify operations and support long-term growth. From custom web development and mobile applications to AI-driven automation and strategic digital marketing, we provide end-to-end services tailored to your unique goals.
-              </motion.p>
+              </p>
 
-              {/* Strong Editorial Call-to-Action Group with Magnetic Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.75 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
-              >
+              {/* Strong Editorial Call-to-Action Group - Always 100% Visible */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <MagneticButton strength={0.15}>
                   <Link
                     to="/services"
@@ -177,7 +156,7 @@ export default function Home() {
                   <span>Case Studies</span>
                   <ExternalLink className="w-3.5 h-3.5 text-brand-royal" />
                 </Link>
-              </motion.div>
+              </div>
             </div>
 
             {/* Right Column: Architectural Visual Card & Live Metrics */}

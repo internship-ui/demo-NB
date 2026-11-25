@@ -21,7 +21,6 @@ import {
 import PortfolioDataBackground from '../components/portfolio/PortfolioDataBackground';
 import PortfolioLoadingScreen from '../components/portfolio/PortfolioLoadingScreen';
 import MarqueeBanner from '../components/common/MarqueeBanner';
-import { WordReveal } from '../components/common/TextReveal';
 import { getAssetUrl } from '../utils/assetPath';
 
 // =========================================================================
@@ -191,15 +190,12 @@ export default function Portfolio() {
               <span>Proven Client Work &amp; Digital Engineering</span>
             </div>
 
-            {/* Heading with Word-by-Word Reveal */}
+            {/* Heading - Always 100% Solid & Visible */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 uppercase">
-              <WordReveal text="Client" delay={0.1} />{' '}
-              <WordReveal 
-                text="Portfolio" 
-                delay={0.2} 
-                highlightWords={['Portfolio']} 
-                highlightClassName="text-brand-royal" 
-              />
+              Client{' '}
+              <span className="text-brand-royal">
+                Portfolio
+              </span>
             </h1>
 
             {/* Description */}

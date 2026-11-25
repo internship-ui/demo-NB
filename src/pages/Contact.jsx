@@ -20,7 +20,6 @@ import {
 import { companyDetails } from '../data/companyData';
 import { useNotification } from '../context/NotificationContext';
 import MagneticButton from '../components/common/MagneticButton';
-import { WordReveal } from '../components/common/TextReveal';
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -105,13 +104,10 @@ export default function Contact() {
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-3 uppercase"
           >
-            <WordReveal text="Let's Engineer Your" delay={0.1} /> <br className="hidden sm:inline" />
-            <WordReveal 
-              text="Digital Breakthrough" 
-              delay={0.25} 
-              highlightWords={['Digital', 'Breakthrough']}
-              highlightClassName="text-brand-royal"
-            />
+            Let's Engineer Your{' '}
+            <span className="text-brand-royal">
+              Digital Breakthrough
+            </span>
           </h1>
 
           <p

@@ -23,7 +23,6 @@ import Modal from '../components/common/Modal';
 import MarqueeBanner from '../components/common/MarqueeBanner';
 import CareersBackgroundAnimation from '../components/careers/CareersBackgroundAnimation';
 import MagneticButton from '../components/common/MagneticButton';
-import { WordReveal } from '../components/common/TextReveal';
 import { 
   whyNavabharathData, 
   perksAndBenefitsData, 
@@ -193,14 +192,11 @@ export default function Careers() {
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 uppercase"
           >
-            <WordReveal text="Build the" delay={0.1} />{' '}
-            <WordReveal 
-              text="Future" 
-              delay={0.2} 
-              highlightWords={['Future']}
-              highlightClassName="text-brand-royal"
-            />{' '}
-            <WordReveal text="with Us" delay={0.3} />
+            Build the{' '}
+            <span className="text-brand-royal">
+              Future
+            </span>{' '}
+            with Us
           </h1>
 
           <p

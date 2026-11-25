@@ -1,13 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 /**
- * WordReveal - Staggers word-by-word reveal using an overflow mask
+ * WordReveal - Ensures text is ALWAYS 100% visible immediately,
+ * never hidden or clipped, preserving full typography and readability.
  */
 export function WordReveal({ 
   text, 
   className = '', 
-  delay = 0, 
   highlightWords = [],
   highlightClassName = 'text-brand-royal'
 }) {
@@ -22,20 +21,11 @@ export function WordReveal({
         );
 
         return (
-          <span key={i} className="inline-block overflow-hidden pb-1">
-            <motion.span
-              initial={{ y: '110%', opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: '-20px' }}
-              transition={{
-                duration: 0.55,
-                delay: delay + i * 0.04,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className={`inline-block ${isHighlight ? highlightClassName : ''}`}
-            >
-              {word}
-            </motion.span>
+          <span
+            key={i}
+            className={`inline-block ${isHighlight ? highlightClassName : ''}`}
+          >
+            {word}
           </span>
         );
       })}
@@ -44,37 +34,14 @@ export function WordReveal({
 }
 
 /**
- * CharReveal - Character-by-character reveal for bold hero titles
+ * CharReveal - Character reveal that guarantees 100% immediate visibility
  */
 export function CharReveal({ 
   text, 
-  className = '', 
-  delay = 0 
+  className = ''
 }) {
   if (!text) return null;
-  const chars = Array.from(text);
-
-  return (
-    <span className={`inline-block ${className}`}>
-      {chars.map((char, i) => (
-        <span key={i} className="inline-block overflow-hidden">
-          <motion.span
-            initial={{ y: '100%', opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.45,
-              delay: delay + i * 0.02,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="inline-block"
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  );
+  return <span className={`inline-block ${className}`}>{text}</span>;
 }
 
 export default WordReveal;
