@@ -87,15 +87,16 @@ export default function Careers() {
   }, [selectedTeam]);
 
   const getWhyIcon = (iconName) => {
+    const iconClass = "w-7 h-7 text-brand-royal group-hover:text-white transition-colors duration-300";
     switch (iconName) {
       case 'Rocket': 
-        return <Rocket className="w-7 h-7 text-brand-royal" />;
+        return <Rocket className={iconClass} />;
       case 'TrendingUp': 
-        return <TrendingUp className="w-7 h-7 text-brand-royal" />;
+        return <TrendingUp className={iconClass} />;
       case 'HeartHandshake': 
-        return <HeartHandshake className="w-7 h-7 text-brand-royal" />;
+        return <HeartHandshake className={iconClass} />;
       default: 
-        return <Rocket className="w-7 h-7 text-brand-royal" />;
+        return <Rocket className={iconClass} />;
     }
   };
 
@@ -267,21 +268,41 @@ export default function Careers() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {whyNavabharathData.map((item) => (
-              <div
+            {whyNavabharathData.map((item, idx) => (
+              <motion.div
                 key={item.id}
-                className="bg-brand-light rounded-[28px] p-8 sm:p-10 shadow-sm border border-brand-silver/60 hover:border-brand-royal/40 hover:shadow-md transition-all duration-300 flex flex-col items-start text-left group overflow-hidden relative"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: idx * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="career-value-card group p-8 sm:p-10 flex flex-col items-start text-left justify-between"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white border border-brand-silver/50 flex items-center justify-center mb-6 shadow-sm">
-                  {getWhyIcon(item.icon)}
+                {/* Subtle Background Radial Ambient Glows on Hover */}
+                <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
+                <div className="absolute -bottom-24 -left-24 w-48 h-48 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
+
+                <div className="relative z-10 w-full">
+                  {/* Top Header Row: Icon + Value Index */}
+                  <div className="flex items-center justify-between w-full mb-6">
+                    <div className="career-value-icon-box w-14 h-14 rounded-2xl bg-white border border-brand-silver/60 flex items-center justify-center shadow-xs">
+                      {getWhyIcon(item.icon)}
+                    </div>
+                    <span className="font-mono text-xs font-bold text-brand-royal/70 group-hover:text-brand-royal transition-colors tracking-widest uppercase">
+                      [0{idx + 1}]
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-brand-navy font-heading mb-3 group-hover:text-brand-royal transition-colors duration-300">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed font-normal group-hover:text-slate-700 transition-colors">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-brand-navy font-heading mb-3 group-hover:text-brand-royal transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed font-normal">
-                  {item.description}
-                </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
