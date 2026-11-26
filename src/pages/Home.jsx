@@ -33,23 +33,13 @@ import HomeDigitalGridBackground from '../components/home/HomeDigitalGridBackgro
 import ServiceCard from '../components/common/ServiceCard';
 import MagneticButton from '../components/common/MagneticButton';
 import { servicesData } from '../data/servicesData';
-import { portfolioData } from '../data/portfolioData';
 import { testimonialsData } from '../data/testimonialsData';
 import { companyDetails } from '../data/companyData';
 import { getAssetUrl } from '../utils/assetPath';
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
-  const [activePortfolioFilter, setActivePortfolioFilter] = useState('All');
   const navigate = useNavigate();
-
-  // Portfolio categories
-  const categories = ['All', 'Web Application', 'Mobile Application', 'Cloud & AI Platform', 'UI/UX Design'];
-
-  const filteredProjects = activePortfolioFilter === 'All'
-    ? portfolioData.slice(0, 6)
-    : portfolioData.filter((p) => p.category.toLowerCase().includes(activePortfolioFilter.toLowerCase().replace(' application', '').replace(' platform', ''))).slice(0, 6);
 
   // Stagger animation container
   const containerVariants = {
@@ -550,133 +540,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== SECTION 03: SELECTED WORKS (PORTFOLIO) ===================== */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <SectionHeading
-              number="03 // SELECTED WORKS"
-              badge="Case Studies"
-              title="Proven Results Across"
-              titleHighlight="Global Industries"
-              description="Explore how our tailored digital platforms and cloud architectures solve complex business challenges and drive operational efficiency."
-              align="left"
-            />
-
-            {/* Filter Pills */}
-            <div className="flex flex-wrap gap-2 pb-6 md:pb-12">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActivePortfolioFilter(cat)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                    activePortfolioFilter === cat
-                      ? 'bg-brand-royal text-white shadow-sm'
-                      : 'bg-brand-light text-slate-600 hover:text-brand-navy hover:bg-slate-100 border border-brand-silver/50'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Agency Image-Based Project Gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                onClick={() => setSelectedProject(project)}
-                className="rounded-3xl bg-white border border-brand-silver/60 overflow-hidden hover:border-brand-royal/50 transition-all duration-300 group flex flex-col justify-between hover:shadow-xl cursor-pointer"
-              >
-                <div className="relative h-52 sm:h-56 overflow-hidden bg-brand-light">
-                  <img
-                    src={project.bannerImage}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent opacity-80" />
-
-                  {/* Project Index Overlay */}
-                  <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-white/90 backdrop-blur-sm text-brand-navy font-mono text-xs font-extrabold shadow-sm">
-                    /0{idx + 1}
-                  </div>
-
-                  {/* Client Logo */}
-                  <div className="absolute -bottom-4 left-6 w-12 h-12 rounded-xl bg-white p-1.5 shadow-md border-2 border-brand-silver/50 flex items-center justify-center overflow-hidden z-10 group-hover:scale-110 transition-transform duration-300">
-                    <img
-                      src={project.logoImage}
-                      alt={`${project.title} logo`}
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Impact Metric Floating Badge */}
-                  <div className="absolute bottom-3 right-4 px-3 py-1 rounded-full bg-brand-navy/90 text-white font-mono text-[11px] font-bold border border-white/20">
-                    {project.clientDomain}
-                  </div>
-                </div>
-
-                <div className="pt-8 pb-6 px-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="text-[11px] font-bold text-brand-royal uppercase tracking-wider mb-1">
-                      {project.category}
-                    </div>
-                    <h3 className="text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-royal transition-colors font-heading leading-snug">
-                      {project.title}
-                    </h3>
-
-                    <div className="flex flex-wrap gap-1.5 mb-3">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] font-medium px-2.5 py-0.5 rounded-md bg-brand-light text-slate-700 border border-brand-silver/50"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-6">
-                      {project.shortDesc}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-brand-silver/30 flex items-center justify-between text-xs font-bold text-brand-navy group-hover:text-brand-royal transition-colors">
-                    <span>Explore Case Blueprint</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-14 text-center">
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-brand-royal text-white hover:bg-brand-navy shadow-md transition-all"
-            >
-              <span>Browse Full Project Gallery</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== SECTION 04: STATS DATA WALL ===================== */}
+      {/* ===================== SECTION 03: STATS DATA WALL ===================== */}
       <section className="relative py-20 bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border-y border-brand-steel/30 text-white overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="font-mono text-xs font-bold text-brand-silver uppercase tracking-widest block mb-2">
-              [04 // PERFORMANCE METRICS]
+              [03 // PERFORMANCE METRICS]
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading">
               Engineering Velocity In Numbers
@@ -709,11 +580,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== SECTION 05: CLIENT ENDORSEMENTS ===================== */}
+      {/* ===================== SECTION 04: CLIENT ENDORSEMENTS ===================== */}
       <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-brand-light relative">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            number="05 // ACCREDITATION"
+            number="04 // ACCREDITATION"
             badge="Client Endorsements"
             title="Trusted By Leaders"
             titleHighlight="Across Sectors"
@@ -766,13 +637,13 @@ export default function Home() {
       {/* ===================== MARQUEE BANNER (DARK CONTRAST & REVERSE DIRECTION) ===================== */}
       <MarqueeBanner isDark={true} direction="right" speed="slow" />
 
-      {/* ===================== SECTION 06: CALL TO ACTION ===================== */}
+      {/* ===================== SECTION 05: CALL TO ACTION ===================== */}
       <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
         <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-2xl text-white">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-brand-silver uppercase tracking-widest mb-4">
-            <span>[06 // INITIATE DIALOGUE]</span>
+            <span>[05 // INITIATE DIALOGUE]</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 font-heading tracking-tight leading-tight">
@@ -802,75 +673,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Project Case Study Modal */}
-      {selectedProject && (
-        <Modal
-          isOpen={!!selectedProject}
-          onClose={() => setSelectedProject(null)}
-          title={selectedProject.title}
-          subtitle={`${selectedProject.category} | ${selectedProject.clientDomain}`}
-          maxWidth="max-w-3xl"
-        >
-          <div className="space-y-6 text-slate-700 text-sm">
-            <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              className="w-full h-64 object-cover rounded-xl border border-brand-silver/50"
-            />
-
-            <div>
-              <h4 className="text-brand-navy font-bold text-base mb-1">Project Overview</h4>
-              <p className="leading-relaxed text-slate-600">{selectedProject.fullDesc}</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-brand-light border border-brand-silver/50">
-                <h5 className="text-brand-royal font-bold text-xs uppercase tracking-wider mb-2">
-                  Technical Challenge
-                </h5>
-                <p className="text-xs leading-relaxed text-slate-600">{selectedProject.challenge}</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-brand-light border border-brand-silver/50">
-                <h5 className="text-brand-royal font-bold text-xs uppercase tracking-wider mb-2">
-                  Navabharath Solution
-                </h5>
-                <p className="text-xs leading-relaxed text-slate-600">{selectedProject.solution}</p>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-brand-navy font-bold text-sm mb-2">Measurable Outcomes</h4>
-              <ul className="space-y-2">
-                {selectedProject.results.map((res, i) => (
-                  <li key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0" />
-                    <span>{res}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between">
-              <div className="flex flex-wrap gap-1.5">
-                {selectedProject.tags.map((t) => (
-                  <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-royal/10 text-brand-royal border border-brand-royal/20">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <Link
-                to={`/contact?service=${encodeURIComponent(selectedProject.title)}`}
-                onClick={() => setSelectedProject(null)}
-                className="px-4 py-2 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy transition-colors cursor-pointer shadow-sm"
-              >
-                Inquire For Similar Build
-              </Link>
-            </div>
-          </div>
-        </Modal>
-      )}
 
       {/* Service Details Modal */}
       {selectedService && (
