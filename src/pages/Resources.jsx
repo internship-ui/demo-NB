@@ -14,7 +14,8 @@ import {
   Share2, 
   Filter,
   ExternalLink,
-  Play
+  Play,
+  ArrowUpRight
 } from 'lucide-react';
 import SectionHeading from '../components/common/SectionHeading';
 import Modal from '../components/common/Modal';
@@ -23,6 +24,17 @@ import ResourcesBackgroundAnimation from '../components/resources/ResourcesBackg
 import { resourcesData, resourceCategories } from '../data/resourcesData';
 import { useNotification } from '../context/NotificationContext';
 import { getAssetUrl } from '../utils/assetPath';
+
+// Hand-drawn character avatars (Alpha Groups India inspired Open Peeps)
+const peepAvatars = [
+  'team-33.svg', // Chaitanya style
+  'team-11.svg', // Priyanka style
+  'team-94.svg', // Manish style
+  'team-46.svg', // Tejas style
+  'team-22.svg', // Monisha style
+  'team-43.svg',
+  'team-59.svg'
+];
 
 // =========================================================================
 // KINETIC LETTER ANIMATION COMPONENT FOR HERO TITLE
@@ -135,6 +147,7 @@ export default function Resources() {
   const [selectedCategory, setSelectedCategory] = useState('All Resources');
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [downloadingGuide, setDownloadingGuide] = useState(false);
+  const [tappedCardId, setTappedCardId] = useState(null);
 
   // Filter resources by search input and category
   const filteredResources = useMemo(() => {
@@ -311,120 +324,121 @@ export default function Resources() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {gridResources.map((item) => {
-                const tickerWords = (item.tags && item.tags.length >= 3)
-                  ? [item.tags[0], item.tags[1], item.tags[2]]
-                  : [item.badge || 'INSIGHTS', item.category || 'INNOVATION', item.type || 'NAVABHARATH'];
+              {gridResources.map((item, idx) => {
+                const peepFile = peepAvatars[idx % peepAvatars.length];
+                const isTapped = tappedCardId === item.id;
 
                 return (
                   <article
                     key={item.id}
-                    className="card uiverse-clay-card text-slate-700 overflow-hidden flex flex-col justify-between group cursor-pointer bg-white border border-brand-silver/60 hover:border-brand-royal/50 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300"
-                  >
-                    {/* Card Thumbnail Image */}
-                    <div 
-                      className="relative h-48 sm:h-52 overflow-hidden bg-brand-light cursor-pointer"
-                      onClick={() => {
+                    onClick={() => {
+                      setTappedCardId(item.id);
+                      if (item.toolUrl) {
+                        window.open(item.toolUrl, '_blank', 'noopener,noreferrer');
+                      } else {
+                        setSelectedArticle(item);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setTappedCardId(item.id);
                         if (item.toolUrl) {
                           window.open(item.toolUrl, '_blank', 'noopener,noreferrer');
                         } else {
                           setSelectedArticle(item);
                         }
-                      }}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      {/* Brand Category Badge */}
-                      <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-brand-royal border border-brand-silver/60 text-[11px] font-bold tracking-wider uppercase shadow-sm flex items-center gap-1.5">
+                      }
+                    }}
+                    className={`resource-alpha-card group flex flex-col justify-between select-none ${
+                      isTapped ? 'is-tapped' : ''
+                    }`}
+                  >
+                    {/* Top Figure Section: Animated Peep Character Avatar & Morphing Blob */}
+                    <div className="relative h-52 sm:h-56 bg-gradient-to-b from-[#F7F9FC] via-[#F7F9FC] to-white flex items-center justify-center overflow-hidden border-b border-brand-silver/50 p-4">
+                      {/* Category Pill Top Left */}
+                      <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-white/95 text-brand-navy border border-brand-silver/80 text-[10px] font-mono font-bold tracking-wider uppercase shadow-xs flex items-center gap-1.5 z-20">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-royal" />
                         <span>{item.badge || item.category || 'INSIGHTS'}</span>
                       </div>
+
+                      {/* Reading Time / Format Top Right */}
+                      {item.readTime && (
+                        <div className="absolute top-3.5 right-3.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold text-slate-500 bg-white/90 border border-brand-silver/60 z-20 shadow-xs">
+                          {item.readTime}
+                        </div>
+                      )}
+
+                      {/* Morphing Organic Circular Blob (Alpha Groups reference) */}
+                      <div className="tcard__blob" />
+
+                      {/* Hand-Drawn Character Avatar ("the man is round moving when tapped") */}
+                      <img
+                        src={getAssetUrl(`/resources/peeps/${peepFile}`)}
+                        alt={item.title}
+                        className="peep-bob w-28 sm:w-32 h-auto max-h-[145px] relative z-10 object-contain drop-shadow-sm select-none pointer-events-none"
+                        style={{ animationDelay: `${(idx % 5) * 0.35}s` }}
+                      />
                     </div>
 
-                    {/* Sliding Words Ticker */}
-                    <div className="uiverse-ticker-wrapper bg-brand-light border-y border-brand-silver/50">
-                      <div className="content uiverse-ticker-content">
-                        <div className="word uiverse-ticker-word text-brand-royal font-extrabold">{tickerWords[0]}</div>
-                        <div className="word uiverse-ticker-word text-brand-royal font-extrabold">{tickerWords[1]}</div>
-                        <div className="word uiverse-ticker-word text-brand-royal font-extrabold">{tickerWords[2]}</div>
-                      </div>
-                    </div>
-
-                    {/* Card Content */}
+                    {/* Card Body */}
                     <div className="p-6 flex-1 flex flex-col justify-between bg-white">
                       <div>
-                        {/* Meta Date / Read Time */}
+                        {/* Meta Date */}
                         {item.date && (
-                          <div className="text-xs text-slate-500 font-medium mb-2.5 flex items-center gap-1.5">
-                            <span>{item.date}</span>
-                            {item.readTime && <span className="text-slate-400">•</span>}
-                            {item.readTime && <span>{item.readTime}</span>}
+                          <div className="text-[11px] font-mono text-slate-400 font-semibold mb-2">
+                            {item.date}
                           </div>
                         )}
 
-                        {/* Card Title */}
-                        <h3 
-                          onClick={() => {
-                            if (item.toolUrl) {
-                              window.open(item.toolUrl, '_blank', 'noopener,noreferrer');
-                            } else {
-                              setSelectedArticle(item);
-                            }
-                          }}
-                          className="text-lg sm:text-xl font-bold text-brand-navy font-heading mb-2.5 leading-snug group-hover:text-brand-royal transition-colors line-clamp-2 cursor-pointer"
-                        >
+                        {/* Card Title (Bold Editorial) */}
+                        <h3 className="text-base sm:text-lg font-extrabold text-brand-navy font-heading mb-2 leading-snug uppercase tracking-tight group-hover:text-brand-royal transition-colors line-clamp-2">
                           {item.title}
                         </h3>
 
                         {/* Card Summary */}
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 line-clamp-3 font-normal">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 line-clamp-3 font-normal">
                           {item.summary}
                         </p>
+
+                        {/* Tags */}
+                        {item.tags && item.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mb-5">
+                            {item.tags.slice(0, 3).map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-brand-light border border-brand-silver/60 text-slate-600"
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
                       {/* Card Footer */}
                       <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-brand-light border border-brand-silver/50 text-brand-royal text-[11px] font-bold flex items-center justify-center shadow-sm">
+                          <div className="w-8 h-8 rounded-full bg-brand-royal/10 text-brand-royal font-bold text-[11px] flex items-center justify-center border border-brand-royal/20 shadow-xs">
                             {item.authorInitials || 'TT'}
                           </div>
-                          <span className="text-xs font-semibold text-slate-700 group-hover:text-brand-navy transition-colors">
-                            {item.author || 'Tech Team'}
-                          </span>
+                          <div>
+                            <span className="text-xs font-semibold text-slate-700 block leading-tight group-hover:text-brand-navy transition-colors">
+                              {item.author || 'Tech Team'}
+                            </span>
+                            <span className="text-[10px] font-mono text-slate-400 block">
+                              {item.company || 'Navabharath'}
+                            </span>
+                          </div>
                         </div>
 
-                        {/* Action trigger based on type */}
-                        {item.type === 'Videos' ? (
-                          <button
-                            onClick={() => setSelectedArticle(item)}
-                            className="text-xs font-bold uppercase tracking-wider text-brand-royal hover:text-brand-navy flex items-center gap-1 transition-colors group/btn cursor-pointer"
-                          >
-                            <span>Watch</span>
-                            <Play className="w-3.5 h-3.5 fill-current" />
-                          </button>
-                        ) : item.type === 'Tools' ? (
-                          <a
-                            href={item.toolUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-bold uppercase tracking-wider text-brand-royal hover:text-brand-navy flex items-center gap-1 transition-colors group/btn cursor-pointer"
-                          >
-                            <span>Visit Tool</span>
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </a>
-                        ) : (
-                          <button
-                            onClick={() => setSelectedArticle(item)}
-                            className="text-xs font-bold uppercase tracking-wider text-brand-royal hover:text-brand-navy flex items-center gap-1.5 transition-colors group/btn cursor-pointer"
-                          >
-                            <span>Read More</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1.5 transition-transform" />
-                          </button>
-                        )}
+                        {/* Action link with dynamic arrow */}
+                        <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-brand-royal group-hover:text-brand-navy transition-colors">
+                          <span>{item.type === 'Videos' ? 'Watch Video' : item.type === 'Tools' ? 'Open Tool' : 'Read Article'}</span>
+                          <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </div>
                       </div>
                     </div>
                   </article>

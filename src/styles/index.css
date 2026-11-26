@@ -144,6 +144,105 @@
   animation-play-state: paused;
 }
 
+/* ========================================================= */
+/* Alpha Groups India Inspired Peep Avatar & Blob Animations */
+/* ========================================================= */
+@keyframes peep-bob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1.8deg);
+  }
+}
+
+@keyframes peep-jump {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  30% {
+    transform: translateY(-16px) rotate(-4deg) scale(1.06);
+  }
+  65% {
+    transform: translateY(3px) rotate(2.5deg) scale(0.98);
+  }
+  85% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes blob {
+  0%, 100% {
+    border-radius: 58% 42% 55% 45% / 48% 60% 40% 52%;
+  }
+  33% {
+    border-radius: 45% 55% 40% 60% / 55% 45% 58% 42%;
+  }
+  66% {
+    border-radius: 52% 48% 60% 40% / 42% 55% 45% 58%;
+  }
+}
+
+.peep-bob {
+  animation: peep-bob 3.4s ease-in-out infinite;
+  will-change: transform;
+  transform-origin: center bottom;
+}
+
+.group:hover .peep-bob,
+.group:active .peep-bob,
+.resource-alpha-card:hover .peep-bob,
+.resource-alpha-card:active .peep-bob,
+.resource-alpha-card.is-tapped .peep-bob {
+  animation: peep-jump 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tcard__blob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 110px;
+  height: 110px;
+  transform: translate(-50%, -50%);
+  background: rgba(35, 79, 145, 0.12);
+  border-radius: 58% 42% 55% 45% / 48% 60% 40% 52%;
+  opacity: 0.35;
+  transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.35s ease;
+  animation: blob 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.group:hover .tcard__blob,
+.group:active .tcard__blob,
+.resource-alpha-card:hover .tcard__blob,
+.resource-alpha-card:active .tcard__blob,
+.resource-alpha-card.is-tapped .tcard__blob {
+  opacity: 0.9;
+  background: rgba(35, 79, 145, 0.22);
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.resource-alpha-card {
+  background: #FFFFFF;
+  border: 1.5px solid #C4CCD5;
+  border-radius: 20px;
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.resource-alpha-card:hover,
+.resource-alpha-card:active,
+.resource-alpha-card.is-tapped {
+  border-color: #101F3C;
+  transform: translate(-4px, -4px);
+  box-shadow: 7px 7px 0px #101F3C;
+}
+
 @layer utilities {
   .bg-grid-pattern {
     background-size: 40px 40px;
