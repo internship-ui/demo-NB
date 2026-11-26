@@ -36,6 +36,7 @@ import { servicesData } from '../data/servicesData';
 import { portfolioData } from '../data/portfolioData';
 import { testimonialsData } from '../data/testimonialsData';
 import { companyDetails } from '../data/companyData';
+import { getAssetUrl } from '../utils/assetPath';
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -283,9 +284,29 @@ export default function Home() {
                 <h3 className="text-xl font-extrabold text-brand-navy font-heading mb-2">
                   Enterprise-Grade Reliability
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-5">
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
                   Engineered with zero compromise on cybersecurity, code hygiene, and microservice resilience.
                 </p>
+
+                {/* Technology Architecture Visual Preview */}
+                <div className="relative h-44 sm:h-48 w-full rounded-2xl overflow-hidden mb-4 border border-brand-silver/60 bg-gradient-to-br from-[#101F3C] to-[#1E3E70] shadow-md group/img">
+                  <img
+                    src={getAssetUrl('/assets/system-architecture-tech.jpg')}
+                    alt="Enterprise System Architecture & Technology Platform"
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#101F3C]/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#101F3C]/85 backdrop-blur-md text-[10px] font-mono text-white border border-white/20 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>CLOUD RUNTIME ACTIVE</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-brand-silver/90 bg-[#101F3C]/75 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 hidden sm:inline-block">
+                      ISO/IEC 27001
+                    </span>
+                  </div>
+                </div>
 
                 {/* Tech Chips */}
                 <div className="space-y-2 pt-2 border-t border-brand-silver/30">
