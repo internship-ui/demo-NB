@@ -160,7 +160,7 @@
 }
 
 .animate-hero-gradient {
-  background: linear-gradient(135deg, #234F91 0%, #3B72C2 35%, #52749A 65%, #234F91 100%);
+  background: linear-gradient(135deg, #101F3C 0%, #234F91 35%, #52749A 70%, #234F91 100%);
   background-size: 250% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -308,6 +308,7 @@
     box-shadow: 0 16px 32px -10px rgba(16, 31, 60, 0.1), 0 0 15px rgba(35, 79, 145, 0.1);
   }
 
+  .text-glow-royal,
   .text-glow-yellow {
     text-shadow: 0 0 15px rgba(35, 79, 145, 0.3);
   }

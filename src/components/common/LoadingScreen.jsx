@@ -31,14 +31,14 @@ export default function LoadingScreen({ onFinish }) {
     >
       <div className="relative flex flex-col items-center max-w-sm w-full text-center">
         {/* Glowing aura */}
-        <div className="absolute w-44 h-44 rounded-full bg-brand-yellow/15 blur-2xl pointer-events-none -top-6" />
+        <div className="absolute w-44 h-44 rounded-full bg-brand-royal/20 blur-2xl pointer-events-none -top-6" />
 
         {/* Company Logo - unmodified */}
         <motion.div
           initial={{ scale: 0.85, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative mb-6 p-4 rounded-2xl bg-brand-navy-surface/80 border border-brand-yellow/20 shadow-2xl backdrop-blur-md"
+          className="relative mb-6 p-4 rounded-2xl bg-brand-navy-surface/90 border border-brand-royal/30 shadow-2xl backdrop-blur-md"
         >
           <img
             src={getAssetUrl('/assets/logo.png')}
@@ -61,7 +61,7 @@ export default function LoadingScreen({ onFinish }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-xs text-brand-yellow font-medium tracking-wide mb-8"
+          className="text-xs text-brand-silver font-medium tracking-wide mb-8"
         >
           Smarter Solutions for Better Future
         </motion.p>
@@ -69,7 +69,7 @@ export default function LoadingScreen({ onFinish }) {
         {/* Progress bar */}
         <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mb-2">
           <motion.div
-            className="h-full bg-gradient-to-r from-brand-yellow to-amber-400 rounded-full"
+            className="h-full bg-gradient-to-r from-brand-royal via-brand-steel to-brand-silver rounded-full"
             style={{ width: `${progress}%` }}
             transition={{ ease: 'linear' }}
           />

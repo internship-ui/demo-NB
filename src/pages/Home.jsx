@@ -75,7 +75,7 @@ export default function Home() {
             className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-brand-silver/50 mb-8 sm:mb-12 text-xs font-mono"
           >
             <div className="flex items-center gap-2 text-brand-navy">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="inline-block w-2 h-2 rounded-full bg-brand-royal animate-pulse shadow-[0_0_8px_rgba(35,79,145,0.7)]" />
               <span className="font-bold tracking-wider uppercase">SIGNAL: ACTIVE ARCHITECTURE</span>
               <span className="text-brand-steel">·</span>
               <span className="text-slate-500 hidden sm:inline">MYSURU 12.2958° N, 76.6394° E</span>
@@ -203,7 +203,7 @@ export default function Home() {
                   initial={{ scaleX: 0, opacity: 0 }}
                   animate={{ scaleX: 1, opacity: 1 }}
                   transition={{ delay: 0.55, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-1 sm:h-1.5 w-40 sm:w-64 bg-gradient-to-r from-brand-royal via-[#3B72C2] to-transparent rounded-full origin-left mt-3"
+                  className="h-1 sm:h-1.5 w-40 sm:w-64 bg-gradient-to-r from-brand-royal via-brand-steel to-transparent rounded-full origin-left mt-3"
                 />
               </motion.h1>
 
@@ -287,7 +287,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#101F3C]/70 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
                     <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#101F3C]/85 backdrop-blur-md text-[10px] font-mono text-white border border-white/20 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-royal animate-pulse shadow-[0_0_8px_#234F91]" />
                       <span>CLOUD RUNTIME ACTIVE</span>
                     </div>
                     <span className="text-[10px] font-mono text-brand-silver/90 bg-[#101F3C]/75 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 hidden sm:inline-block">
@@ -308,7 +308,7 @@ export default function Home() {
                   </div>
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500 font-medium">IP Ownership</span>
-                    <span className="font-mono text-emerald-600 font-bold">100% Client Transfer</span>
+                    <span className="font-mono text-brand-royal font-bold">100% Client Transfer</span>
                   </div>
                 </div>
               </motion.div>

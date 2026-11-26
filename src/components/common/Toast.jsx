@@ -8,7 +8,7 @@ export default function Toast() {
   const getIcon = (type) => {
     switch (type) {
       case 'success':
-        return <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />;
+        return <CheckCircle2 className="w-5 h-5 text-brand-royal flex-shrink-0" />;
       case 'error':
         return <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0" />;
       default:

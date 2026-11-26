@@ -483,7 +483,7 @@ export default function Careers() {
                             e.stopPropagation();
                             handleOpenApplyModal(job.title);
                           }}
-                          className="px-5 py-2 rounded-xl bg-brand-royal hover:bg-brand-navy group-hover:bg-white group-hover:text-[#101F3C] group-hover:hover:bg-[#B69A63] group-hover:hover:text-white text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all duration-200 cursor-pointer"
+                          className="px-5 py-2 rounded-xl bg-brand-royal hover:bg-brand-navy group-hover:bg-white group-hover:text-[#101F3C] group-hover:hover:bg-brand-royal group-hover:hover:text-white text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all duration-200 cursor-pointer"
                         >
                           Apply Now
                         </button>

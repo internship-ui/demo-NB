@@ -271,7 +271,7 @@ export default function Contact() {
               <div
                 className="py-10 px-4 text-center space-y-3.5 my-auto"
               >
-                <div className="w-14 h-14 rounded-full bg-emerald-50 border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-600 mb-2 shadow-sm">
+                <div className="w-14 h-14 rounded-full bg-brand-royal/10 border-2 border-brand-royal flex items-center justify-center mx-auto text-brand-royal mb-2 shadow-sm">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
                 <h4 className="text-xl sm:text-2xl font-bold text-brand-navy font-heading">

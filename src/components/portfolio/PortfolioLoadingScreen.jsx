@@ -130,7 +130,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
       />
 
       {/* Atmospheric Radial Nebulas */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-yellow/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-royal/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-[#0E2D5E]/60 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-32 -right-32 w-[550px] h-[550px] bg-[#071B3A]/80 rounded-full blur-[130px] pointer-events-none" />
 
@@ -151,7 +151,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
             scale: [0.8, 1.3, 0.8]
           }}
           transition={{ duration: 4 + (i % 3), repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
-          className={`absolute ${p.size} rounded-full bg-brand-yellow shadow-[0_0_12px_#FFC928] pointer-events-none hidden sm:block`}
+          className={`absolute ${p.size} rounded-full bg-brand-royal shadow-[0_0_12px_#234F91] pointer-events-none hidden sm:block`}
           style={{ top: p.top, left: p.left, right: p.right, bottom: p.bottom }}
         />
       ))}
@@ -164,41 +164,41 @@ export default function PortfolioLoadingScreen({ onFinish }) {
         className="relative max-w-2xl w-full mx-auto"
       >
         {/* Holographic Glowing Border Frame */}
-        <div className="relative rounded-3xl bg-[#071B3A]/90 border border-brand-yellow/30 shadow-[0_0_50px_rgba(7,27,58,0.9),0_0_30px_rgba(255,201,40,0.15)] backdrop-blur-2xl p-6 sm:p-9 overflow-hidden">
+        <div className="relative rounded-3xl bg-[#071B3A]/90 border border-brand-royal/40 shadow-[0_0_50px_rgba(7,27,58,0.9),0_0_30px_rgba(35,79,145,0.25)] backdrop-blur-2xl p-6 sm:p-9 overflow-hidden">
           
           {/* Cyber HUD Corner Crosshairs */}
-          <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-brand-yellow/70 pointer-events-none" />
-          <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-brand-yellow/70 pointer-events-none" />
-          <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-brand-yellow/70 pointer-events-none" />
-          <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-brand-yellow/70 pointer-events-none" />
+          <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-brand-royal/70 pointer-events-none" />
+          <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-brand-royal/70 pointer-events-none" />
+          <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-brand-royal/70 pointer-events-none" />
+          <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-brand-royal/70 pointer-events-none" />
 
           {/* Laser Scan Beam sweeping vertically */}
           <motion.div
             animate={{ top: ['-20%', '120%'] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: 'linear' }}
-            className="absolute left-0 right-0 h-24 bg-gradient-to-b from-transparent via-brand-yellow/[0.04] to-transparent pointer-events-none"
+            className="absolute left-0 right-0 h-24 bg-gradient-to-b from-transparent via-brand-royal/[0.08] to-transparent pointer-events-none"
           />
 
           {/* ---------- TOP HUD STATUS BAR ---------- */}
           <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10 text-xs">
             <div className="flex items-center gap-2.5">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-yellow" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-royal opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-royal" />
               </span>
               <span className="font-mono text-[11px] sm:text-xs font-semibold text-slate-300 tracking-wider">
-                NBT_CORE // <span className="text-brand-yellow">PORTFOLIO MATRIX</span>
+                NBT_CORE // <span className="text-brand-steel">PORTFOLIO MATRIX</span>
               </span>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="hidden sm:inline-block font-mono text-[10px] text-brand-yellow/80 bg-brand-yellow/10 px-2 py-0.5 rounded border border-brand-yellow/30">
+              <span className="hidden sm:inline-block font-mono text-[10px] text-brand-silver bg-brand-royal/20 px-2 py-0.5 rounded border border-brand-royal/40">
                 {activeStage.code}
               </span>
               <button
                 type="button"
                 onClick={onFinish}
-                className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-brand-yellow text-slate-300 hover:text-brand-navy border border-white/10 hover:border-brand-yellow transition-all duration-200 text-[11px] font-mono font-medium cursor-pointer"
+                className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-brand-royal text-slate-300 hover:text-white border border-white/10 hover:border-brand-royal transition-all duration-200 text-[11px] font-mono font-medium cursor-pointer"
               >
                 <span>SKIP INTRO</span>
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -224,7 +224,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                   cy="100"
                   r="92"
                   fill="none"
-                  stroke="rgba(255, 201, 40, 0.25)"
+                  stroke="rgba(35, 79, 145, 0.35)"
                   strokeWidth="1.5"
                   strokeDasharray="6 8"
                 />
@@ -233,13 +233,13 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                   cy="100"
                   r="92"
                   fill="none"
-                  stroke="#FFC928"
+                  stroke="#234F91"
                   strokeWidth="2.5"
                   strokeDasharray="28 160"
                   strokeLinecap="round"
                 />
                 {/* Orbital Satellite Node */}
-                <circle cx="100" cy="8" r="4" fill="#FFC928" filter="drop-shadow(0 0 6px #FFC928)" />
+                <circle cx="100" cy="8" r="4" fill="#234F91" filter="drop-shadow(0 0 6px #234F91)" />
                 <circle cx="100" cy="192" r="3" fill="#FFFFFF" />
               </motion.svg>
 
@@ -255,7 +255,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                   cy="80"
                   r="72"
                   fill="none"
-                  stroke="rgba(255, 255, 255, 0.12)"
+                  stroke="rgba(196, 204, 213, 0.2)"
                   strokeWidth="1"
                 />
                 <circle
@@ -263,30 +263,30 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                   cy="80"
                   r="72"
                   fill="none"
-                  stroke="#FFC928"
+                  stroke="#52749A"
                   strokeWidth="2"
                   strokeDasharray="18 90"
                   strokeLinecap="round"
                 />
                 {/* Satellite Node */}
-                <circle cx="80" cy="8" r="3" fill="#FFC928" />
+                <circle cx="80" cy="8" r="3" fill="#52749A" />
               </motion.svg>
 
-              {/* Radiant Golden Glow Behind Logo Pod */}
-              <div className="absolute w-28 h-28 rounded-full bg-brand-yellow/20 blur-xl pointer-events-none" />
+              {/* Radiant Glow Behind Logo Pod */}
+              <div className="absolute w-28 h-28 rounded-full bg-brand-royal/25 blur-xl pointer-events-none" />
 
               {/* Central Floating Logo Shield */}
               <motion.div
                 animate={{ y: [-4, 4, -4] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-b from-[#0B254E] to-[#041026] border-2 border-brand-yellow/60 flex items-center justify-center p-4 shadow-[0_0_35px_rgba(255,201,40,0.35)] backdrop-blur-md"
+                className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-b from-[#0B254E] to-[#041026] border-2 border-brand-royal/60 flex items-center justify-center p-4 shadow-[0_0_35px_rgba(35,79,145,0.4)] backdrop-blur-md"
               >
                 <img
                   src={getAssetUrl('/assets/logo.png')}
                   alt="Navabharath Technologies"
                   className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                 />
-                <div className="absolute -bottom-2 px-2.5 py-0.5 rounded-full bg-brand-yellow text-brand-navy font-black text-[9px] uppercase tracking-wider font-mono shadow-md">
+                <div className="absolute -bottom-2 px-2.5 py-0.5 rounded-full bg-brand-royal text-white font-black text-[9px] uppercase tracking-wider font-mono shadow-md">
                   V3.2
                 </div>
               </motion.div>
@@ -294,7 +294,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
 
             {/* Title & Brand Slogan */}
             <h2 className="mt-4 text-2xl sm:text-3xl font-black text-white font-heading tracking-tight text-center">
-              NAVABHARATH <span className="text-brand-yellow drop-shadow-[0_0_15px_rgba(255,201,40,0.5)]">PORTFOLIO</span>
+              NAVABHARATH <span className="text-brand-steel drop-shadow-[0_0_15px_rgba(35,79,145,0.5)]">PORTFOLIO</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 font-medium text-center mt-1 max-w-md">
               Client Partnerships &amp; Enterprise Full-Stack Engineering
@@ -306,10 +306,10 @@ export default function PortfolioLoadingScreen({ onFinish }) {
             
             {/* Giant Monospace Percentage */}
             <div className="flex items-baseline gap-1">
-              <span className="font-mono text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-brand-yellow to-amber-400 tracking-tighter">
+              <span className="font-mono text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-brand-royal to-brand-steel tracking-tighter">
                 {Math.round(progress)}
               </span>
-              <span className="font-mono text-2xl sm:text-3xl font-extrabold text-brand-yellow">
+              <span className="font-mono text-2xl sm:text-3xl font-extrabold text-brand-royal">
                 %
               </span>
               <span className="ml-3 font-mono text-[11px] text-slate-400 uppercase tracking-widest hidden sm:inline-block">
@@ -318,14 +318,14 @@ export default function PortfolioLoadingScreen({ onFinish }) {
             </div>
 
             {/* Dynamic Audio/Frequency Spectrum Equalizer Bars */}
-            <div className="flex items-center gap-1.5 h-10 px-3 py-1.5 bg-[#071B3A] rounded-xl border border-brand-yellow/20">
-              <Activity className="w-3.5 h-3.5 text-brand-yellow mr-1 animate-pulse" />
+            <div className="flex items-center gap-1.5 h-10 px-3 py-1.5 bg-[#071B3A] rounded-xl border border-brand-royal/30">
+              <Activity className="w-3.5 h-3.5 text-brand-royal mr-1 animate-pulse" />
               {currentBars.map((height, i) => (
                 <motion.div
                   key={i}
                   animate={{ height: [`${Math.max(6, height * 0.4)}px`, `${height}px`, `${Math.max(8, height * 0.7)}px`] }}
                   transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse', delay: i * 0.08 }}
-                  className="w-1.5 bg-gradient-to-t from-amber-500 via-brand-yellow to-white rounded-full shadow-[0_0_8px_rgba(255,201,40,0.4)]"
+                  className="w-1.5 bg-gradient-to-t from-brand-navy via-brand-royal to-white rounded-full shadow-[0_0_8px_rgba(35,79,145,0.4)]"
                   style={{ height: `${height}px` }}
                 />
               ))}
@@ -337,7 +337,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
             <div className="relative w-full h-3 rounded-full bg-[#030B1A] border border-white/10 p-0.5 overflow-hidden shadow-inner">
               {/* Animated Progress Fill */}
               <motion.div
-                className="relative h-full rounded-full bg-gradient-to-r from-amber-500 via-brand-yellow to-white shadow-[0_0_18px_#FFC928]"
+                className="relative h-full rounded-full bg-gradient-to-r from-brand-navy via-brand-royal to-brand-steel shadow-[0_0_18px_#234F91]"
                 style={{ width: `${progress}%` }}
                 transition={{ ease: 'easeOut', duration: 0.15 }}
               >
@@ -349,7 +349,7 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                 />
 
                 {/* Leading Edge Neon Flare Tip */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_#FFFFFF,0_0_24px_#FFC928]" />
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_#FFFFFF,0_0_24px_#234F91]" />
               </motion.div>
             </div>
           </div>
@@ -357,8 +357,8 @@ export default function PortfolioLoadingScreen({ onFinish }) {
           {/* ---------- REAL-TIME TELEMETRY STATUS MESSAGE ---------- */}
           <div className="mt-3.5 flex items-center justify-between text-xs font-mono">
             <div className="flex items-center gap-2 text-slate-200 min-w-0">
-              <StageIcon className="w-4 h-4 text-brand-yellow flex-shrink-0 animate-pulse" />
-              <span className="font-bold text-[11px] sm:text-xs text-brand-yellow truncate">
+              <StageIcon className="w-4 h-4 text-brand-royal flex-shrink-0 animate-pulse" />
+              <span className="font-bold text-[11px] sm:text-xs text-brand-royal truncate">
                 {activeStage.label}
               </span>
             </div>
@@ -377,14 +377,14 @@ export default function PortfolioLoadingScreen({ onFinish }) {
                   key={idx}
                   className={`flex items-center gap-2 p-2 rounded-xl border text-xs font-mono transition-all duration-300 ${
                     isLoaded
-                      ? 'bg-brand-yellow/10 border-brand-yellow/40 text-brand-yellow shadow-[0_0_12px_rgba(255,201,40,0.15)]'
+                      ? 'bg-brand-royal/15 border-brand-royal/40 text-brand-silver shadow-[0_0_12px_rgba(35,79,145,0.2)]'
                       : 'bg-white/[0.02] border-white/5 text-slate-500'
                   }`}
                 >
-                  <ChipIcon className={`w-3.5 h-3.5 ${isLoaded ? 'text-brand-yellow' : 'text-slate-600'}`} />
+                  <ChipIcon className={`w-3.5 h-3.5 ${isLoaded ? 'text-brand-royal' : 'text-slate-600'}`} />
                   <span className="text-[11px] truncate font-medium">{chip.name}</span>
                   {isLoaded && (
-                    <CheckCircle2 className="w-3 h-3 text-brand-yellow ml-auto flex-shrink-0" />
+                    <CheckCircle2 className="w-3 h-3 text-brand-royal ml-auto flex-shrink-0" />
                   )}
                 </div>
               );
@@ -394,8 +394,8 @@ export default function PortfolioLoadingScreen({ onFinish }) {
           {/* ---------- FOOTER SYSTEM TELEMETRY STRIP ---------- */}
           <div className="mt-5 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
             <span>CORE: <span className="text-slate-200">REACT 18 + FRAMER 3D</span></span>
-            <span>SECURITY: <span className="text-brand-yellow">VERIFIED</span></span>
-            <span>STATUS: <span className="text-emerald-400">OPTIMAL</span></span>
+            <span>SECURITY: <span className="text-brand-steel">VERIFIED</span></span>
+            <span>STATUS: <span className="text-brand-royal font-bold">OPTIMAL</span></span>
           </div>
 
         </div>
