@@ -21,7 +21,7 @@ import {
 import PortfolioDataBackground from '../components/portfolio/PortfolioDataBackground';
 import PortfolioLoadingScreen from '../components/portfolio/PortfolioLoadingScreen';
 import MarqueeBanner from '../components/common/MarqueeBanner';
-import { getAssetUrl } from '../utils/assetPath';
+import { getAssetUrl, handleImageFallback } from '../utils/assetPath';
 
 // =========================================================================
 // REUSABLE PROJECT CARD COMPONENT
@@ -53,6 +53,7 @@ function InteractiveProjectCard({
           <img
             src={project.bannerImage}
             alt={project.title}
+            onError={handleImageFallback}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
@@ -78,6 +79,7 @@ function InteractiveProjectCard({
             <img
               src={project.logoImage}
               alt={`${project.title} logo`}
+              onError={handleImageFallback}
               className="w-full h-full object-contain"
               loading="lazy"
             />
@@ -323,6 +325,7 @@ export default function Portfolio({ showLoader = false }) {
                             <img
                               src={prod.logo}
                               alt={prod.name}
+                              onError={handleImageFallback}
                               className="max-h-full max-w-full object-contain"
                             />
                           </div>
@@ -432,6 +435,7 @@ export default function Portfolio({ showLoader = false }) {
                   <img
                     src={selectedProject.bannerImage}
                     alt={selectedProject.title}
+                    onError={handleImageFallback}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80" />
@@ -448,6 +452,7 @@ export default function Portfolio({ showLoader = false }) {
                       <img
                         src={selectedProject.logoImage}
                         alt={selectedProject.title}
+                        onError={handleImageFallback}
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -594,6 +599,7 @@ export default function Portfolio({ showLoader = false }) {
               <img
                 src={lightboxImage.src}
                 alt={lightboxImage.title}
+                onError={handleImageFallback}
                 className="w-full h-full max-h-[82vh] object-contain"
               />
               <div className="p-4 bg-brand-navy border-t border-white/10 flex items-center justify-between">

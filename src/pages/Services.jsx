@@ -21,7 +21,7 @@ import ServicesDataFlowBackground from '../components/services/ServicesDataFlowB
 import TechnologiesWeUse from '../components/services/TechnologiesWeUse';
 import MarqueeBanner from '../components/common/MarqueeBanner';
 import { servicesData } from '../data/servicesData';
-import { getAssetUrl } from '../utils/assetPath';
+import { getAssetUrl, handleImageFallback } from '../utils/assetPath';
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -203,6 +203,7 @@ export default function Services() {
                         <img
                           src={client.logo}
                           alt={client.name}
+                          onError={handleImageFallback}
                           className="max-h-full max-w-full object-contain"
                         />
                       </div>
