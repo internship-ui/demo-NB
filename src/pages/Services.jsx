@@ -176,22 +176,30 @@ export default function Services() {
               </p>
             </div>
 
-            {/* 3 Client Cards Grid */}
+            {/* 3 Client Cards Grid with Modern Updated Animation & CSS Styling */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
               {trustedClients.map((client, idx) => (
-                <div
+                <motion.div
                   key={client.id}
-                  className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/50 rounded-3xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: idx * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="trusted-client-card group p-6 sm:p-8 flex flex-col justify-between"
                 >
-                  <div>
+                  {/* Subtle Background Radial Ambient Glow on Hover */}
+                  <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
+
+                  <div className="relative z-10">
                     {/* Top Header: Category Badge & Logo Emblem */}
-                    <div className="flex items-center justify-between gap-4 mb-5">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-brand-royal/10 text-brand-royal border border-brand-royal/20">
-                        {client.badge}
+                    <div className="flex items-center justify-between gap-4 mb-6">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-brand-royal/10 text-brand-royal border border-brand-royal/20 group-hover:bg-brand-royal group-hover:text-white group-hover:border-brand-royal transition-all duration-300 shadow-2xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-royal group-hover:bg-white transition-colors" />
+                        <span>{client.badge}</span>
                       </span>
 
                       {/* Logo Emblem Container */}
-                      <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shadow-sm border border-brand-silver/50 group-hover:scale-105 transition-all duration-300 flex-shrink-0">
+                      <div className="trusted-client-logo-box w-16 h-16 rounded-2xl bg-white p-2.5 flex items-center justify-center shadow-xs border border-brand-silver/60 flex-shrink-0">
                         <img
                           src={client.logo}
                           alt={client.name}
@@ -201,26 +209,29 @@ export default function Services() {
                     </div>
 
                     {/* Title & Domain */}
-                    <h3 className="text-lg sm:text-xl font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors leading-snug">
+                    <h3 className="text-lg sm:text-xl font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors duration-300 leading-snug">
                       {client.name}
                     </h3>
-                    <p className="text-xs font-semibold text-brand-steel mb-3 tracking-wide">
-                      {client.scope}
-                    </p>
+                    <div className="flex items-center gap-2 mb-3.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-royal/40 group-hover:bg-brand-royal transition-colors" />
+                      <p className="text-xs font-semibold text-brand-steel tracking-wide">
+                        {client.scope}
+                      </p>
+                    </div>
 
                     {/* Details / Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+                    <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-700 leading-relaxed mb-6 transition-colors">
                       {client.description}
                     </p>
                   </div>
 
-                  <div>
+                  <div className="relative z-10">
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-brand-silver/40 mb-5">
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-brand-silver/40 mb-6">
                       {client.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-lg bg-brand-light border border-brand-silver/50 text-[11px] font-medium text-slate-700"
+                          className="trusted-client-tag px-2.5 py-1 rounded-lg bg-brand-light border border-brand-silver/60 text-[11px] font-medium text-slate-700 hover:shadow-2xs"
                         >
                           {tag}
                         </span>
@@ -230,13 +241,13 @@ export default function Services() {
                     {/* Action Link to Portfolio */}
                     <Link
                       to="/portfolio"
-                      className="inline-flex items-center gap-2 text-xs font-bold text-brand-royal hover:text-brand-navy transition-colors group/link"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-royal/5 hover:bg-brand-royal text-xs font-bold text-brand-royal hover:text-white border border-brand-royal/20 hover:border-brand-royal transition-all duration-200 group/link shadow-2xs hover:shadow-xs"
                     >
                       <span>View Case Study</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

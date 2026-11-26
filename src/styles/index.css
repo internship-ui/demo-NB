@@ -449,4 +449,84 @@
     padding: 0 20px;
     box-sizing: border-box;
   }
+
+  /* ========================================================= */
+  /* Updated Interactive Client Success Cards                  */
+  /* ========================================================= */
+  .trusted-client-card {
+    position: relative;
+    isolation: isolate;
+    background: #FFFFFF;
+    border-radius: 28px;
+    border: 1px solid rgba(196, 204, 213, 0.65);
+    box-shadow: 0 4px 20px -2px rgba(16, 31, 60, 0.05);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+  }
+
+  .trusted-client-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 29px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, rgba(35, 79, 145, 0.65) 0%, rgba(82, 116, 154, 0.35) 50%, rgba(196, 204, 213, 0.15) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .trusted-client-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #234F91, #52749A, transparent);
+    opacity: 0;
+    transform: scaleX(0.3);
+    transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 3;
+  }
+
+  .trusted-client-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(35, 79, 145, 0.4);
+    box-shadow: 0 20px 35px -8px rgba(35, 79, 145, 0.15), 0 8px 16px -4px rgba(16, 31, 60, 0.06);
+  }
+
+  .trusted-client-card:hover::before {
+    opacity: 1;
+  }
+
+  .trusted-client-card:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .trusted-client-logo-box {
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .trusted-client-card:hover .trusted-client-logo-box {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 18px -4px rgba(35, 79, 145, 0.2);
+    border-color: rgba(35, 79, 145, 0.35);
+  }
+
+  .trusted-client-tag {
+    transition: all 0.2s ease;
+  }
+
+  .trusted-client-tag:hover {
+    transform: translateY(-2px);
+    background: rgba(35, 79, 145, 0.08);
+    color: #234F91;
+    border-color: rgba(35, 79, 145, 0.35);
+  }
 }
