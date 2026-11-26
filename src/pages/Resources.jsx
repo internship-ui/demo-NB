@@ -25,16 +25,6 @@ import { resourcesData, resourceCategories } from '../data/resourcesData';
 import { useNotification } from '../context/NotificationContext';
 import { getAssetUrl } from '../utils/assetPath';
 
-// Hand-drawn character avatars (Alpha Groups India inspired Open Peeps)
-const peepAvatars = [
-  'team-33.svg', // Chaitanya style
-  'team-11.svg', // Priyanka style
-  'team-94.svg', // Manish style
-  'team-46.svg', // Tejas style
-  'team-22.svg', // Monisha style
-  'team-43.svg',
-  'team-59.svg'
-];
 
 // =========================================================================
 // KINETIC LETTER ANIMATION COMPONENT FOR HERO TITLE
@@ -324,8 +314,10 @@ export default function Resources() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {gridResources.map((item, idx) => {
-                const peepFile = peepAvatars[idx % peepAvatars.length];
+              {gridResources.map((item) => {
+                const tickerWords = (item.tags && item.tags.length >= 3)
+                  ? [item.tags[0], item.tags[1], item.tags[2]]
+                  : [item.badge || 'INSIGHTS', item.category || 'INNOVATION', item.type || 'NAVABHARATH'];
                 const isTapped = tappedCardId === item.id;
 
                 return (
@@ -352,89 +344,84 @@ export default function Resources() {
                         }
                       }
                     }}
-                    className={`resource-alpha-card group flex flex-col justify-between select-none ${
+                    className={`resource-alpha-card group flex flex-col justify-between cursor-pointer select-none bg-white ${
                       isTapped ? 'is-tapped' : ''
                     }`}
                   >
-                    {/* Top Figure Section: Animated Peep Character Avatar & Morphing Blob */}
-                    <div className="relative h-52 sm:h-56 bg-gradient-to-b from-[#F7F9FC] via-[#F7F9FC] to-white flex items-center justify-center overflow-hidden border-b border-brand-silver/50 p-4">
-                      {/* Category Pill Top Left */}
-                      <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-white/95 text-brand-navy border border-brand-silver/80 text-[10px] font-mono font-bold tracking-wider uppercase shadow-xs flex items-center gap-1.5 z-20">
+                    {/* Card Thumbnail Image with Round Moving Motion & Organic Blob */}
+                    <div className="relative h-48 sm:h-52 overflow-hidden bg-brand-light cursor-pointer">
+                      {/* Organic Morphing Circular Blob Accent (Alpha Groups reference) */}
+                      <div className="tcard__blob" />
+
+                      {/* Original Picture with Round Motion Animation on Tap / Hover */}
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="resource-card-image"
+                        loading="lazy"
+                      />
+
+                      {/* Brand Category Badge */}
+                      <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-brand-royal border border-brand-silver/60 text-[11px] font-bold tracking-wider uppercase shadow-xs flex items-center gap-1.5 z-20">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-royal" />
                         <span>{item.badge || item.category || 'INSIGHTS'}</span>
                       </div>
 
-                      {/* Reading Time / Format Top Right */}
+                      {/* Read Time Pill */}
                       {item.readTime && (
-                        <div className="absolute top-3.5 right-3.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold text-slate-500 bg-white/90 border border-brand-silver/60 z-20 shadow-xs">
+                        <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-md text-[10px] font-mono font-semibold text-slate-600 bg-white/95 border border-brand-silver/60 z-20 shadow-xs">
                           {item.readTime}
                         </div>
                       )}
-
-                      {/* Morphing Organic Circular Blob (Alpha Groups reference) */}
-                      <div className="tcard__blob" />
-
-                      {/* Hand-Drawn Character Avatar ("the man is round moving when tapped") */}
-                      <img
-                        src={getAssetUrl(`/resources/peeps/${peepFile}`)}
-                        alt={item.title}
-                        className="peep-bob w-28 sm:w-32 h-auto max-h-[145px] relative z-10 object-contain drop-shadow-sm select-none pointer-events-none"
-                        style={{ animationDelay: `${(idx % 5) * 0.35}s` }}
-                      />
                     </div>
 
-                    {/* Card Body */}
+                    {/* Sliding Words Ticker */}
+                    <div className="uiverse-ticker-wrapper bg-brand-light border-y border-brand-silver/50">
+                      <div className="content uiverse-ticker-content">
+                        <div className="word uiverse-ticker-word text-brand-royal font-extrabold">{tickerWords[0]}</div>
+                        <div className="word uiverse-ticker-word text-brand-royal font-extrabold">{tickerWords[1]}</div>
+                        <div className="word uiverse-ticker-word text-brand-royal font-extrabold">{tickerWords[2]}</div>
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
                     <div className="p-6 flex-1 flex flex-col justify-between bg-white">
                       <div>
                         {/* Meta Date */}
                         {item.date && (
-                          <div className="text-[11px] font-mono text-slate-400 font-semibold mb-2">
-                            {item.date}
+                          <div className="text-xs text-slate-500 font-medium mb-2.5 flex items-center gap-1.5 font-mono">
+                            <span>{item.date}</span>
                           </div>
                         )}
 
-                        {/* Card Title (Bold Editorial) */}
-                        <h3 className="text-base sm:text-lg font-extrabold text-brand-navy font-heading mb-2 leading-snug uppercase tracking-tight group-hover:text-brand-royal transition-colors line-clamp-2">
+                        {/* Card Title */}
+                        <h3 className="text-base sm:text-lg font-bold text-brand-navy font-heading mb-2.5 leading-snug group-hover:text-brand-royal transition-colors line-clamp-2 uppercase tracking-tight">
                           {item.title}
                         </h3>
 
                         {/* Card Summary */}
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 line-clamp-3 font-normal">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 line-clamp-3 font-normal">
                           {item.summary}
                         </p>
-
-                        {/* Tags */}
-                        {item.tags && item.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-1.5 mb-5">
-                            {item.tags.slice(0, 3).map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-brand-light border border-brand-silver/60 text-slate-600"
-                              >
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
                       </div>
 
                       {/* Card Footer */}
                       <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-brand-royal/10 text-brand-royal font-bold text-[11px] flex items-center justify-center border border-brand-royal/20 shadow-xs">
+                          <div className="w-8 h-8 rounded-full bg-brand-light border border-brand-silver/50 text-brand-royal text-[11px] font-bold flex items-center justify-center shadow-xs">
                             {item.authorInitials || 'TT'}
                           </div>
                           <div>
-                            <span className="text-xs font-semibold text-slate-700 block leading-tight group-hover:text-brand-navy transition-colors">
+                            <span className="text-xs font-semibold text-slate-700 group-hover:text-brand-navy transition-colors block leading-tight">
                               {item.author || 'Tech Team'}
                             </span>
-                            <span className="text-[10px] font-mono text-slate-400 block">
+                            <span className="text-[10px] text-slate-400 block font-mono">
                               {item.company || 'Navabharath'}
                             </span>
                           </div>
                         </div>
 
-                        {/* Action link with dynamic arrow */}
+                        {/* Action trigger based on type */}
                         <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-brand-royal group-hover:text-brand-navy transition-colors">
                           <span>{item.type === 'Videos' ? 'Watch Video' : item.type === 'Tools' ? 'Open Tool' : 'Read Article'}</span>
                           <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
