@@ -89,7 +89,7 @@ export const companyDetails = {
       name: 'Dinesh J K',
       role: 'CEO & Founder',
       bio: 'Visionary technology entrepreneur dedicated to driving robust IT solutions, modern digital transformation, and fostering a culture of technical excellence.',
-      image: getAssetUrl('/assets/dinesh-jk-ceo.png'),
+      image: getAssetUrl('/assets/dinesh-jk-ceo.jpg'),
       linkedin: 'https://linkedin.com'
     },
     {

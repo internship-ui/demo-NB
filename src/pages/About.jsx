@@ -104,7 +104,7 @@ export default function About() {
                 {/* Photo Frame */}
                 <div className="relative rounded-2xl overflow-hidden bg-brand-light aspect-[4/3] sm:aspect-[16/11]">
                   <img
-                    src={getAssetUrl('/assets/dinesh-jk-ceo.png')}
+                    src={getAssetUrl('/assets/dinesh-jk-ceo.jpg')}
                     alt="Dinesh J K (CEO & Founder)"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
