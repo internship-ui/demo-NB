@@ -411,7 +411,7 @@ export default function Home() {
       <MarqueeBanner />
 
       {/* ===================== SECTION 01: THE VISION & ABOUT ===================== */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
+      <section id="vision" className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
         <div className="max-w-7xl mx-auto">
           {/* Top Row: Asymmetric Split Layout (Vision on Left, Leadership on Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
@@ -445,24 +445,44 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Leadership Commitment */}
+            {/* Right Column: Leadership Photo & Commitment Card */}
             <div className="lg:col-span-6 flex flex-col justify-between">
-              {/* CEO Statement Card */}
-              <div className="p-8 sm:p-10 rounded-3xl bg-brand-light border border-brand-silver/50 shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
-                <div>
-                  <div className="text-xs font-mono font-bold text-brand-royal uppercase tracking-wider mb-3">
-                    LEADERSHIP COMMITMENT
+              <div className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/40 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between h-full">
+                {/* Photo Frame - Covering Side & Top Space */}
+                <div className="relative w-full overflow-hidden bg-brand-light aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10]">
+                  {/* Floating Executive Leadership Badge */}
+                  <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 border border-brand-silver/60 backdrop-blur-md flex items-center gap-2 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-brand-royal" />
+                    <span className="text-[11px] font-bold text-brand-navy tracking-wide uppercase font-heading">
+                      Executive Leadership
+                    </span>
                   </div>
-                  <blockquote className="text-base sm:text-lg text-brand-navy font-semibold leading-relaxed mb-6 font-heading">
+
+                  <img
+                    src={getAssetUrl('/assets/dinesh-jk-ceo.jpg')}
+                    alt="Dinesh J K (CEO & Founder)"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-60" />
+                </div>
+
+                {/* Card Lower Section: Name, Title & Mission */}
+                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-white border-t border-brand-silver/40">
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="text-xl font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors">
+                        Dinesh J K
+                      </h3>
+                      <span className="font-mono text-xs text-brand-steel font-bold">[2020 — PRESENT]</span>
+                    </div>
+                    <p className="text-xs font-bold text-brand-royal uppercase tracking-wider">
+                      CEO &amp; Founder · Navabharath Technologies
+                    </p>
+                  </div>
+
+                  <blockquote className="text-sm sm:text-base text-slate-600 italic border-l-2 border-brand-royal/40 pl-3.5 py-0.5 leading-relaxed font-normal">
                     "{companyDetails.mission}"
                   </blockquote>
-                </div>
-                <div className="flex items-center justify-between pt-4 border-t border-brand-silver/40">
-                  <div>
-                    <div className="text-sm font-bold text-brand-navy">Executive Leadership</div>
-                    <div className="text-xs text-slate-500">Navabharath Technologies · Mysuru</div>
-                  </div>
-                  <span className="font-mono text-xs text-brand-steel font-bold">[2020 — PRESENT]</span>
                 </div>
               </div>
             </div>

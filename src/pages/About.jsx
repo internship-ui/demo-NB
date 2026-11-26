@@ -89,11 +89,11 @@ export default function About() {
             {/* Left Column: CEO Photo Card */}
             <div className="lg:col-span-5">
               <div
-                className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/40 rounded-3xl p-5 shadow-lg transition-all duration-300 overflow-hidden"
+                className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/40 rounded-3xl shadow-lg transition-all duration-300 overflow-hidden"
               >
                 {/* Floating Leadership Badge */}
                 <div
-                  className="absolute top-8 left-8 z-20 px-3.5 py-1.5 rounded-full bg-white/95 border border-brand-silver/60 backdrop-blur-md flex items-center gap-2 shadow-md"
+                  className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 border border-brand-silver/60 backdrop-blur-md flex items-center gap-2 shadow-md"
                 >
                   <span className="w-2 h-2 rounded-full bg-brand-royal" />
                   <span className="text-[11px] font-bold text-brand-navy tracking-wide uppercase font-heading">
@@ -101,18 +101,18 @@ export default function About() {
                   </span>
                 </div>
 
-                {/* Photo Frame */}
-                <div className="relative rounded-2xl overflow-hidden bg-brand-light aspect-[4/3] sm:aspect-[16/11]">
+                {/* Photo Frame - Full Bleed Covering Side and Top Space */}
+                <div className="relative w-full overflow-hidden bg-brand-light aspect-[4/3] sm:aspect-[16/11]">
                   <img
                     src={getAssetUrl('/assets/dinesh-jk-ceo.jpg')}
                     alt="Dinesh J K (CEO & Founder)"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-60" />
                 </div>
 
                 {/* Caption / Title */}
-                <div className="pt-5 pb-2 text-center">
+                <div className="p-6 text-center bg-white border-t border-brand-silver/30">
                   <h3 className="text-xl font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors">
                     Dinesh J K
                   </h3>
