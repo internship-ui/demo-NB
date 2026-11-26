@@ -5,7 +5,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
-  Star,
   Award,
   Users,
   Cpu,
@@ -33,7 +32,6 @@ import HomeDigitalGridBackground from '../components/home/HomeDigitalGridBackgro
 import ServiceCard from '../components/common/ServiceCard';
 import MagneticButton from '../components/common/MagneticButton';
 import { servicesData } from '../data/servicesData';
-import { testimonialsData } from '../data/testimonialsData';
 import { companyDetails } from '../data/companyData';
 import { getAssetUrl } from '../utils/assetPath';
 
@@ -580,70 +578,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== SECTION 04: CLIENT ENDORSEMENTS ===================== */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-brand-light relative">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading
-            number="04 // ACCREDITATION"
-            badge="Client Endorsements"
-            title="Trusted By Leaders"
-            titleHighlight="Across Sectors"
-            description="Discover how our engineering solutions empower executive leaders to meet demanding deadlines and exceed operational metrics."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonialsData.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                className="p-6 rounded-2xl bg-white border border-brand-silver/50 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all group"
-              >
-                <div>
-                  <div className="flex items-center gap-1 mb-4 text-[#B69A63]">
-                    {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#B69A63] text-[#B69A63]" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed italic mb-6">
-                    "{item.quote}"
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-brand-silver/40">
-                  <div className="text-[11px] font-bold text-brand-royal uppercase tracking-wider mb-2">
-                    {item.metric}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={item.avatar}
-                      alt={item.clientName}
-                      className="w-9 h-9 rounded-full object-cover border border-brand-silver/60"
-                    />
-                    <div>
-                      <div className="text-xs font-bold text-brand-navy">{item.clientName}</div>
-                      <div className="text-[10px] text-slate-500">{item.role}, {item.company}</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ===================== MARQUEE BANNER (DARK CONTRAST & REVERSE DIRECTION) ===================== */}
       <MarqueeBanner isDark={true} direction="right" speed="slow" />
 
-      {/* ===================== SECTION 05: CALL TO ACTION ===================== */}
+      {/* ===================== SECTION 04: CALL TO ACTION ===================== */}
       <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
         <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-2xl text-white">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-brand-silver uppercase tracking-widest mb-4">
-            <span>[05 // INITIATE DIALOGUE]</span>
+            <span>[04 // INITIATE DIALOGUE]</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 font-heading tracking-tight leading-tight">
