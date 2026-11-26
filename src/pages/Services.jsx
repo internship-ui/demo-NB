@@ -85,10 +85,10 @@ export default function Services() {
 
   const getPillarIcon = (name) => {
     switch (name) {
-      case 'Cpu': return <Cpu className="w-6 h-6 text-brand-royal" />;
-      case 'Zap': return <Zap className="w-6 h-6 text-brand-royal" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-6 h-6 text-brand-royal" />;
-      default: return <LifeBuoy className="w-6 h-6 text-brand-royal" />;
+      case 'Cpu': return <Cpu className="w-6 h-6 text-brand-royal group-hover:text-white transition-colors duration-300" />;
+      case 'Zap': return <Zap className="w-6 h-6 text-brand-royal group-hover:text-white transition-colors duration-300" />;
+      case 'ShieldCheck': return <ShieldCheck className="w-6 h-6 text-brand-royal group-hover:text-white transition-colors duration-300" />;
+      default: return <LifeBuoy className="w-6 h-6 text-brand-royal group-hover:text-white transition-colors duration-300" />;
     }
   };
 
@@ -268,22 +268,41 @@ export default function Services() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {whyChooseUsPillars.map((pillar, idx) => (
-                <div
+                <motion.div
                   key={pillar.title}
-                  className="p-6 rounded-2xl bg-white border border-brand-silver/60 hover:border-brand-royal/40 shadow-sm transition-colors flex flex-col justify-between"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: idx * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="pillar-feature-card group p-6 sm:p-7 flex flex-col justify-between"
                 >
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-brand-light border border-brand-silver/50 flex items-center justify-center mb-4">
-                      {getPillarIcon(pillar.icon)}
+                  {/* Subtle Background Radial Ambient Glow on Hover */}
+                  <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
+
+                  <div className="relative z-10">
+                    {/* Header Row: Icon Container + Number Badge */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="pillar-icon-box w-13 h-13 rounded-2xl bg-brand-light border border-brand-silver/60 flex items-center justify-center shadow-2xs">
+                        {getPillarIcon(pillar.icon)}
+                      </div>
+                      <span className="font-mono text-xs font-bold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
+                        /0{idx + 1}
+                      </span>
                     </div>
-                    <h3 className="text-lg font-bold text-brand-navy mb-2 font-heading">
+
+                    <h3 className="text-lg font-bold text-brand-navy mb-2.5 font-heading group-hover:text-brand-royal transition-colors duration-300 leading-snug">
                       {pillar.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-700 leading-relaxed transition-colors">
                       {pillar.desc}
                     </p>
                   </div>
-                </div>
+
+                  {/* Bottom Accent Bar */}
+                  <div className="relative z-10 pt-5 mt-auto">
+                    <div className="h-0.5 w-8 rounded-full bg-brand-royal/20 group-hover:w-full group-hover:bg-brand-royal/40 transition-all duration-500" />
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
