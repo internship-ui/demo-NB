@@ -366,23 +366,26 @@ export default function Home() {
           {/* Asymmetric Split Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Column (Sticky Editorial Statement) */}
-            <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
+            <div className="lg:col-span-6 lg:sticky lg:top-28 space-y-6">
               <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-brand-royal tracking-widest uppercase">
+                <span className="w-2 h-2 rounded-full bg-brand-royal" />
                 <span>[01 // THE VISION]</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight leading-[1.12]">
-                We do not just write code. We architect <span className="text-brand-royal">digital engines</span> that define industry benchmarks.
+              <h2 className="text-3xl sm:text-4xl lg:text-[36px] xl:text-[40px] font-extrabold text-brand-navy font-heading tracking-tight leading-[1.25]">
+                We do not just write code.<br className="hidden sm:inline" />
+                We architect <span className="text-brand-royal">digital engines</span><br className="hidden sm:inline" />
+                that define industry benchmarks.
               </h2>
 
-              <p className="text-base text-slate-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                 Partnering with enterprises, growing mid-market leaders, and high-growth ventures to engineer digital software products, automate critical bottlenecks, and build resilient modern infrastructures.
               </p>
 
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-light hover:bg-brand-royal text-brand-navy hover:text-white font-bold text-xs uppercase tracking-wider border border-brand-silver/60 hover:border-brand-royal transition-all group"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-light hover:bg-brand-royal text-brand-navy hover:text-white font-bold text-xs uppercase tracking-wider border border-brand-silver/60 hover:border-brand-royal transition-all group shadow-xs hover:shadow-md"
                 >
                   <span>Explore Company Journey</span>
                   <ArrowRight className="w-4 h-4 text-brand-royal group-hover:text-white transition-colors" />
@@ -391,7 +394,7 @@ export default function Home() {
             </div>
 
             {/* Right Column: Values & CEO Message */}
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-6 space-y-8">
               {/* CEO Statement Card */}
               <div className="p-8 rounded-3xl bg-brand-light border border-brand-silver/50 shadow-sm relative overflow-hidden">
                 <div className="text-xs font-mono font-bold text-brand-royal uppercase tracking-wider mb-3">
