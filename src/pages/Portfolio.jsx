@@ -362,29 +362,33 @@ export default function Portfolio({ showLoader = false }) {
         {/* ===================== BOTTOM CTA BANNER ===================== */}
         <section className="mt-20 px-4 sm:px-6 lg:px-8">
           <div
-            className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 text-center relative overflow-hidden shadow-2xl text-white"
+            className="max-w-7xl mx-auto p-8 sm:p-14 lg:p-16 rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 text-center relative overflow-hidden shadow-2xl text-white"
           >
-            <div className="absolute -top-24 -right-24 w-60 h-60 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
+            {/* Ambient Background Glows */}
+            <div className="absolute -top-24 -right-24 w-80 h-80 bg-brand-royal/25 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
 
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#C4CCD5] border border-white/20 text-xs font-semibold uppercase tracking-wider mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Grow Your Digital Presence</span>
-            </span>
+            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#C4CCD5] border border-white/20 text-xs font-semibold uppercase tracking-wider mb-5 shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
+                <span>Grow Your Digital Presence</span>
+              </span>
 
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-heading mb-3">
-              Ready to Build or Elevate Your Online Footprint?
-            </h3>
-            <p className="text-sm sm:text-base text-[#C4CCD5] mb-8 max-w-xl mx-auto leading-relaxed">
-              From complete website maintenance and social media management to tailored token booking and workflow applications, we empower businesses with reliable technology solutions.
-            </p>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-heading mb-4 tracking-tight">
+                Ready to Build or Elevate Your Online Footprint?
+              </h3>
+              <p className="text-sm sm:text-base lg:text-lg text-[#C4CCD5] mb-8 max-w-2xl mx-auto leading-relaxed">
+                From complete website maintenance and social media management to tailored token booking and workflow applications, we empower businesses with reliable technology solutions.
+              </p>
 
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-white hover:text-brand-navy shadow-lg transition-all duration-200 active:scale-95 group"
-            >
-              <span>Get In Touch With Us</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-white hover:text-brand-navy shadow-lg transition-all duration-200 active:scale-95 group"
+              >
+                <span>Get In Touch With Us</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
         </section>
       </div>
