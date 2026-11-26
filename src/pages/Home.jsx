@@ -8,6 +8,9 @@ import {
   Award,
   Users,
   Cpu,
+  Bot,
+  Megaphone,
+  PhoneCall,
   ExternalLink,
   ChevronLeft,
   ChevronRight,
@@ -53,6 +56,19 @@ export default function Home() {
     if (currentServiceIndex > 0) {
       setSlideDirection(-1);
       setCurrentServiceIndex((prev) => prev - 1);
+    }
+  };
+
+  const getServiceIcon = (iconName, className = "w-6 h-6 text-brand-royal") => {
+    switch (iconName) {
+      case 'Bot': return <Bot className={className} />;
+      case 'Cloud': return <Cloud className={className} />;
+      case 'Smartphone': return <Smartphone className={className} />;
+      case 'Globe': return <Globe className={className} />;
+      case 'Palette': return <Palette className={className} />;
+      case 'Megaphone': return <Megaphone className={className} />;
+      case 'PhoneCall': return <PhoneCall className={className} />;
+      default: return <Cpu className={className} />;
     }
   };
 
@@ -508,8 +524,8 @@ export default function Home() {
           />
 
           {/* Modern Vertical Card Carousel with Left and Right Navigation Arrows */}
-          <div className="relative mt-8 sm:mt-10">
-            <div className="flex items-center gap-3 sm:gap-6">
+          <div className="relative mt-8 sm:mt-10 max-w-3xl mx-auto">
+            <div className="flex items-center justify-between gap-3 sm:gap-6">
               {/* Left Arrow Button */}
               <button
                 type="button"
@@ -525,7 +541,7 @@ export default function Home() {
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
-              {/* Single Service Card Container */}
+              {/* Single Vertical Service Card Container */}
               <div className="flex-1 overflow-hidden min-w-0 py-2">
                 <AnimatePresence mode="wait" custom={slideDirection}>
                   {(() => {
@@ -538,64 +554,88 @@ export default function Home() {
                         initial="enter"
                         animate="center"
                         exit="exit"
-                        className="p-6 sm:p-8 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-2xs hover:shadow-lg group hover:-translate-y-0.5"
+                        className="w-full max-w-xl mx-auto p-6 sm:p-8 rounded-3xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-sm hover:shadow-xl group hover:-translate-y-1 flex flex-col justify-between"
                       >
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                          {/* Left: Number & Main Info */}
-                          <div className="lg:col-span-5 flex items-start gap-4">
-                            <span className="font-mono text-lg sm:text-xl font-extrabold text-brand-steel/40 group-hover:text-brand-royal transition-colors pt-1">
+                        <div>
+                          {/* Top Row: Icon + Service Number Badge */}
+                          <div className="flex items-center justify-between pb-4 mb-4 border-b border-brand-silver/40">
+                            <div className="flex items-center gap-3">
+                              <div className="w-12 h-12 rounded-xl bg-brand-royal/10 text-brand-royal flex items-center justify-center group-hover:scale-105 transition-transform">
+                                {getServiceIcon(service.icon)}
+                              </div>
+                              <div>
+                                <span className="font-mono text-xs font-bold text-brand-royal uppercase tracking-wider block">
+                                  PRACTICE /0{currentServiceIndex + 1}
+                                </span>
+                                <span className="text-[11px] text-slate-400">
+                                  Navabharath Technologies
+                                </span>
+                              </div>
+                            </div>
+
+                            <span className="font-mono text-base sm:text-lg font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
                               S/0{currentServiceIndex + 1}
                             </span>
-                            <div>
-                              <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-royal group-hover:after:w-full after:transition-all after:duration-300">
-                                {service.title}
-                              </h3>
-                              <p className="text-xs text-slate-500 leading-relaxed">
-                                {service.shortDesc}
+                          </div>
+
+                          {/* Middle: Service Title, Tagline & Description */}
+                          <div className="mb-5">
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5">
+                              {service.title}
+                            </h3>
+                            {service.tagline && (
+                              <p className="text-xs font-medium text-brand-royal mb-2 italic">
+                                {service.tagline}
                               </p>
+                            )}
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                              {service.shortDesc}
+                            </p>
+                          </div>
+
+                          {/* Key Capabilities: Displayed Vertically One Below Another */}
+                          <div className="space-y-2 mb-6">
+                            <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+                              CORE CAPABILITIES
+                            </div>
+                            {service.features.slice(0, 4).map((feat, i) => (
+                              <div
+                                key={i}
+                                className="flex items-start gap-2.5 p-2 rounded-xl bg-brand-light text-slate-700 border border-brand-silver/40 text-xs font-medium"
+                              >
+                                <CheckCircle2 className="w-3.5 h-3.5 text-brand-royal shrink-0 mt-0.5" />
+                                <span>{feat}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Bottom Row: Metric & Action Buttons */}
+                        <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between gap-4">
+                          <div>
+                            <div className="text-base sm:text-lg font-mono font-extrabold text-brand-navy">
+                              {service.stats.value}
+                            </div>
+                            <div className="text-[10px] text-slate-400 uppercase tracking-wider">
+                              {service.stats.label}
                             </div>
                           </div>
 
-                          {/* Middle: Key Features / Tags */}
-                          <div className="lg:col-span-4">
-                            <div className="flex flex-wrap gap-1.5">
-                              {service.features.slice(0, 3).map((feat, i) => (
-                                <span
-                                  key={i}
-                                  className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-brand-light text-slate-700 border border-brand-silver/50 group-hover:border-brand-royal/20 transition-colors"
-                                >
-                                  {feat}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Right: Metric & Action Link */}
-                          <div className="lg:col-span-3 flex items-center justify-between lg:justify-end gap-4">
-                            <div className="text-right hidden sm:block">
-                              <div className="text-xs font-mono font-bold text-brand-navy">
-                                {service.stats.value}
-                              </div>
-                              <div className="text-[10px] text-slate-400 uppercase tracking-wider">
-                                {service.stats.label}
-                              </div>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <button
-                                onClick={() => setSelectedService(service)}
-                                className="px-3.5 py-2 rounded-xl text-xs font-bold text-brand-royal hover:bg-brand-royal/10 transition-colors"
-                              >
-                                Details
-                              </button>
-                              <Link
-                                to={`/services/${service.id}`}
-                                className="w-10 h-10 rounded-xl bg-brand-royal/10 group-hover:bg-brand-royal text-brand-royal group-hover:text-white flex items-center justify-center transition-all shadow-2xs group-hover:scale-105"
-                                aria-label={`Open ${service.title} details`}
-                              >
-                                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                              </Link>
-                            </div>
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setSelectedService(service)}
+                              className="px-3.5 py-2 rounded-xl text-xs font-bold text-brand-royal bg-brand-royal/10 hover:bg-brand-royal hover:text-white transition-all shadow-2xs"
+                            >
+                              Details
+                            </button>
+                            <Link
+                              to={`/services/${service.id}`}
+                              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-navy hover:bg-brand-royal text-white text-xs font-bold transition-all shadow-2xs group/btn"
+                            >
+                              <span>Explore</span>
+                              <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                            </Link>
                           </div>
                         </div>
                       </motion.div>
