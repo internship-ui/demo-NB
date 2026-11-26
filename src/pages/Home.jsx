@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -9,6 +9,7 @@ import {
   Users,
   Cpu,
   ExternalLink,
+  ChevronLeft,
   ChevronRight,
   ShieldCheck,
   Sparkles,
@@ -37,7 +38,51 @@ import { getAssetUrl } from '../utils/assetPath';
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState(null);
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState(0);
   const navigate = useNavigate();
+
+  const handleNextService = () => {
+    if (currentServiceIndex < servicesData.length - 1) {
+      setSlideDirection(1);
+      setCurrentServiceIndex((prev) => prev + 1);
+    }
+  };
+
+  const handlePrevService = () => {
+    if (currentServiceIndex > 0) {
+      setSlideDirection(-1);
+      setCurrentServiceIndex((prev) => prev - 1);
+    }
+  };
+
+  const serviceSlideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 80 : -80,
+      opacity: 0,
+      scale: 0.98
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.28 },
+        scale: { duration: 0.28 }
+      }
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? -80 : 80,
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.22 },
+        scale: { duration: 0.22 }
+      }
+    })
+  };
 
   // Stagger animation container
   const containerVariants = {
@@ -462,77 +507,143 @@ export default function Home() {
             description="From single-page web platforms to distributed cloud backends, we deliver end-to-end technological excellence across the entire software development lifecycle."
           />
 
-          {/* Creative Numbered Service Rows Inspired by Alpha Groups */}
-          <div className="space-y-4">
-            {servicesData.slice(0, 6).map((service, idx) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.06 }}
-                className="p-6 sm:p-8 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-2xs hover:shadow-lg group"
+          {/* Modern Vertical Card Carousel with Left and Right Navigation Arrows */}
+          <div className="relative mt-8 sm:mt-10">
+            <div className="flex items-center gap-3 sm:gap-6">
+              {/* Left Arrow Button */}
+              <button
+                type="button"
+                onClick={handlePrevService}
+                disabled={currentServiceIndex === 0}
+                aria-label="Previous service card"
+                className={`shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
+                  currentServiceIndex === 0
+                    ? 'opacity-30 cursor-not-allowed border-brand-silver/40 text-slate-400 bg-white/50'
+                    : 'bg-white hover:bg-brand-royal text-brand-navy hover:text-white border-brand-silver/60 hover:border-brand-royal shadow-xs hover:shadow-md hover:scale-105 active:scale-95'
+                }`}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                  {/* Left: Number & Main Info */}
-                  <div className="lg:col-span-5 flex items-start gap-4">
-                    <span className="font-mono text-lg sm:text-xl font-extrabold text-brand-steel/40 group-hover:text-brand-royal transition-colors pt-1">
-                      S/0{idx + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-royal group-hover:after:w-full after:transition-all after:duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 leading-relaxed">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-                  </div>
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
 
-                  {/* Middle: Key Features / Tags */}
-                  <div className="lg:col-span-4">
-                    <div className="flex flex-wrap gap-1.5">
-                      {service.features.slice(0, 3).map((feat, i) => (
-                        <span
-                          key={i}
-                          className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-brand-light text-slate-700 border border-brand-silver/50 group-hover:border-brand-royal/20 transition-colors"
-                        >
-                          {feat}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right: Metric & Action Link */}
-                  <div className="lg:col-span-3 flex items-center justify-between lg:justify-end gap-4">
-                    <div className="text-right hidden sm:block">
-                      <div className="text-xs font-mono font-bold text-brand-navy">
-                        {service.stats.value}
-                      </div>
-                      <div className="text-[10px] text-slate-400 uppercase tracking-wider">
-                        {service.stats.label}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => setSelectedService(service)}
-                        className="px-3.5 py-2 rounded-xl text-xs font-bold text-brand-royal hover:bg-brand-royal/10 transition-colors"
+              {/* Single Service Card Container */}
+              <div className="flex-1 overflow-hidden min-w-0 py-2">
+                <AnimatePresence mode="wait" custom={slideDirection}>
+                  {(() => {
+                    const service = servicesData[currentServiceIndex];
+                    return (
+                      <motion.div
+                        key={service.id}
+                        custom={slideDirection}
+                        variants={serviceSlideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="p-6 sm:p-8 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-2xs hover:shadow-lg group hover:-translate-y-0.5"
                       >
-                        Details
-                      </button>
-                      <Link
-                        to={`/services/${service.id}`}
-                        className="w-10 h-10 rounded-xl bg-brand-royal/10 group-hover:bg-brand-royal text-brand-royal group-hover:text-white flex items-center justify-center transition-all shadow-2xs group-hover:scale-105"
-                        aria-label={`Open ${service.title} details`}
-                      >
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                          {/* Left: Number & Main Info */}
+                          <div className="lg:col-span-5 flex items-start gap-4">
+                            <span className="font-mono text-lg sm:text-xl font-extrabold text-brand-steel/40 group-hover:text-brand-royal transition-colors pt-1">
+                              S/0{currentServiceIndex + 1}
+                            </span>
+                            <div>
+                              <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-royal group-hover:after:w-full after:transition-all after:duration-300">
+                                {service.title}
+                              </h3>
+                              <p className="text-xs text-slate-500 leading-relaxed">
+                                {service.shortDesc}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Middle: Key Features / Tags */}
+                          <div className="lg:col-span-4">
+                            <div className="flex flex-wrap gap-1.5">
+                              {service.features.slice(0, 3).map((feat, i) => (
+                                <span
+                                  key={i}
+                                  className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-brand-light text-slate-700 border border-brand-silver/50 group-hover:border-brand-royal/20 transition-colors"
+                                >
+                                  {feat}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Right: Metric & Action Link */}
+                          <div className="lg:col-span-3 flex items-center justify-between lg:justify-end gap-4">
+                            <div className="text-right hidden sm:block">
+                              <div className="text-xs font-mono font-bold text-brand-navy">
+                                {service.stats.value}
+                              </div>
+                              <div className="text-[10px] text-slate-400 uppercase tracking-wider">
+                                {service.stats.label}
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => setSelectedService(service)}
+                                className="px-3.5 py-2 rounded-xl text-xs font-bold text-brand-royal hover:bg-brand-royal/10 transition-colors"
+                              >
+                                Details
+                              </button>
+                              <Link
+                                to={`/services/${service.id}`}
+                                className="w-10 h-10 rounded-xl bg-brand-royal/10 group-hover:bg-brand-royal text-brand-royal group-hover:text-white flex items-center justify-center transition-all shadow-2xs group-hover:scale-105"
+                                aria-label={`Open ${service.title} details`}
+                              >
+                                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </AnimatePresence>
+              </div>
+
+              {/* Right Arrow Button */}
+              <button
+                type="button"
+                onClick={handleNextService}
+                disabled={currentServiceIndex === servicesData.length - 1}
+                aria-label="Next service card"
+                className={`shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
+                  currentServiceIndex === servicesData.length - 1
+                    ? 'opacity-30 cursor-not-allowed border-brand-silver/40 text-slate-400 bg-white/50'
+                    : 'bg-white hover:bg-brand-royal text-brand-navy hover:text-white border-brand-silver/60 hover:border-brand-royal shadow-xs hover:shadow-md hover:scale-105 active:scale-95'
+                }`}
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </div>
+
+            {/* Pagination Indicator / Dots */}
+            <div className="flex items-center justify-center gap-3 pt-6">
+              <span className="font-mono text-xs font-bold text-brand-steel tracking-wider">
+                0{currentServiceIndex + 1} / 0{servicesData.length}
+              </span>
+              <div className="flex items-center gap-1.5">
+                {servicesData.map((_, dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    type="button"
+                    onClick={() => {
+                      setSlideDirection(dotIdx > currentServiceIndex ? 1 : -1);
+                      setCurrentServiceIndex(dotIdx);
+                    }}
+                    aria-label={`Jump to service ${dotIdx + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      dotIdx === currentServiceIndex
+                        ? 'w-6 bg-brand-royal'
+                        : 'w-1.5 bg-brand-silver/60 hover:bg-brand-steel/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="mt-12 text-center">
