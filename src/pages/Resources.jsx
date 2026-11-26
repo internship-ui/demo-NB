@@ -215,24 +215,21 @@ export default function Resources() {
           </div>
 
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-royal/25 text-brand-royal text-xs font-bold uppercase tracking-wider mb-6 shadow-2xs"
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-brand-silver/70 text-brand-navy text-xs font-bold uppercase tracking-wider mb-6 shadow-2xs"
           >
-            <BookOpen className="w-3.5 h-3.5 text-brand-royal" />
-            <span>Knowledge Base &amp; Industry Insights</span>
+            <span className="w-2 h-2 rounded-full bg-[#E5A831] shadow-[0_0_8px_rgba(229,168,49,0.7)]" />
+            <span className="font-heading">Knowledge Hub</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-6 uppercase">
-            <span className="text-brand-navy">Engineering Insights &amp;</span>
-            <br />
-            <span className="text-brand-royal">
-              Technology Architecture
-            </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-4">
+            <span className="text-brand-navy">Resource</span>
+            <span className="text-brand-royal">s</span>
           </h1>
 
           <p
-            className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mb-10"
+            className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10 font-normal"
           >
-            Explore thought leadership articles, architectural tutorials, cybersecurity guidelines, developer tools, and tech videos published by Navabharath Technologies.
+            Expert-curated guides, technology trends, business solutions and practical strategies to accelerate your digital growth.
           </p>
 
           {/* Search Bar */}
