@@ -7,7 +7,6 @@ import Footer from './components/common/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 import Toast from './components/common/Toast';
 import PageJourneyLink from './components/common/PageJourneyLink';
-import CustomCursor from './components/common/CustomCursor';
 
 // Pages
 import SinglePageApp from './pages/SinglePageApp';
@@ -27,7 +26,6 @@ export default function App() {
   return (
     <NotificationProvider>
       <Router basename={import.meta.env.BASE_URL}>
-        <CustomCursor />
         <div className="flex flex-col min-h-screen bg-brand-light text-slate-700 selection:bg-brand-royal/20 selection:text-brand-navy">
           <ScrollToTop />
           <Navbar />
