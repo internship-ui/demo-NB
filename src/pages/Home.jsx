@@ -363,10 +363,10 @@ export default function Home() {
       {/* ===================== SECTION 01: THE VISION & ABOUT ===================== */}
       <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
         <div className="max-w-7xl mx-auto">
-          {/* Asymmetric Split Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Column: Vision Statement & First 2 Pillar Cards */}
-            <div className="lg:col-span-6 space-y-8">
+          {/* Top Row: Asymmetric Split Layout (Vision on Left, Leadership on Right) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+            {/* Left Column: Vision Statement & Action */}
+            <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-brand-royal tracking-widest uppercase">
                   <span className="w-2 h-2 rounded-full bg-brand-royal" />
@@ -382,58 +382,31 @@ export default function Home() {
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                   Partnering with enterprises, growing mid-market leaders, and high-growth ventures to engineer digital software products, automate critical bottlenecks, and build resilient modern infrastructures.
                 </p>
-
-                <div className="pt-2">
-                  <Link
-                    to="/about"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-light hover:bg-brand-royal text-brand-navy hover:text-white font-bold text-xs uppercase tracking-wider border border-brand-silver/60 hover:border-brand-royal transition-all group shadow-xs hover:shadow-md"
-                  >
-                    <span>Explore Company Journey</span>
-                    <ArrowRight className="w-4 h-4 text-brand-royal group-hover:text-white transition-colors" />
-                  </Link>
-                </div>
               </div>
 
-              {/* Core Pillars /01 & /02 covering the left column space */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                {companyDetails.values.slice(0, 2).map((val, idx) => (
-                  <motion.div
-                    key={val.title}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.08 }}
-                    className="p-6 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 shadow-2xs hover:shadow-md transition-all group"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="font-mono text-xs font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
-                        /0{idx + 1}
-                      </span>
-                      <div className="w-8 h-8 rounded-lg bg-brand-royal/10 text-brand-royal flex items-center justify-center">
-                        <CheckCircle2 className="w-4 h-4" />
-                      </div>
-                    </div>
-                    <h3 className="text-base font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors">
-                      {val.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {val.desc}
-                    </p>
-                  </motion.div>
-                ))}
+              <div className="pt-2">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-light hover:bg-brand-royal text-brand-navy hover:text-white font-bold text-xs uppercase tracking-wider border border-brand-silver/60 hover:border-brand-royal transition-all group shadow-xs hover:shadow-md"
+                >
+                  <span>Explore Company Journey</span>
+                  <ArrowRight className="w-4 h-4 text-brand-royal group-hover:text-white transition-colors" />
+                </Link>
               </div>
             </div>
 
-            {/* Right Column: Leadership Commitment & Pillar Cards /03 & /04 */}
-            <div className="lg:col-span-6 space-y-8">
+            {/* Right Column: Leadership Commitment */}
+            <div className="lg:col-span-6 flex flex-col justify-between">
               {/* CEO Statement Card */}
-              <div className="p-8 rounded-3xl bg-brand-light border border-brand-silver/50 shadow-sm relative overflow-hidden">
-                <div className="text-xs font-mono font-bold text-brand-royal uppercase tracking-wider mb-3">
-                  LEADERSHIP COMMITMENT
+              <div className="p-8 sm:p-10 rounded-3xl bg-brand-light border border-brand-silver/50 shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
+                <div>
+                  <div className="text-xs font-mono font-bold text-brand-royal uppercase tracking-wider mb-3">
+                    LEADERSHIP COMMITMENT
+                  </div>
+                  <blockquote className="text-base sm:text-lg text-brand-navy font-semibold leading-relaxed mb-6 font-heading">
+                    "{companyDetails.mission}"
+                  </blockquote>
                 </div>
-                <blockquote className="text-base sm:text-lg text-brand-navy font-semibold leading-relaxed mb-6 font-heading">
-                  "{companyDetails.mission}"
-                </blockquote>
                 <div className="flex items-center justify-between pt-4 border-t border-brand-silver/40">
                   <div>
                     <div className="text-sm font-bold text-brand-navy">Executive Leadership</div>
@@ -442,36 +415,38 @@ export default function Home() {
                   <span className="font-mono text-xs text-brand-steel font-bold">[2020 — PRESENT]</span>
                 </div>
               </div>
-
-              {/* Core Pillars /03 & /04 */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {companyDetails.values.slice(2, 4).map((val, idx) => (
-                  <motion.div
-                    key={val.title}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (idx + 2) * 0.08 }}
-                    className="p-6 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 shadow-2xs hover:shadow-md transition-all group"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="font-mono text-xs font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
-                        /0{idx + 3}
-                      </span>
-                      <div className="w-8 h-8 rounded-lg bg-brand-royal/10 text-brand-royal flex items-center justify-center">
-                        <CheckCircle2 className="w-4 h-4" />
-                      </div>
-                    </div>
-                    <h3 className="text-base font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors">
-                      {val.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {val.desc}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
             </div>
+          </div>
+
+          {/* Bottom Row: All 4 Core Pillars in the EXACT SAME LINE */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-6">
+            {companyDetails.values.map((val, idx) => (
+              <motion.div
+                key={val.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+                className="p-6 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 shadow-2xs hover:shadow-md transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-mono text-xs font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
+                      /0{idx + 1}
+                    </span>
+                    <div className="w-8 h-8 rounded-lg bg-brand-royal/10 text-brand-royal flex items-center justify-center">
+                      <CheckCircle2 className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <h3 className="text-base font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors">
+                    {val.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {val.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
