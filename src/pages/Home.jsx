@@ -448,18 +448,18 @@ export default function Home() {
             {/* Right Column: Leadership Photo & Commitment Card */}
             <div className="lg:col-span-6 flex flex-col justify-between">
               <div className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/40 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between h-full">
-                {/* Photo Frame - Covering Side & Top Space */}
-                <div className="relative w-full overflow-hidden bg-brand-light aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10]">
+                {/* Photo Frame - Covering Side & Top Space (MAXIMIZED) */}
+                <div className="relative w-full overflow-hidden bg-brand-light aspect-[16/10] sm:aspect-[1.67]">
                   {/* Floating Executive Leadership Badge */}
                   <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 border border-brand-silver/60 backdrop-blur-md flex items-center gap-2 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-brand-royal" />
+                    <span className="w-2 h-2 rounded-full bg-brand-royal animate-pulse" />
                     <span className="text-[11px] font-bold text-brand-navy tracking-wide uppercase font-heading">
                       Executive Leadership
                     </span>
                   </div>
 
                   <img
-                    src={getAssetUrl('/assets/dinesh-jk-ceo.jpg')}
+                    src={getAssetUrl('/assets/dinesh-jk-ceo.jpg?v=3')}
                     alt="Dinesh J K (CEO & Founder)"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />

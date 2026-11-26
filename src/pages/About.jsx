@@ -85,26 +85,26 @@ export default function About() {
           </div>
 
           {/* ===================== CEO & COMPANY OVERVIEW ===================== */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-16">
-            {/* Left Column: CEO Photo Card */}
-            <div className="lg:col-span-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-16">
+            {/* Left Column: CEO Photo Card (MAXIMIZED) */}
+            <div className="lg:col-span-6">
               <div
-                className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/40 rounded-3xl shadow-lg transition-all duration-300 overflow-hidden"
+                className="group relative bg-white border border-brand-silver/60 hover:border-brand-royal/40 rounded-3xl shadow-xl transition-all duration-300 overflow-hidden"
               >
                 {/* Floating Leadership Badge */}
                 <div
-                  className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 border border-brand-silver/60 backdrop-blur-md flex items-center gap-2 shadow-md"
+                  className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-white/95 border border-brand-silver/60 backdrop-blur-md flex items-center gap-2 shadow-md"
                 >
-                  <span className="w-2 h-2 rounded-full bg-brand-royal" />
+                  <span className="w-2 h-2 rounded-full bg-brand-royal animate-pulse" />
                   <span className="text-[11px] font-bold text-brand-navy tracking-wide uppercase font-heading">
                     Executive Leadership
                   </span>
                 </div>
 
-                {/* Photo Frame - Full Bleed Covering Side and Top Space */}
-                <div className="relative w-full overflow-hidden bg-brand-light aspect-[4/3] sm:aspect-[16/11]">
+                {/* Photo Frame - Fully Maximized Edge-to-Edge */}
+                <div className="relative w-full overflow-hidden bg-brand-light aspect-[16/10] sm:aspect-[1.67]">
                   <img
-                    src={getAssetUrl('/assets/dinesh-jk-ceo.jpg')}
+                    src={getAssetUrl('/assets/dinesh-jk-ceo.jpg?v=3')}
                     alt="Dinesh J K (CEO & Founder)"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
@@ -112,20 +112,25 @@ export default function About() {
                 </div>
 
                 {/* Caption / Title */}
-                <div className="p-6 text-center bg-white border-t border-brand-silver/30">
-                  <h3 className="text-xl font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors">
-                    Dinesh J K
-                  </h3>
-                  <p className="text-xs font-semibold text-brand-royal uppercase tracking-wider mt-0.5">
-                    CEO &amp; Founder
-                  </p>
+                <div className="p-6 bg-white border-t border-brand-silver/30 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors">
+                      Dinesh J K
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-brand-royal uppercase tracking-wider mt-0.5">
+                      CEO &amp; Founder · Navabharath Technologies
+                    </p>
+                  </div>
+                  <span className="font-mono text-xs text-brand-steel font-bold hidden sm:inline-block">
+                    [2020 — PRESENT]
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Right Column: Information, Vision & Highlights */}
             <div
-              className="lg:col-span-7 space-y-6"
+              className="lg:col-span-6 space-y-6"
             >
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-royal/10 border border-brand-royal/25 text-brand-royal text-xs font-semibold uppercase tracking-wider">
                 <span>Executive Leadership &amp; Company Overview</span>
