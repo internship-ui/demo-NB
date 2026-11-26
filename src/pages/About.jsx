@@ -70,10 +70,7 @@ export default function About() {
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase"
             >
-              Architecting <br className="hidden sm:inline" />
-              <span className="text-brand-royal">
-                Digital Excellence
-              </span>
+              About <span className="text-brand-royal">Us</span>
             </h1>
 
             {/* Subtitle */}
