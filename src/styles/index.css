@@ -145,6 +145,42 @@
 }
 
 /* ========================================================= */
+/* Hero Headline Shimmer and Word Interactive Kinetic Motion */
+/* ========================================================= */
+@keyframes text-shimmer-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-hero-gradient {
+  background: linear-gradient(135deg, #234F91 0%, #3B72C2 35%, #52749A 65%, #234F91 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer-flow 7s ease-in-out infinite;
+}
+
+.hero-word {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease, text-shadow 0.2s ease;
+  cursor: default;
+}
+
+.hero-word:hover {
+  transform: translateY(-4px) scale(1.02);
+  color: #234F91 !important;
+  text-shadow: 0 8px 24px rgba(35, 79, 145, 0.18);
+}
+
+/* ========================================================= */
 /* Alpha Groups India Inspired Card Animation (Colour Coded) */
 /* ========================================================= */
 @keyframes round-float-motion {

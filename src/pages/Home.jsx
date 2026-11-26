@@ -113,14 +113,110 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* High-Impact Editorial Heading - Always 100% Visible */}
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-brand-navy font-heading leading-[1.02] uppercase">
-                Smarter Solutions <br className="hidden sm:inline" />
-                For{' '}
-                <span className="text-brand-royal">
-                  Better Future
-                </span>
-              </h1>
+              {/* High-Impact Animated Editorial Heading */}
+              <motion.h1
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 1 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.12,
+                      delayChildren: 0.1
+                    }
+                  }
+                }}
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-brand-navy font-heading leading-[1.02] uppercase select-none"
+              >
+                {/* Sentence 1: SMARTER SOLUTIONS */}
+                <div className="overflow-hidden flex flex-wrap gap-x-3 sm:gap-x-5 py-0.5">
+                  <motion.span
+                    variants={{
+                      hidden: { y: '105%', opacity: 0, rotate: -2 },
+                      visible: {
+                        y: '0%',
+                        opacity: 1,
+                        rotate: 0,
+                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                      }
+                    }}
+                    className="hero-word"
+                  >
+                    Smarter
+                  </motion.span>
+                  <motion.span
+                    variants={{
+                      hidden: { y: '105%', opacity: 0, rotate: -2 },
+                      visible: {
+                        y: '0%',
+                        opacity: 1,
+                        rotate: 0,
+                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                      }
+                    }}
+                    className="hero-word"
+                  >
+                    Solutions
+                  </motion.span>
+                </div>
+
+                {/* Sentence 2: FOR BETTER FUTURE */}
+                <div className="overflow-hidden flex flex-wrap gap-x-3 sm:gap-x-5 items-center py-0.5">
+                  <motion.span
+                    variants={{
+                      hidden: { y: '105%', opacity: 0, rotate: -2 },
+                      visible: {
+                        y: '0%',
+                        opacity: 1,
+                        rotate: 0,
+                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                      }
+                    }}
+                    className="hero-word"
+                  >
+                    For
+                  </motion.span>
+
+                  <motion.span
+                    variants={{
+                      hidden: { y: '105%', opacity: 0, rotate: -2 },
+                      visible: {
+                        y: '0%',
+                        opacity: 1,
+                        rotate: 0,
+                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                      }
+                    }}
+                    className="hero-word animate-hero-gradient font-black"
+                  >
+                    Better
+                  </motion.span>
+
+                  <motion.span
+                    variants={{
+                      hidden: { y: '105%', opacity: 0, rotate: -2 },
+                      visible: {
+                        y: '0%',
+                        opacity: 1,
+                        rotate: 0,
+                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                      }
+                    }}
+                    className="hero-word animate-hero-gradient font-black"
+                  >
+                    Future
+                  </motion.span>
+                </div>
+
+                {/* Dynamic Royal Blue Accent Line */}
+                <motion.div
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ delay: 0.55, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                  className="h-1 sm:h-1.5 w-40 sm:w-64 bg-gradient-to-r from-brand-royal via-[#3B72C2] to-transparent rounded-full origin-left mt-3"
+                />
+              </motion.h1>
 
               {/* Lede Paragraph - Always 100% Visible */}
               <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed font-normal">
