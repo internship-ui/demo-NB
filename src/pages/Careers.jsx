@@ -13,6 +13,7 @@ import {
   CheckCircle2, 
   MapPin, 
   ArrowRight, 
+  ArrowUpRight,
   Upload, 
   FileText, 
   X, 
@@ -327,18 +328,26 @@ export default function Careers() {
         className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 text-slate-700"
       >
         <div className="max-w-6xl mx-auto">
-          {/* Part A: Open Roles */}
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-6">
-              Open <span className="text-brand-royal">Roles</span>
+          {/* Part A: Open Roles (Alpha Groups India Editorial Reference) */}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="font-mono text-xs text-brand-royal font-bold tracking-widest uppercase mb-3">
+              [05 // TALENT OPPORTUNITIES]
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy font-heading tracking-tight mb-4 uppercase">
+              OPEN <span className="bg-[#101F3C] text-white px-3.5 py-0.5 rounded-md inline-block shadow-sm">ROLES</span>
             </h2>
 
-            {/* Dropdown Menu & Filter Pill */}
-            <div className="relative inline-block text-left mb-6">
+            <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+              Explore active positions across all teams and build the next generation of enterprise software with Navabharath Technologies.
+            </p>
+
+            {/* Dropdown Menu & Filter Pill (Mobile) */}
+            <div className="relative inline-block text-left mt-6 mb-4 sm:hidden">
               <button
                 type="button"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="border border-brand-silver/70 hover:border-brand-royal rounded-xl px-6 py-2.5 bg-white text-brand-navy font-semibold text-sm inline-flex items-center gap-4 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-royal/40 cursor-pointer min-w-[180px] justify-between"
+                className="border border-brand-silver/80 hover:border-brand-royal rounded-xl px-5 py-2.5 bg-white text-brand-navy font-semibold text-xs uppercase tracking-wider inline-flex items-center gap-4 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-royal/40 cursor-pointer min-w-[200px] justify-between"
               >
                 <span>{selectedTeam}</span>
                 <ChevronDown className={`w-4 h-4 text-brand-royal transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -356,7 +365,7 @@ export default function Careers() {
                           setSelectedTeam(team);
                           setIsDropdownOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${
+                        className={`w-full text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
                           selectedTeam === team
                             ? 'bg-brand-royal/10 text-brand-royal font-bold'
                             : 'text-slate-700 hover:text-brand-navy hover:bg-brand-light'
@@ -371,16 +380,16 @@ export default function Careers() {
               </AnimatePresence>
             </div>
 
-            {/* Quick Filter Pill Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
+            {/* Quick Filter Pill Buttons (Desktop & Tablet) */}
+            <div className="hidden sm:flex flex-wrap items-center justify-center gap-2.5 mt-8">
               {teamsList.map((team) => (
                 <button
                   key={team}
                   onClick={() => setSelectedTeam(team)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                     selectedTeam === team
-                      ? 'bg-brand-royal text-white font-bold shadow-md border border-brand-royal scale-105'
-                      : 'bg-brand-light text-slate-700 border border-brand-silver/60 hover:border-brand-royal/40 hover:text-brand-navy hover:bg-white'
+                      ? 'bg-[#101F3C] text-white font-bold shadow-md border border-[#101F3C]'
+                      : 'bg-white text-slate-700 border border-brand-silver/70 hover:border-[#101F3C]/60 hover:text-brand-navy hover:bg-brand-light'
                   }`}
                 >
                   {team}
@@ -389,64 +398,107 @@ export default function Careers() {
             </div>
           </div>
 
-          {/* Job Openings Cards List */}
-          <div className="space-y-5 mb-24">
+          {/* Job Openings Editorial Rows List (Inspired by Alpha Groups India) */}
+          <div className="rounded-2xl border border-brand-silver/60 bg-white overflow-hidden shadow-sm divide-y divide-brand-silver/50 mb-20">
             {filteredJobs.length > 0 ? (
-              filteredJobs.map((job) => (
-                <div
-                  key={job.id}
-                  className="relative p-6 sm:p-8 rounded-2xl bg-white border border-brand-silver/60 hover:border-brand-royal/50 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col lg:flex-row lg:items-center justify-between gap-6 group overflow-hidden"
-                >
-                  <div className="space-y-2.5 flex-1 relative z-10">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-royal/10 text-brand-royal border border-brand-royal/20">
-                        {job.department}
+              filteredJobs.map((job, index) => {
+                const formattedIndex = String(index + 1).padStart(2, '0');
+                return (
+                  <div
+                    key={job.id}
+                    onClick={() => setSelectedJob(job)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setSelectedJob(job);
+                      }
+                    }}
+                    className="group relative p-6 sm:p-8 lg:px-10 bg-white hover:bg-[#101F3C] transition-all duration-300 ease-out cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-6 overflow-hidden"
+                  >
+                    {/* Left & Center Information */}
+                    <div className="flex items-start gap-4 sm:gap-6 flex-1 min-w-0">
+                      {/* Monospace Index e.g. /01 */}
+                      <span className="font-mono text-base sm:text-lg font-bold text-slate-400 group-hover:text-white transition-colors duration-200 flex-shrink-0 pt-0.5">
+                        /{formattedIndex}
                       </span>
-                      <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-brand-light text-slate-600 border border-brand-silver/50">
-                        {job.type}
-                      </span>
-                      <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-brand-light text-slate-600 border border-brand-silver/50">
-                        {job.experience}
-                      </span>
+
+                      <div className="space-y-2 flex-1 min-w-0">
+                        {/* Title in bold uppercase */}
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-brand-navy group-hover:text-white font-heading tracking-tight uppercase transition-colors duration-200">
+                          {job.title}
+                        </h3>
+
+                        {/* Meta Tags: Type, Experience, Location */}
+                        <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                          <span className="text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded border border-brand-silver/70 group-hover:border-white/20 bg-brand-light group-hover:bg-white/10 text-slate-700 group-hover:text-white transition-colors duration-200">
+                            {job.type}
+                          </span>
+                          <span className="text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded border border-brand-silver/70 group-hover:border-white/20 bg-brand-light group-hover:bg-white/10 text-slate-700 group-hover:text-white transition-colors duration-200">
+                            {job.experience}
+                          </span>
+                          <div className="flex items-center gap-1.5 text-xs text-slate-500 group-hover:text-[#C4CCD5] transition-colors duration-200 pl-1 font-medium">
+                            <MapPin className="w-3.5 h-3.5 text-brand-royal group-hover:text-white transition-colors duration-200 flex-shrink-0" />
+                            <span>{job.location}</span>
+                          </div>
+                        </div>
+
+                        {/* Overview snippet */}
+                        <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-300 transition-colors duration-200 leading-relaxed max-w-3xl line-clamp-2 pt-0.5">
+                          {job.overview}
+                        </p>
+                      </div>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold text-brand-navy font-heading group-hover:text-brand-royal transition-colors duration-200">
-                      {job.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-                      {job.overview}
-                    </p>
+                    {/* Right Side: Department Tag + Arrow + Action Buttons */}
+                    <div className="flex flex-wrap lg:flex-nowrap items-center justify-between lg:justify-end gap-3 sm:gap-4 flex-shrink-0 pt-2 lg:pt-0">
+                      {/* Department Tag & Animated Arrow Box (matching Alpha Groups reference) */}
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded border border-brand-silver/80 group-hover:border-white/40 text-brand-navy group-hover:text-white bg-white group-hover:bg-white/10 transition-all duration-200 shadow-sm">
+                          {job.department}
+                        </span>
 
-                    <div className="flex items-center gap-2 text-xs text-slate-500 pt-1 font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-brand-royal" />
-                      <span>{job.location}</span>
+                        {/* Animated Arrow ↗ */}
+                        <div className="w-9 h-9 rounded-lg border border-brand-silver/80 group-hover:border-white/40 flex items-center justify-center text-brand-navy group-hover:text-white bg-white group-hover:bg-white/10 transition-all duration-300 shadow-sm">
+                          <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                        </div>
+                      </div>
+
+                      {/* Explicit Action Buttons */}
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedJob(job);
+                          }}
+                          className="px-4 py-2 rounded-xl bg-brand-light hover:bg-white group-hover:bg-white/10 group-hover:hover:bg-white text-slate-700 hover:text-brand-navy group-hover:text-white group-hover:hover:text-[#101F3C] border border-brand-silver/70 group-hover:border-white/30 text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm"
+                        >
+                          Job Specs
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenApplyModal(job.title);
+                          }}
+                          className="px-5 py-2 rounded-xl bg-brand-royal hover:bg-brand-navy group-hover:bg-white group-hover:text-[#101F3C] group-hover:hover:bg-[#B69A63] group-hover:hover:text-white text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all duration-200 cursor-pointer"
+                        >
+                          Apply Now
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="flex flex-row lg:flex-col sm:flex-row gap-3 pt-2 lg:pt-0 relative z-10">
-                    <button
-                      onClick={() => setSelectedJob(job)}
-                      className="group/btn px-5 py-2.5 rounded-xl bg-brand-light hover:bg-white text-slate-700 hover:text-brand-navy border border-brand-silver/60 hover:border-brand-royal/40 text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shadow-sm"
-                    >
-                      <span>Job Specs</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover/btn:translate-x-1 group-hover/btn:text-brand-royal transition-transform duration-200" />
-                    </button>
-
-                    <button
-                      onClick={() => handleOpenApplyModal(job.title)}
-                      className="px-6 py-2.5 rounded-xl bg-brand-royal hover:bg-brand-navy text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
-                    >
-                      Apply Now
-                    </button>
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
-              <div className="p-12 text-center bg-white rounded-2xl border border-brand-silver/60 shadow-sm">
+              <div className="p-12 text-center bg-white rounded-2xl">
                 <Briefcase className="w-12 h-12 text-brand-royal mx-auto mb-3" />
                 <h4 className="text-lg font-bold text-brand-navy mb-1">No Openings in {selectedTeam} Right Now</h4>
                 <p className="text-sm text-slate-500 mb-4">We are actively expanding. Submit a general application or check other teams.</p>
                 <button
+                  type="button"
                   onClick={() => setSelectedTeam('All Teams')}
                   className="px-5 py-2 rounded-xl bg-brand-royal text-white hover:bg-brand-navy text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-sm"
                 >
