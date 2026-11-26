@@ -250,7 +250,7 @@ export default function Portfolio({ showLoader = false }) {
         {/* ======================================================================= */}
         {/* ============ DEDICATED SECTION UNDER CLIENT PORTFOLIO: OUR PROJECTS === */}
         {/* ======================================================================= */}
-        <section className="mt-28 py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 relative">
+        <section id="our-projects" className="mt-28 py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-brand-silver/40 relative">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-14">
@@ -272,77 +272,86 @@ export default function Portfolio({ showLoader = false }) {
               </p>
             </div>
 
-            {/* Platform Showcase: Uiverse.io Cards */}
-            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 max-w-5xl mx-auto py-8">
-              {[
-                {
-                  id: 'jkd-mart',
-                  name: 'JKD Mart',
-                  logo: getAssetUrl('/portfolio/jkd-mart-logo.svg'),
-                  tag: 'Smart Digital Retail & E-Commerce'
-                },
-                {
-                  id: 'vyapara',
-                  name: 'Vyapara',
-                  logo: getAssetUrl('/portfolio/vyapara-logo.svg'),
-                  tag: 'Smart Business & Billing Platform'
-                },
-                {
-                  id: 'tokens-boy',
-                  name: 'Tokens Boy',
-                  logo: getAssetUrl('/portfolio/tokens-boy-logo.svg'),
-                  tag: 'Smart Token & Queue Management'
-                }
-              ].map((prod) => {
-                const projectObj = ourProjectsData.find((p) => p.id === prod.id);
-                return (
-                  <div
-                    key={prod.id}
-                    className="uiverse-card group"
-                    onClick={() => projectObj && setSelectedProject(projectObj)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        projectObj && setSelectedProject(projectObj);
-                      }
-                    }}
-                  >
-                    <div className="uiverse-card-content">
-                      <div className="flex items-center justify-between w-full">
-                        <div className="w-12 h-12 rounded-xl bg-brand-light p-2 flex items-center justify-center border border-brand-silver/50 group-hover:border-brand-royal/50 transition-colors">
-                          <img
-                            src={prod.logo}
-                            alt={prod.name}
-                            className="max-h-full max-w-full object-contain"
-                          />
+            {/* Platform Showcase: Continuous Left-to-Right Flowing Track */}
+            <div className="relative w-full overflow-hidden py-8 select-none group">
+              {/* Left & Right Edge Fade Gradients */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+              {/* Infinite LTR Scrolling Track */}
+              <div className="flex animate-projects-flow gap-8 sm:gap-10 items-center py-4 group-hover:[animation-play-state:paused]">
+                {[0, 1, 2, 3].flatMap((loopIdx) =>
+                  [
+                    {
+                      id: 'jkd-mart',
+                      name: 'JKD Mart',
+                      logo: getAssetUrl('/portfolio/jkd-mart-logo.svg'),
+                      tag: 'Smart Digital Retail & E-Commerce'
+                    },
+                    {
+                      id: 'vyapara',
+                      name: 'Vyapara',
+                      logo: getAssetUrl('/portfolio/vyapara-logo.svg'),
+                      tag: 'Smart Business & Billing Platform'
+                    },
+                    {
+                      id: 'tokens-boy',
+                      name: 'Tokens Boy',
+                      logo: getAssetUrl('/portfolio/tokens-boy-logo.svg'),
+                      tag: 'Smart Token & Queue Management'
+                    }
+                  ].map((prod) => ({ ...prod, loopKey: `${loopIdx}-${prod.id}` }))
+                ).map((prod) => {
+                  const projectObj = ourProjectsData.find((p) => p.id === prod.id);
+                  return (
+                    <div
+                      key={prod.loopKey}
+                      className="uiverse-card flex-shrink-0 group/card"
+                      onClick={() => projectObj && setSelectedProject(projectObj)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          projectObj && setSelectedProject(projectObj);
+                        }
+                      }}
+                    >
+                      <div className="uiverse-card-content whitespace-normal">
+                        <div className="flex items-center justify-between w-full">
+                          <div className="w-12 h-12 rounded-xl bg-brand-light p-2 flex items-center justify-center border border-brand-silver/50 group-hover/card:border-brand-royal/50 transition-colors">
+                            <img
+                              src={prod.logo}
+                              alt={prod.name}
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </div>
+                          <span className="text-[10px] font-mono font-bold text-brand-royal bg-brand-royal/10 px-2 py-0.5 rounded-full border border-brand-royal/30 uppercase tracking-wider">
+                            {projectObj?.badge || 'PRODUCT'}
+                          </span>
                         </div>
-                        <span className="text-[10px] font-mono font-bold text-brand-royal bg-brand-royal/10 px-2 py-0.5 rounded-full border border-brand-royal/30 uppercase tracking-wider">
-                          {projectObj?.badge || 'PRODUCT'}
-                        </span>
-                      </div>
 
-                      <div className="my-2">
-                        <p className="heading group-hover:text-brand-royal transition-colors">
-                          {prod.name}
-                        </p>
-                        <span className="text-[11px] font-semibold text-slate-500 block mt-0.5 mb-2">
-                          {prod.tag}
-                        </span>
-                        <p className="text-slate-600 text-xs line-clamp-3">
-                          {projectObj?.shortDesc}
+                        <div className="my-2">
+                          <p className="heading group-hover/card:text-brand-royal transition-colors whitespace-normal">
+                            {prod.name}
+                          </p>
+                          <span className="text-[11px] font-semibold text-slate-500 block mt-0.5 mb-2 whitespace-normal">
+                            {prod.tag}
+                          </span>
+                          <p className="text-slate-600 text-xs line-clamp-3 whitespace-normal">
+                            {projectObj?.shortDesc}
+                          </p>
+                        </div>
+
+                        <p className="group-hover/card:translate-x-1 transition-transform text-xs font-bold text-brand-royal flex items-center">
+                          <span>View Case Study</span>
+                          <ArrowUpRight className="w-4 h-4 ml-1 inline-block" />
                         </p>
                       </div>
-
-                      <p className="group-hover:translate-x-1 transition-transform text-xs font-bold text-brand-royal flex items-center">
-                        <span>View Case Study</span>
-                        <ArrowUpRight className="w-4 h-4 ml-1 inline-block" />
-                      </p>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>

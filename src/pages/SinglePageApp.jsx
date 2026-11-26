@@ -16,15 +16,20 @@ export default function SinglePageApp({ initialSection = null }) {
   useEffect(() => {
     const targetId = initialSection || (location.hash ? location.hash.replace('#', '') : null);
     if (targetId && targetId !== 'home') {
-      const timer = setTimeout(() => {
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 150);
-      return () => clearTimeout(timer);
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'instant' });
+      } else {
+        const timer = setTimeout(() => {
+          const delayedEl = document.getElementById(targetId);
+          if (delayedEl) {
+            delayedEl.scrollIntoView({ behavior: 'instant' });
+          }
+        }, 100);
+        return () => clearTimeout(timer);
+      }
     } else if (targetId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   }, [location.hash, initialSection, location.pathname]);
 
