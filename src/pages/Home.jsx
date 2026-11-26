@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -41,25 +41,42 @@ import { getAssetUrl } from '../utils/assetPath';
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState(null);
-  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(3);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const updateVisibleCards = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 640) {
+          setVisibleCards(1);
+        } else if (window.innerWidth < 1024) {
+          setVisibleCards(2);
+        } else {
+          setVisibleCards(3);
+        }
+      }
+    };
+    updateVisibleCards();
+    window.addEventListener('resize', updateVisibleCards);
+    return () => window.removeEventListener('resize', updateVisibleCards);
+  }, []);
+
+  const maxIndex = Math.max(0, servicesData.length - visibleCards);
+
   const handleNextService = () => {
-    if (currentServiceIndex < servicesData.length - 1) {
-      setSlideDirection(1);
-      setCurrentServiceIndex((prev) => prev + 1);
+    if (startIndex < maxIndex) {
+      setStartIndex((prev) => prev + 1);
     }
   };
 
   const handlePrevService = () => {
-    if (currentServiceIndex > 0) {
-      setSlideDirection(-1);
-      setCurrentServiceIndex((prev) => prev - 1);
+    if (startIndex > 0) {
+      setStartIndex((prev) => prev - 1);
     }
   };
 
-  const getServiceIcon = (iconName, className = "w-6 h-6 text-brand-royal") => {
+  const getServiceIcon = (iconName, className = "w-5 h-5 text-brand-royal") => {
     switch (iconName) {
       case 'Bot': return <Bot className={className} />;
       case 'Cloud': return <Cloud className={className} />;
@@ -70,34 +87,6 @@ export default function Home() {
       case 'PhoneCall': return <PhoneCall className={className} />;
       default: return <Cpu className={className} />;
     }
-  };
-
-  const serviceSlideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 80 : -80,
-      opacity: 0,
-      scale: 0.98
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.28 },
-        scale: { duration: 0.28 }
-      }
-    },
-    exit: (direction) => ({
-      x: direction > 0 ? -80 : 80,
-      opacity: 0,
-      scale: 0.98,
-      transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.22 },
-        scale: { duration: 0.22 }
-      }
-    })
   };
 
   // Stagger animation container
@@ -523,17 +512,17 @@ export default function Home() {
             description="From single-page web platforms to distributed cloud backends, we deliver end-to-end technological excellence across the entire software development lifecycle."
           />
 
-          {/* Modern Vertical Card Carousel with Left and Right Navigation Arrows */}
-          <div className="relative mt-8 sm:mt-10 max-w-3xl mx-auto">
-            <div className="flex items-center justify-between gap-3 sm:gap-6">
+          {/* 3-Card Modern Sliding Carousel with Left and Right Navigation Arrows */}
+          <div className="relative mt-8 sm:mt-12">
+            <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
               {/* Left Arrow Button */}
               <button
                 type="button"
                 onClick={handlePrevService}
-                disabled={currentServiceIndex === 0}
-                aria-label="Previous service card"
-                className={`shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
-                  currentServiceIndex === 0
+                disabled={startIndex === 0}
+                aria-label="Previous services"
+                className={`shrink-0 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
+                  startIndex === 0
                     ? 'opacity-30 cursor-not-allowed border-brand-silver/40 text-slate-400 bg-white/50'
                     : 'bg-white hover:bg-brand-royal text-brand-navy hover:text-white border-brand-silver/60 hover:border-brand-royal shadow-xs hover:shadow-md hover:scale-105 active:scale-95'
                 }`}
@@ -541,79 +530,78 @@ export default function Home() {
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
-              {/* Single Vertical Service Card Container */}
-              <div className="flex-1 overflow-hidden min-w-0 py-2">
-                <AnimatePresence mode="wait" custom={slideDirection}>
-                  {(() => {
-                    const service = servicesData[currentServiceIndex];
-                    return (
-                      <motion.div
-                        key={service.id}
-                        custom={slideDirection}
-                        variants={serviceSlideVariants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        className="w-full max-w-xl mx-auto p-6 sm:p-8 rounded-3xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-sm hover:shadow-xl group hover:-translate-y-1 flex flex-col justify-between"
-                      >
+              {/* 3-Card Viewport Track */}
+              <div className="flex-1 overflow-hidden min-w-0 py-3">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out -mx-2 sm:-mx-3"
+                  style={{ transform: `translateX(-${startIndex * (100 / visibleCards)}%)` }}
+                >
+                  {servicesData.map((service, idx) => (
+                    <div
+                      key={service.id}
+                      className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2 sm:px-3"
+                    >
+                      <div className="h-full p-6 sm:p-7 rounded-3xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-2xs hover:shadow-lg group flex flex-col justify-between hover:-translate-y-1">
                         <div>
-                          {/* Top Row: Icon + Service Number Badge */}
-                          <div className="flex items-center justify-between pb-4 mb-4 border-b border-brand-silver/40">
-                            <div className="flex items-center gap-3">
-                              <div className="w-12 h-12 rounded-xl bg-brand-royal/10 text-brand-royal flex items-center justify-center group-hover:scale-105 transition-transform">
-                                {getServiceIcon(service.icon)}
+                          {/* Top Row: Icon + Number */}
+                          <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-brand-silver/40">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-10 h-10 rounded-xl bg-brand-royal/10 text-brand-royal flex items-center justify-center group-hover:scale-105 transition-transform">
+                                {getServiceIcon(service.icon, "w-5 h-5 text-brand-royal")}
                               </div>
                               <div>
-                                <span className="font-mono text-xs font-bold text-brand-royal uppercase tracking-wider block">
-                                  PRACTICE /0{currentServiceIndex + 1}
+                                <span className="font-mono text-[11px] font-bold text-brand-royal uppercase tracking-wider block">
+                                  PRACTICE /0{idx + 1}
                                 </span>
-                                <span className="text-[11px] text-slate-400">
-                                  Navabharath Technologies
+                                <span className="text-[10px] text-slate-400">
+                                  Enterprise Solutions
                                 </span>
                               </div>
                             </div>
 
-                            <span className="font-mono text-base sm:text-lg font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
-                              S/0{currentServiceIndex + 1}
+                            <span className="font-mono text-base font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
+                              S/0{idx + 1}
                             </span>
                           </div>
 
-                          {/* Middle: Service Title, Tagline & Description */}
-                          <div className="mb-5">
-                            <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-1.5">
-                              {service.title}
-                            </h3>
-                            {service.tagline && (
-                              <p className="text-xs font-medium text-brand-royal mb-2 italic">
-                                {service.tagline}
-                              </p>
-                            )}
-                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                              {service.shortDesc}
+                          {/* Service Title */}
+                          <h3 className="text-lg sm:text-xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-2 leading-snug">
+                            {service.title}
+                          </h3>
+
+                          {/* Tagline */}
+                          {service.tagline && (
+                            <p className="text-[11px] font-medium text-brand-royal mb-2.5 italic line-clamp-1">
+                              {service.tagline}
                             </p>
-                          </div>
+                          )}
+
+                          {/* Description */}
+                          <p className="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                            {service.shortDesc}
+                          </p>
 
                           {/* Key Capabilities: Displayed Vertically One Below Another */}
-                          <div className="space-y-2 mb-6">
+                          <div className="space-y-1.5 mb-5">
                             <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
                               CORE CAPABILITIES
                             </div>
-                            {service.features.slice(0, 4).map((feat, i) => (
+                            {service.features.slice(0, 3).map((feat, i) => (
                               <div
                                 key={i}
-                                className="flex items-start gap-2.5 p-2 rounded-xl bg-brand-light text-slate-700 border border-brand-silver/40 text-xs font-medium"
+                                className="flex items-start gap-2 p-1.5 rounded-lg bg-brand-light text-slate-700 border border-brand-silver/40 text-[11px] font-medium"
                               >
                                 <CheckCircle2 className="w-3.5 h-3.5 text-brand-royal shrink-0 mt-0.5" />
-                                <span>{feat}</span>
+                                <span className="line-clamp-1">{feat}</span>
                               </div>
                             ))}
                           </div>
                         </div>
 
                         {/* Bottom Row: Metric & Action Buttons */}
-                        <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between gap-4">
+                        <div className="pt-3.5 border-t border-brand-silver/40 flex items-center justify-between gap-2">
                           <div>
-                            <div className="text-base sm:text-lg font-mono font-extrabold text-brand-navy">
+                            <div className="text-base font-mono font-extrabold text-brand-navy">
                               {service.stats.value}
                             </div>
                             <div className="text-[10px] text-slate-400 uppercase tracking-wider">
@@ -621,37 +609,37 @@ export default function Home() {
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5">
                             <button
                               type="button"
                               onClick={() => setSelectedService(service)}
-                              className="px-3.5 py-2 rounded-xl text-xs font-bold text-brand-royal bg-brand-royal/10 hover:bg-brand-royal hover:text-white transition-all shadow-2xs"
+                              className="px-3 py-1.5 rounded-lg text-xs font-bold text-brand-royal bg-brand-royal/10 hover:bg-brand-royal hover:text-white transition-all shadow-2xs"
                             >
                               Details
                             </button>
                             <Link
                               to={`/services/${service.id}`}
-                              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-navy hover:bg-brand-royal text-white text-xs font-bold transition-all shadow-2xs group/btn"
+                              className="w-8 h-8 rounded-lg bg-brand-navy hover:bg-brand-royal text-white flex items-center justify-center transition-all shadow-2xs group/btn"
+                              aria-label={`Open ${service.title} details`}
                             >
-                              <span>Explore</span>
                               <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                             </Link>
                           </div>
                         </div>
-                      </motion.div>
-                    );
-                  })()}
-                </AnimatePresence>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Right Arrow Button */}
               <button
                 type="button"
                 onClick={handleNextService}
-                disabled={currentServiceIndex === servicesData.length - 1}
-                aria-label="Next service card"
-                className={`shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
-                  currentServiceIndex === servicesData.length - 1
+                disabled={startIndex >= maxIndex}
+                aria-label="Next services"
+                className={`shrink-0 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
+                  startIndex >= maxIndex
                     ? 'opacity-30 cursor-not-allowed border-brand-silver/40 text-slate-400 bg-white/50'
                     : 'bg-white hover:bg-brand-royal text-brand-navy hover:text-white border-brand-silver/60 hover:border-brand-royal shadow-xs hover:shadow-md hover:scale-105 active:scale-95'
                 }`}
@@ -660,23 +648,20 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Pagination Indicator / Dots */}
+            {/* Pagination / Dots indicator */}
             <div className="flex items-center justify-center gap-3 pt-6">
               <span className="font-mono text-xs font-bold text-brand-steel tracking-wider">
-                0{currentServiceIndex + 1} / 0{servicesData.length}
+                0{startIndex + 1} — 0{Math.min(startIndex + visibleCards, servicesData.length)} / 0{servicesData.length}
               </span>
               <div className="flex items-center gap-1.5">
-                {servicesData.map((_, dotIdx) => (
+                {Array.from({ length: maxIndex + 1 }).map((_, dotIdx) => (
                   <button
                     key={dotIdx}
                     type="button"
-                    onClick={() => {
-                      setSlideDirection(dotIdx > currentServiceIndex ? 1 : -1);
-                      setCurrentServiceIndex(dotIdx);
-                    }}
-                    aria-label={`Jump to service ${dotIdx + 1}`}
+                    onClick={() => setStartIndex(dotIdx)}
+                    aria-label={`Jump to page ${dotIdx + 1}`}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      dotIdx === currentServiceIndex
+                      dotIdx === startIndex
                         ? 'w-6 bg-brand-royal'
                         : 'w-1.5 bg-brand-silver/60 hover:bg-brand-steel/50'
                     }`}
