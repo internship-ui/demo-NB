@@ -23,7 +23,7 @@
   h5,
   h6 {
     font-family: 'Outfit', 'Inter', sans-serif;
-    color: #101F3C;
+    color: #101F3D;
     letter-spacing: -0.02em;
   }
 
@@ -160,7 +160,7 @@
 }
 
 .animate-hero-gradient {
-  background: linear-gradient(135deg, #101F3C 0%, #234F91 35%, #52749A 70%, #234F91 100%);
+  background: linear-gradient(135deg, #101F3D 0%, #315FA5 50%, #101F3D 100%);
   background-size: 250% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -175,9 +175,9 @@
 }
 
 .hero-word:hover {
-  transform: translateY(-4px) scale(1.02);
-  color: #234F91 !important;
-  text-shadow: 0 8px 24px rgba(35, 79, 145, 0.18);
+  transform: translateY(-2px);
+  color: #315FA5 !important;
+  text-shadow: 0 4px 16px rgba(49, 95, 165, 0.12);
 }
 
 /* ========================================================= */
@@ -737,8 +737,8 @@
     isolation: isolate;
     background: #FFFFFF;
     border-radius: 28px;
-    border: 1px solid rgba(196, 204, 213, 0.65);
-    box-shadow: 0 4px 20px -2px rgba(16, 31, 60, 0.05);
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 20px -2px rgba(16, 31, 61, 0.04);
     transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     overflow: hidden;
   }
@@ -749,7 +749,7 @@
     inset: -1px;
     border-radius: 29px;
     padding: 1.5px;
-    background: linear-gradient(135deg, rgba(35, 79, 145, 0.65) 0%, rgba(82, 116, 154, 0.35) 50%, rgba(196, 204, 213, 0.15) 100%);
+    background: linear-gradient(135deg, rgba(49, 95, 165, 0.5) 0%, rgba(82, 116, 154, 0.25) 50%, rgba(226, 232, 240, 0.2) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -765,8 +765,8 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3.5px;
-    background: linear-gradient(90deg, transparent, #234F91, #52749A, transparent);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #315FA5, #52749A, transparent);
     opacity: 0;
     transform: scaleX(0.3);
     transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -774,9 +774,9 @@
   }
 
   .home-practice-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(35, 79, 145, 0.4);
-    box-shadow: 0 22px 40px -8px rgba(35, 79, 145, 0.16), 0 8px 16px -4px rgba(16, 31, 60, 0.06);
+    transform: translateY(-4px);
+    border-color: rgba(49, 95, 165, 0.35);
+    box-shadow: 0 14px 30px -6px rgba(16, 31, 61, 0.08);
   }
 
   .home-practice-card:hover::before {
@@ -793,10 +793,10 @@
   }
 
   .home-practice-card:hover .home-practice-icon-box {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 20px -4px rgba(35, 79, 145, 0.28);
-    background-color: #234F91;
-    border-color: #234F91;
+    transform: scale(1.08) translateY(-1px);
+    box-shadow: 0 6px 16px -2px rgba(49, 95, 165, 0.25);
+    background-color: #315FA5;
+    border-color: #315FA5;
   }
 
   /* ========================================================= */

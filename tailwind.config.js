@@ -9,26 +9,26 @@ export default {
     extend: {
       colors: {
         brand: {
-          navy: '#101F3C',           // Deep Navy
+          navy: '#101F3D',           // Dark navy headings (#101F3D)
           'navy-dark': '#0B1528',      // Dark contrast / Footer deep navy
           'navy-surface': '#FFFFFF',   // Clean pure white for surfaces
-          'navy-card': '#F7F9FC',      // Soft white / light silver for card fills
-          'navy-border': '#C4CCD5',    // Silver border
-          royal: '#234F91',          // Royal Blue
-          'royal-hover': '#1B3E73',
-          'royal-light': '#EBF2FA',
+          'navy-card': '#FFFFFF',      // Clean white for cards
+          'navy-border': '#E2E8F0',    // Thin light-grey border
+          royal: '#315FA5',          // Professional blue accent (#315FA5)
+          'royal-hover': '#244880',
+          'royal-light': '#EFF5FF',    // Subtle blue gradient (#EFF5FF)
           steel: '#52749A',          // Steel Blue
           silver: '#C4CCD5',         // Silver
-          'silver-light': '#E2E8F0',
+          'silver-light': '#E2E8F0',   // Thin light-grey
           white: '#FFFFFF',          // Pure White
-          light: '#F7F9FC',          // Soft White page background
+          light: '#F8FAFD',          // Off-white base colour (#F8FAFD)
           gold: '#B69A63',           // Subtle Gold Accent
           'gold-light': '#F5F0E6',
           // Harmonized aliases for backward-compatibility
-          yellow: '#234F91',         // Royal Blue replaces bright yellow
-          'yellow-hover': '#1B3E73',
-          'yellow-light': '#EBF2FA',
-          'yellow-dark': '#101F3C',
+          yellow: '#315FA5',
+          'yellow-hover': '#244880',
+          'yellow-light': '#EFF5FF',
+          'yellow-dark': '#101F3D',
           slate: '#475569',
         }
       },

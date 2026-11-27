@@ -110,9 +110,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative pt-20 overflow-hidden bg-brand-light text-slate-700">
+    <div className="relative pt-20 overflow-hidden bg-[#F8FAFD] text-slate-700">
       {/* ===================== HERO SECTION ===================== */}
-      <section className="relative min-h-[92vh] flex flex-col justify-center py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-white via-brand-light to-white">
+      <section className="relative min-h-[92vh] flex flex-col justify-center py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-transparent">
         {/* Subtle geometric digital background */}
         <HomeDigitalGridBackground />
 
@@ -122,15 +122,15 @@ export default function Home() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-brand-silver/50 mb-8 sm:mb-12 text-xs font-mono"
+            className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-[#E2E8F0] mb-8 sm:mb-12 text-xs font-mono"
           >
-            <div className="flex items-center gap-2 text-brand-navy">
-              <span className="inline-block w-2 h-2 rounded-full bg-brand-royal animate-pulse shadow-[0_0_8px_rgba(35,79,145,0.7)]" />
+            <div className="flex items-center gap-2 text-[#101F3D]">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#315FA5]" />
               <span className="font-bold tracking-wider uppercase">SIGNAL: ACTIVE ARCHITECTURE</span>
-              <span className="text-brand-steel">·</span>
+              <span className="text-slate-400">·</span>
               <span className="text-slate-500 hidden sm:inline">MYSURU 12.2958° N, 76.6394° E</span>
             </div>
-            <div className="flex items-center gap-2 text-brand-royal font-semibold tracking-wider uppercase text-[11px]">
+            <div className="flex items-center gap-2 text-[#315FA5] font-semibold tracking-wider uppercase text-[11px]">
               <span>[00 // SOFTWARE ENGINEERING LAB]</span>
             </div>
           </motion.div>
@@ -146,120 +146,46 @@ export default function Home() {
             <div className="lg:col-span-8 space-y-6">
               {/* Badge */}
               <div>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-royal/30 text-brand-royal text-xs font-bold uppercase tracking-widest shadow-2xs">
-                  <Sparkles className="w-3.5 h-3.5 text-brand-royal" />
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#E2E8F0] text-[#315FA5] text-xs font-bold uppercase tracking-widest shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5 text-[#315FA5]" />
                   <span>Digital Solutions That Drive Results</span>
                 </span>
               </div>
 
-              {/* High-Impact Animated Editorial Heading */}
-              <motion.h1
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 1 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.12,
-                      delayChildren: 0.1
-                    }
-                  }
-                }}
-                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-brand-navy font-heading leading-[1.02] uppercase select-none"
-              >
+              {/* High-Impact Enterprise Editorial Heading */}
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-[#101F3D] font-heading leading-[1.02] uppercase select-none">
                 {/* Sentence 1: SMARTER SOLUTIONS */}
-                <div className="overflow-hidden flex flex-wrap gap-x-3 sm:gap-x-5 py-0.5">
-                  <motion.span
-                    variants={{
-                      hidden: { y: '105%', opacity: 0, rotate: -2 },
-                      visible: {
-                        y: '0%',
-                        opacity: 1,
-                        rotate: 0,
-                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-                      }
-                    }}
-                    className="hero-word"
-                  >
+                <div className="flex flex-wrap gap-x-3 sm:gap-x-5 py-0.5">
+                  <span className="hero-word">
                     Smarter
-                  </motion.span>
-                  <motion.span
-                    variants={{
-                      hidden: { y: '105%', opacity: 0, rotate: -2 },
-                      visible: {
-                        y: '0%',
-                        opacity: 1,
-                        rotate: 0,
-                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-                      }
-                    }}
-                    className="hero-word"
-                  >
+                  </span>
+                  <span className="hero-word">
                     Solutions
-                  </motion.span>
+                  </span>
                 </div>
 
                 {/* Sentence 2: FOR BETTER FUTURE */}
-                <div className="overflow-hidden flex flex-wrap gap-x-3 sm:gap-x-5 items-center py-0.5">
-                  <motion.span
-                    variants={{
-                      hidden: { y: '105%', opacity: 0, rotate: -2 },
-                      visible: {
-                        y: '0%',
-                        opacity: 1,
-                        rotate: 0,
-                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-                      }
-                    }}
-                    className="hero-word"
-                  >
+                <div className="flex flex-wrap gap-x-3 sm:gap-x-5 items-center py-0.5">
+                  <span className="hero-word">
                     For
-                  </motion.span>
+                  </span>
 
-                  <motion.span
-                    variants={{
-                      hidden: { y: '105%', opacity: 0, rotate: -2 },
-                      visible: {
-                        y: '0%',
-                        opacity: 1,
-                        rotate: 0,
-                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-                      }
-                    }}
-                    className="hero-word animate-hero-gradient font-black"
-                  >
+                  <span className="hero-word text-[#315FA5] font-black">
                     Better
-                  </motion.span>
+                  </span>
 
-                  <motion.span
-                    variants={{
-                      hidden: { y: '105%', opacity: 0, rotate: -2 },
-                      visible: {
-                        y: '0%',
-                        opacity: 1,
-                        rotate: 0,
-                        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-                      }
-                    }}
-                    className="hero-word animate-hero-gradient font-black"
-                  >
+                  <span className="hero-word text-[#315FA5] font-black">
                     Future
-                  </motion.span>
+                  </span>
                 </div>
 
                 {/* Dynamic Royal Blue Accent Line */}
-                <motion.div
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 1 }}
-                  transition={{ delay: 0.55, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-1 sm:h-1.5 w-40 sm:w-64 bg-gradient-to-r from-brand-royal via-brand-steel to-transparent rounded-full origin-left mt-3"
-                />
-              </motion.h1>
+                <div className="h-1 sm:h-1.5 w-32 sm:w-48 bg-[#315FA5] rounded-full origin-left mt-3" />
+              </h1>
 
               {/* Lede Paragraph - Always 100% Visible */}
               <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed font-normal">
-                Navabharath Technologies is a <strong className="text-brand-navy font-semibold">Mysuru-based Software Company</strong> helping businesses adapt, grow, and stay secure in a digital-first world. We design practical IT solutions that simplify operations and support long-term growth. From custom web development and mobile applications to AI-driven automation and strategic digital marketing, we provide end-to-end services tailored to your unique goals.
+                Navabharath Technologies is a <strong className="text-[#101F3D] font-semibold">Mysuru-based Software Company</strong> helping businesses adapt, grow, and stay secure in a digital-first world. We design practical IT solutions that simplify operations and support long-term growth. From custom web development and mobile applications to AI-driven automation and strategic digital marketing, we provide end-to-end services tailored to your unique goals.
               </p>
 
               {/* Strong Editorial Call-to-Action Group - Always 100% Visible */}
@@ -267,7 +193,7 @@ export default function Home() {
                 <MagneticButton strength={0.15}>
                   <Link
                     to="/services"
-                    className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-brand-navy via-brand-navy to-brand-royal text-white hover:brightness-110 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group active:scale-95"
+                    className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-[#315FA5] hover:bg-[#254c86] text-white shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 group active:scale-95"
                   >
                     <span>Explore Practice Areas</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -277,49 +203,38 @@ export default function Home() {
                 <MagneticButton strength={0.15}>
                   <Link
                     to="/contact"
-                    className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white hover:bg-slate-50 text-brand-navy border border-brand-silver/80 hover:border-brand-royal/50 shadow-sm transition-all flex items-center justify-center gap-2 group active:scale-95"
+                    className="px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white hover:bg-[#F8FAFD] text-[#101F3D] border border-[#E2E8F0] hover:border-[#315FA5]/50 shadow-sm transition-all flex items-center justify-center gap-2 group active:scale-95"
                   >
                     <span>Schedule Consultation</span>
-                    <ArrowRight className="w-4 h-4 text-brand-royal transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 text-[#315FA5] transition-transform group-hover:translate-x-1" />
                   </Link>
                 </MagneticButton>
 
                 <Link
                   to="/portfolio"
-                  className="px-4 py-4 font-semibold text-xs text-slate-600 hover:text-brand-royal transition-colors flex items-center justify-center gap-1.5"
+                  className="px-4 py-4 font-semibold text-xs text-slate-600 hover:text-[#315FA5] transition-colors flex items-center justify-center gap-1.5"
                 >
                   <span>Case Studies</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-brand-royal" />
+                  <ExternalLink className="w-3.5 h-3.5 text-[#315FA5]" />
                 </Link>
               </div>
             </div>
 
             {/* Right Column: Architectural Visual Card & Live Metrics */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="lg:col-span-4 flex flex-col gap-4"
-            >
-              {/* Feature Pill Card with subtle floating motion */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="p-6 rounded-3xl bg-white border border-brand-silver/60 shadow-xl shadow-brand-navy/5 relative overflow-hidden group"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-royal/5 rounded-full blur-2xl pointer-events-none" />
-                
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              {/* Feature Pill Card with clean, subtle enterprise styling */}
+              <div className="p-6 rounded-3xl bg-white border border-[#E2E8F0] shadow-[0_4px_20px_-2px_rgba(16,31,61,0.05)] relative overflow-hidden group">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2 text-xs font-mono text-brand-steel uppercase tracking-wider">
-                    <Terminal className="w-4 h-4 text-brand-royal" />
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-500 uppercase tracking-wider">
+                    <Terminal className="w-4 h-4 text-[#315FA5]" />
                     <span>SYSTEM ARCHITECTURE</span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-brand-royal/10 text-brand-royal">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EFF5FF] text-[#315FA5]">
                     PROD v2.4
                   </span>
                 </div>
 
-                <h3 className="text-xl font-extrabold text-brand-navy font-heading mb-2">
+                <h3 className="text-xl font-extrabold text-[#101F3D] font-heading mb-2">
                   Enterprise-Grade Reliability
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
@@ -327,44 +242,44 @@ export default function Home() {
                 </p>
 
                 {/* Technology Architecture Visual Preview */}
-                <div className="relative h-44 sm:h-48 w-full rounded-2xl overflow-hidden mb-4 border border-brand-silver/60 bg-gradient-to-br from-[#101F3C] to-[#1E3E70] shadow-md group/img">
+                <div className="relative h-44 sm:h-48 w-full rounded-2xl overflow-hidden mb-4 border border-[#E2E8F0] bg-gradient-to-br from-[#101F3D] to-[#1E3E70] shadow-sm group/img">
                   <img
                     src={getAssetUrl('/assets/system-architecture-tech.jpg')}
                     alt="Enterprise System Architecture & Technology Platform"
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#101F3C]/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/70 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#101F3C]/85 backdrop-blur-md text-[10px] font-mono text-white border border-white/20 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-royal animate-pulse shadow-[0_0_8px_#234F91]" />
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#101F3D]/85 backdrop-blur-md text-[10px] font-mono text-white border border-white/20 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#315FA5]" />
                       <span>CLOUD RUNTIME ACTIVE</span>
                     </div>
-                    <span className="text-[10px] font-mono text-brand-silver/90 bg-[#101F3C]/75 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 hidden sm:inline-block">
+                    <span className="text-[10px] font-mono text-slate-300 bg-[#101F3D]/75 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 hidden sm:inline-block">
                       ISO/IEC 27001
                     </span>
                   </div>
                 </div>
 
                 {/* Tech Chips */}
-                <div className="space-y-2 pt-2 border-t border-brand-silver/30">
+                <div className="space-y-2 pt-2 border-t border-[#E2E8F0]">
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500 font-medium">Core Stack</span>
-                    <span className="font-mono text-brand-navy font-bold">React · Node · Cloud</span>
+                    <span className="font-mono text-[#101F3D] font-bold">React · Node · Cloud</span>
                   </div>
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500 font-medium">Client Satisfaction</span>
-                    <span className="font-mono text-brand-royal font-bold">99% Verified Index</span>
+                    <span className="font-mono text-[#315FA5] font-bold">99% Verified Index</span>
                   </div>
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500 font-medium">IP Ownership</span>
-                    <span className="font-mono text-brand-royal font-bold">100% Client Transfer</span>
+                    <span className="font-mono text-[#315FA5] font-bold">100% Client Transfer</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Quick Tech Badge Bar */}
-              <div className="p-4 rounded-2xl bg-white/70 backdrop-blur-sm border border-brand-silver/50 shadow-sm flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-between">
                 <div className="text-[11px] font-mono text-slate-500 uppercase tracking-wider">
                   DEPLOYMENT LAB
                 </div>
@@ -372,32 +287,32 @@ export default function Home() {
                   {['AWS', 'GCP', 'Docker', 'K8s'].map((pill) => (
                     <span
                       key={pill}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-light text-brand-navy border border-brand-silver/60"
+                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFD] text-[#101F3D] border border-[#E2E8F0]"
                     >
                       {pill}
                     </span>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Floating Editorial Technology Stack Ticker */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="mt-12 sm:mt-16 pt-8 border-t border-brand-silver/40 flex flex-wrap items-center justify-between gap-4 text-xs"
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="mt-12 sm:mt-16 pt-8 border-t border-[#E2E8F0] flex flex-wrap items-center justify-between gap-4 text-xs"
           >
-            <div className="flex items-center gap-2 text-brand-navy font-bold font-heading uppercase tracking-wider">
-              <Code2 className="w-4 h-4 text-brand-royal" />
+            <div className="flex items-center gap-2 text-[#101F3D] font-bold font-heading uppercase tracking-wider">
+              <Code2 className="w-4 h-4 text-[#315FA5]" />
               <span>Full-Stack Engineering Competencies:</span>
             </div>
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               {['React & Next.js', 'Node.js & Go', 'React Native', 'AWS Cloud Architecture', 'Kubernetes', 'Cybersecurity & QA'].map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1.5 rounded-lg bg-white border border-brand-silver/60 text-slate-700 font-mono text-[11px] shadow-2xs hover:border-brand-royal/40 transition-colors"
+                  className="px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] text-slate-700 font-mono text-[11px] shadow-2xs hover:border-[#315FA5]/40 transition-colors"
                 >
                   {tech}
                 </span>
@@ -411,21 +326,21 @@ export default function Home() {
       <MarqueeBanner />
 
       {/* ===================== SECTION 01: THE VISION & ABOUT ===================== */}
-      <section id="vision" className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
+      <section id="vision" className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-[#F8FAFD] border-t border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto">
           {/* Top Row: Asymmetric Split Layout (Vision on Left, Leadership on Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
             {/* Left Column: Vision Statement & Action */}
             <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-brand-royal tracking-widest uppercase">
-                  <span className="w-2 h-2 rounded-full bg-brand-royal" />
+                <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#315FA5] tracking-widest uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#315FA5]" />
                   <span>[01 // THE VISION]</span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl lg:text-[36px] xl:text-[40px] font-extrabold text-brand-navy font-heading tracking-tight leading-[1.25]">
+                <h2 className="text-3xl sm:text-4xl lg:text-[36px] xl:text-[40px] font-extrabold text-[#101F3D] font-heading tracking-tight leading-[1.25]">
                   We do not just write code.<br className="hidden sm:inline" />
-                  We architect <span className="text-brand-royal">digital engines</span><br className="hidden sm:inline" />
+                  We architect <span className="text-[#315FA5]">digital engines</span><br className="hidden sm:inline" />
                   that define industry benchmarks.
                 </h2>
 
@@ -437,10 +352,10 @@ export default function Home() {
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-light hover:bg-brand-royal text-brand-navy hover:text-white font-bold text-xs uppercase tracking-wider border border-brand-silver/60 hover:border-brand-royal transition-all group shadow-xs hover:shadow-md"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-[#315FA5] text-[#101F3D] hover:text-white font-bold text-xs uppercase tracking-wider border border-[#E2E8F0] hover:border-[#315FA5] transition-all group shadow-sm hover:shadow-md"
                 >
                   <span>Explore Company Journey</span>
-                  <ArrowRight className="w-4 h-4 text-brand-royal group-hover:text-white transition-colors" />
+                  <ArrowRight className="w-4 h-4 text-[#315FA5] group-hover:text-white transition-colors" />
                 </Link>
               </div>
             </div>
@@ -448,21 +363,21 @@ export default function Home() {
             {/* Right Column: Leadership Commitment */}
             <div className="lg:col-span-6 flex flex-col justify-between">
               {/* CEO Statement Card */}
-              <div className="p-8 sm:p-10 rounded-3xl bg-brand-light border border-brand-silver/50 shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
+              <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#E2E8F0] shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-bold text-brand-royal uppercase tracking-wider mb-3">
+                  <div className="text-xs font-mono font-bold text-[#315FA5] uppercase tracking-wider mb-3">
                     LEADERSHIP COMMITMENT
                   </div>
-                  <blockquote className="text-base sm:text-lg text-brand-navy font-semibold leading-relaxed mb-6 font-heading">
+                  <blockquote className="text-base sm:text-lg text-[#101F3D] font-semibold leading-relaxed mb-6 font-heading">
                     "{companyDetails.mission}"
                   </blockquote>
                 </div>
-                <div className="flex items-center justify-between pt-4 border-t border-brand-silver/40">
+                <div className="flex items-center justify-between pt-4 border-t border-[#E2E8F0]">
                   <div>
-                    <div className="text-sm font-bold text-brand-navy">Executive Leadership</div>
+                    <div className="text-sm font-bold text-[#101F3D]">Executive Leadership</div>
                     <div className="text-xs text-slate-500">Navabharath Technologies · Mysuru</div>
                   </div>
-                  <span className="font-mono text-xs text-brand-steel font-bold">[2020 — PRESENT]</span>
+                  <span className="font-mono text-xs text-slate-400 font-bold">[2020 — PRESENT]</span>
                 </div>
               </div>
             </div>
@@ -477,18 +392,18 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08 }}
-                className="p-6 rounded-2xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 shadow-2xs hover:shadow-md transition-all group flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-white border border-[#E2E8F0] hover:border-[#315FA5]/40 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
+                    <span className="font-mono text-xs font-extrabold text-slate-400 group-hover:text-[#315FA5] transition-colors">
                       /0{idx + 1}
                     </span>
-                    <div className="w-8 h-8 rounded-lg bg-brand-royal/10 text-brand-royal flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-[#EFF5FF] text-[#315FA5] flex items-center justify-center">
                       <CheckCircle2 className="w-4 h-4" />
                     </div>
                   </div>
-                  <h3 className="text-base font-bold text-brand-navy font-heading mb-1.5 group-hover:text-brand-royal transition-colors">
+                  <h3 className="text-base font-bold text-[#101F3D] font-heading mb-1.5 group-hover:text-[#315FA5] transition-colors">
                     {val.title}
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -502,7 +417,7 @@ export default function Home() {
       </section>
 
       {/* ===================== SECTION 02: WHAT WE DELIVER (SERVICES) ===================== */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-brand-light border-t border-brand-silver/40">
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-[#F8FAFD] border-t border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             number="02 // CORE PRACTICES"
@@ -523,8 +438,8 @@ export default function Home() {
                 aria-label="Previous services"
                 className={`shrink-0 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
                   startIndex === 0
-                    ? 'opacity-30 cursor-not-allowed border-brand-silver/40 text-slate-400 bg-white/50'
-                    : 'bg-white hover:bg-brand-royal text-brand-navy hover:text-white border-brand-silver/60 hover:border-brand-royal shadow-xs hover:shadow-md hover:scale-105 active:scale-95'
+                    ? 'opacity-30 cursor-not-allowed border-[#E2E8F0] text-slate-300 bg-white/50'
+                    : 'bg-white hover:bg-[#315FA5] text-[#101F3D] hover:text-white border-[#E2E8F0] hover:border-[#315FA5] shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
                 }`}
               >
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -592,9 +507,9 @@ export default function Home() {
                             {service.features.slice(0, 3).map((feat, i) => (
                               <div
                                 key={i}
-                                className="flex items-start gap-2 p-1.5 rounded-lg bg-brand-light text-slate-700 border border-brand-silver/40 group-hover:border-brand-royal/30 group-hover:bg-brand-royal/[0.03] text-[11px] font-medium transition-colors duration-200"
+                                className="flex items-start gap-2 p-1.5 rounded-lg bg-[#F8FAFD] text-slate-700 border border-[#E2E8F0] group-hover:border-[#315FA5]/30 group-hover:bg-[#EFF5FF]/40 text-[11px] font-medium transition-colors duration-200"
                               >
-                                <CheckCircle2 className="w-3.5 h-3.5 text-brand-royal shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                                <CheckCircle2 className="w-3.5 h-3.5 text-[#315FA5] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                                 <span className="line-clamp-1">{feat}</span>
                               </div>
                             ))}
@@ -602,9 +517,9 @@ export default function Home() {
                         </div>
 
                         {/* Bottom Row: Metric & Action Buttons */}
-                        <div className="relative z-10 pt-3.5 border-t border-brand-silver/40 flex items-center justify-between gap-2">
+                        <div className="relative z-10 pt-3.5 border-t border-[#E2E8F0] flex items-center justify-between gap-2">
                           <div>
-                            <div className="text-base font-mono font-extrabold text-brand-navy group-hover:text-brand-royal transition-colors duration-300">
+                            <div className="text-base font-mono font-extrabold text-[#101F3D] group-hover:text-[#315FA5] transition-colors duration-300">
                               {service.stats.value}
                             </div>
                             <div className="text-[10px] text-slate-400 uppercase tracking-wider">
@@ -616,13 +531,13 @@ export default function Home() {
                             <button
                               type="button"
                               onClick={() => setSelectedService(service)}
-                              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-brand-royal bg-brand-royal/10 hover:bg-brand-royal hover:text-white transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer"
+                              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-[#315FA5] bg-[#EFF5FF] hover:bg-[#315FA5] hover:text-white transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer"
                             >
                               Details
                             </button>
                             <Link
                               to={`/services/${service.id}`}
-                              className="w-9 h-9 rounded-xl bg-brand-navy hover:bg-brand-royal text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-md group/btn active:scale-95"
+                              className="w-9 h-9 rounded-xl bg-[#101F3D] hover:bg-[#315FA5] text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-md group/btn active:scale-95"
                               aria-label={`Open ${service.title} details`}
                             >
                               <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
@@ -643,8 +558,8 @@ export default function Home() {
                 aria-label="Next services"
                 className={`shrink-0 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center transition-all duration-200 border ${
                   startIndex >= maxIndex
-                    ? 'opacity-30 cursor-not-allowed border-brand-silver/40 text-slate-400 bg-white/50'
-                    : 'bg-white hover:bg-brand-royal text-brand-navy hover:text-white border-brand-silver/60 hover:border-brand-royal shadow-xs hover:shadow-md hover:scale-105 active:scale-95'
+                    ? 'opacity-30 cursor-not-allowed border-[#E2E8F0] text-slate-300 bg-white/50'
+                    : 'bg-white hover:bg-[#315FA5] text-[#101F3D] hover:text-white border-[#E2E8F0] hover:border-[#315FA5] shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
                 }`}
               >
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -653,7 +568,7 @@ export default function Home() {
 
             {/* Pagination / Dots indicator */}
             <div className="flex items-center justify-center gap-3 pt-6">
-              <span className="font-mono text-xs font-bold text-brand-steel tracking-wider">
+              <span className="font-mono text-xs font-bold text-slate-400 tracking-wider">
                 0{startIndex + 1} — 0{Math.min(startIndex + visibleCards, servicesData.length)} / 0{servicesData.length}
               </span>
               <div className="flex items-center gap-1.5">
@@ -665,8 +580,8 @@ export default function Home() {
                     aria-label={`Jump to page ${dotIdx + 1}`}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
                       dotIdx === startIndex
-                        ? 'w-6 bg-brand-royal'
-                        : 'w-1.5 bg-brand-silver/60 hover:bg-brand-steel/50'
+                        ? 'w-6 bg-[#315FA5]'
+                        : 'w-1.5 bg-[#E2E8F0] hover:bg-slate-400'
                     }`}
                   />
                 ))}
@@ -677,25 +592,30 @@ export default function Home() {
           <div className="mt-12 text-center">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-white hover:bg-brand-light text-brand-navy border border-brand-silver/80 hover:border-brand-royal shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-white hover:bg-[#EFF5FF] text-[#101F3D] border border-[#E2E8F0] hover:border-[#315FA5]/50 shadow-sm transition-all"
             >
               <span>Explore All 7 Specialized Practices</span>
-              <ArrowRight className="w-4 h-4 text-brand-royal" />
+              <ArrowRight className="w-4 h-4 text-[#315FA5]" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* ===================== SECTION 03: STATS DATA WALL ===================== */}
-      <section className="relative py-20 bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border-y border-brand-steel/30 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      <section className="relative py-20 bg-[#F8FAFD] border-y border-[#E2E8F0] text-slate-700 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(ellipse 65% 50% at 50% 50%, #FFFFFF 0%, #FFFFFF 45%, transparent 100%)'
+          }}
+        />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="font-mono text-xs font-bold text-brand-silver uppercase tracking-widest block mb-2">
+            <span className="font-mono text-xs font-bold text-[#315FA5] uppercase tracking-widest block mb-2">
               [03 // PERFORMANCE METRICS]
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#101F3D] font-heading">
               Engineering Velocity In Numbers
             </h2>
           </div>
@@ -704,20 +624,20 @@ export default function Home() {
             {companyDetails.stats.map((stat, idx) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center relative overflow-hidden group hover:border-brand-silver/40 transition-colors"
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="p-6 rounded-2xl bg-white border border-[#E2E8F0] text-center relative overflow-hidden shadow-sm hover:shadow-md hover:border-[#315FA5]/40 transition-all"
               >
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-2 font-heading">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#101F3D] mb-2 font-heading">
                   <AnimatedCounter
                     value={stat.value}
                     suffix={stat.suffix}
                     isDecimal={stat.isDecimal}
                   />
                 </div>
-                <p className="text-xs sm:text-sm font-medium text-brand-silver tracking-wide">
+                <p className="text-xs sm:text-sm font-medium text-slate-600 tracking-wide">
                   {stat.label}
                 </p>
               </motion.div>
@@ -726,22 +646,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== MARQUEE BANNER (DARK CONTRAST & REVERSE DIRECTION) ===================== */}
-      <MarqueeBanner isDark={true} direction="right" speed="slow" />
+      {/* ===================== MARQUEE BANNER (LIGHT ENTERPRISE CONTRAST) ===================== */}
+      <MarqueeBanner isDark={false} direction="right" speed="slow" />
 
       {/* ===================== SECTION 04: CALL TO ACTION ===================== */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-white">
-        <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-navy via-[#1B3E73] to-brand-navy border border-brand-steel/40 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-2xl text-white">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative bg-[#F8FAFD] border-t border-[#E2E8F0]">
+        <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-[#101F3D] via-[#162B54] to-[#101F3D] border border-[#234275] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-xl text-white">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#315FA5]/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-brand-silver uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#93B4E8] uppercase tracking-widest mb-4">
             <span>[04 // INITIATE DIALOGUE]</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 font-heading tracking-tight leading-tight">
-            Ready to Accelerate Your <span className="text-brand-silver">Digital Transformation?</span>
+            Ready to Accelerate Your <span className="text-[#93B4E8]">Digital Transformation?</span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-brand-silver max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
             Speak directly with our senior technology architects to discuss your technical challenges, project scope, and receive a transparent roadmap.
           </p>
 
@@ -749,7 +669,7 @@ export default function Home() {
             <MagneticButton strength={0.2}>
               <Link
                 to="/contact"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white text-brand-navy hover:bg-slate-100 shadow-md hover:shadow-lg transition-all inline-block"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white text-[#101F3D] hover:bg-slate-100 shadow-md hover:shadow-lg transition-all inline-block"
               >
                 Schedule Consultation
               </Link>
@@ -757,7 +677,7 @@ export default function Home() {
             <MagneticButton strength={0.2}>
               <Link
                 to="/services"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/30 transition-all inline-block"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all inline-block"
               >
                 Review Service Catalog
               </Link>
@@ -779,13 +699,13 @@ export default function Home() {
             <p className="leading-relaxed text-slate-600">{selectedService.fullDesc}</p>
 
             <div>
-              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-3">
+              <h4 className="text-[#101F3D] font-bold text-xs uppercase tracking-wider mb-3">
                 Key Deliverables &amp; Architectural Standards
               </h4>
               <ul className="space-y-2">
                 {selectedService.features.map((feat, i) => (
                   <li key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-brand-royal flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#315FA5] flex-shrink-0 mt-0.5" />
                     <span>{feat}</span>
                   </li>
                 ))}
@@ -793,26 +713,26 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-brand-navy font-bold text-xs uppercase tracking-wider mb-2">
+              <h4 className="text-[#101F3D] font-bold text-xs uppercase tracking-wider mb-2">
                 Primary Technologies
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedService.technologies.map((tech) => (
-                  <span key={tech} className="text-xs px-2.5 py-1 rounded-md bg-brand-light border border-brand-silver/50 text-slate-700">
+                  <span key={tech} className="text-xs px-2.5 py-1 rounded-md bg-[#F8FAFD] border border-[#E2E8F0] text-slate-700">
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-brand-silver/40 flex items-center justify-between">
-              <span className="text-xs font-semibold text-brand-royal">
+            <div className="pt-4 border-t border-[#E2E8F0] flex items-center justify-between">
+              <span className="text-xs font-semibold text-[#315FA5]">
                 {selectedService.stats.label}: {selectedService.stats.value}
               </span>
               <Link
                 to={`/contact?service=${encodeURIComponent(selectedService.title)}`}
                 onClick={() => setSelectedService(null)}
-                className="px-4 py-2 rounded-xl bg-brand-royal text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-navy transition-colors cursor-pointer shadow-sm"
+                className="px-4 py-2 rounded-xl bg-[#315FA5] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#101F3D] transition-colors cursor-pointer shadow-sm"
               >
                 Request Consultation
               </Link>
