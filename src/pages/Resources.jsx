@@ -321,19 +321,15 @@ export default function Resources() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {gridResources.map((item, idx) => {
+              {gridResources.map((item) => {
                 const tickerWords = (item.tags && item.tags.length >= 3)
                   ? [item.tags[0], item.tags[1], item.tags[2]]
                   : [item.badge || 'INSIGHTS', item.category || 'INNOVATION', item.type || 'NAVABHARATH'];
                 const isTapped = tappedCardId === item.id;
 
                 return (
-                  <motion.article
+                  <article
                     key={item.id}
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ delay: (idx % 3) * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     onClick={() => {
                       setTappedCardId(item.id);
                       if (item.toolUrl) {
@@ -355,13 +351,10 @@ export default function Resources() {
                         }
                       }
                     }}
-                    className={`resource-modern-card group flex flex-col justify-between cursor-pointer select-none bg-white ${
+                    className={`resource-alpha-card group flex flex-col justify-between cursor-pointer select-none bg-white ${
                       isTapped ? 'is-tapped' : ''
                     }`}
                   >
-                    {/* Subtle Background Radial Ambient Glow on Hover */}
-                    <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
-
                     {/* Card Thumbnail Image with Round Moving Motion & Organic Blob */}
                     <div className="relative h-48 sm:h-52 overflow-hidden bg-brand-light cursor-pointer">
                       {/* Organic Morphing Circular Blob Accent (Alpha Groups reference) */}
@@ -442,7 +435,7 @@ export default function Resources() {
                         </div>
                       </div>
                     </div>
-                  </motion.article>
+                  </article>
                 );
               })}
             </div>
