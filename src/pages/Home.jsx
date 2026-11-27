@@ -531,7 +531,7 @@ export default function Home() {
               </button>
 
               {/* 3-Card Viewport Track */}
-              <div className="flex-1 overflow-hidden min-w-0 py-3">
+              <div className="flex-1 overflow-hidden min-w-0 py-4 -my-1">
                 <div
                   className="flex transition-transform duration-500 ease-in-out -mx-2 sm:-mx-3"
                   style={{ transform: `translateX(-${startIndex * (100 / visibleCards)}%)` }}
@@ -541,31 +541,34 @@ export default function Home() {
                       key={service.id}
                       className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2 sm:px-3"
                     >
-                      <div className="h-full p-6 sm:p-7 rounded-3xl bg-white border border-brand-silver/50 hover:border-brand-royal/40 transition-all duration-300 shadow-2xs hover:shadow-lg group flex flex-col justify-between hover:-translate-y-1">
-                        <div>
+                      <div className="home-practice-card group h-full p-6 sm:p-7 flex flex-col justify-between cursor-pointer">
+                        {/* Subtle Background Radial Ambient Glow on Hover */}
+                        <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
+
+                        <div className="relative z-10">
                           {/* Top Row: Icon + Number */}
                           <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-brand-silver/40">
                             <div className="flex items-center gap-2.5">
-                              <div className="w-10 h-10 rounded-xl bg-brand-royal/10 text-brand-royal flex items-center justify-center group-hover:scale-105 transition-transform">
-                                {getServiceIcon(service.icon, "w-5 h-5 text-brand-royal")}
+                              <div className="home-practice-icon-box w-11 h-11 rounded-xl bg-brand-royal/10 text-brand-royal border border-brand-royal/20 flex items-center justify-center">
+                                {getServiceIcon(service.icon, "w-5 h-5 text-brand-royal group-hover:text-white transition-colors duration-300")}
                               </div>
                               <div>
                                 <span className="font-mono text-[11px] font-bold text-brand-royal uppercase tracking-wider block">
                                   PRACTICE /0{idx + 1}
                                 </span>
-                                <span className="text-[10px] text-slate-400">
+                                <span className="text-[10px] text-slate-400 group-hover:text-slate-500 transition-colors">
                                   Enterprise Solutions
                                 </span>
                               </div>
                             </div>
 
-                            <span className="font-mono text-base font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors">
+                            <span className="font-mono text-base font-extrabold text-brand-steel/50 group-hover:text-brand-royal transition-colors duration-300">
                               S/0{idx + 1}
                             </span>
                           </div>
 
                           {/* Service Title */}
-                          <h3 className="text-lg sm:text-xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors mb-2 leading-snug">
+                          <h3 className="text-lg sm:text-xl font-extrabold text-brand-navy font-heading group-hover:text-brand-royal transition-colors duration-300 mb-2 leading-snug">
                             {service.title}
                           </h3>
 
@@ -589,9 +592,9 @@ export default function Home() {
                             {service.features.slice(0, 3).map((feat, i) => (
                               <div
                                 key={i}
-                                className="flex items-start gap-2 p-1.5 rounded-lg bg-brand-light text-slate-700 border border-brand-silver/40 text-[11px] font-medium"
+                                className="flex items-start gap-2 p-1.5 rounded-lg bg-brand-light text-slate-700 border border-brand-silver/40 group-hover:border-brand-royal/30 group-hover:bg-brand-royal/[0.03] text-[11px] font-medium transition-colors duration-200"
                               >
-                                <CheckCircle2 className="w-3.5 h-3.5 text-brand-royal shrink-0 mt-0.5" />
+                                <CheckCircle2 className="w-3.5 h-3.5 text-brand-royal shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                                 <span className="line-clamp-1">{feat}</span>
                               </div>
                             ))}
@@ -599,9 +602,9 @@ export default function Home() {
                         </div>
 
                         {/* Bottom Row: Metric & Action Buttons */}
-                        <div className="pt-3.5 border-t border-brand-silver/40 flex items-center justify-between gap-2">
+                        <div className="relative z-10 pt-3.5 border-t border-brand-silver/40 flex items-center justify-between gap-2">
                           <div>
-                            <div className="text-base font-mono font-extrabold text-brand-navy">
+                            <div className="text-base font-mono font-extrabold text-brand-navy group-hover:text-brand-royal transition-colors duration-300">
                               {service.stats.value}
                             </div>
                             <div className="text-[10px] text-slate-400 uppercase tracking-wider">
@@ -613,16 +616,16 @@ export default function Home() {
                             <button
                               type="button"
                               onClick={() => setSelectedService(service)}
-                              className="px-3 py-1.5 rounded-lg text-xs font-bold text-brand-royal bg-brand-royal/10 hover:bg-brand-royal hover:text-white transition-all shadow-2xs"
+                              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-brand-royal bg-brand-royal/10 hover:bg-brand-royal hover:text-white transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer"
                             >
                               Details
                             </button>
                             <Link
                               to={`/services/${service.id}`}
-                              className="w-8 h-8 rounded-lg bg-brand-navy hover:bg-brand-royal text-white flex items-center justify-center transition-all shadow-2xs group/btn"
+                              className="w-9 h-9 rounded-xl bg-brand-navy hover:bg-brand-royal text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-md group/btn active:scale-95"
                               aria-label={`Open ${service.title} details`}
                             >
-                              <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                              <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
                             </Link>
                           </div>
                         </div>
