@@ -42,22 +42,32 @@ function AnimatedHeading({ text, className = '', letterColor = 'text-brand-navy'
 // =========================================================================
 function FeaturedSpotlightCard({ article, onSelect }) {
   return (
-    <div className="w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="w-full"
+    >
       <div
         onClick={() => onSelect(article)}
-        className="relative rounded-3xl bg-white text-slate-700 overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-brand-silver/60 hover:border-brand-royal/50 shadow-lg hover:shadow-xl"
+        className="featured-spotlight-card group overflow-hidden cursor-pointer relative"
       >
+        {/* Subtle Background Radial Ambient Glows on Hover */}
+        <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-brand-royal/10 blur-3xl group-hover:bg-brand-royal/20 transition-all duration-500 pointer-events-none" />
+        <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-brand-royal/10 blur-3xl group-hover:bg-brand-royal/20 transition-all duration-500 pointer-events-none" />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[480px]">
           {/* Left Side: Maximized Infographic Visual */}
-          <div className="lg:col-span-5 relative bg-gradient-to-br from-[#101F3C] via-[#1B3E73] to-[#101F3C] p-6 sm:p-10 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-brand-steel/30 overflow-hidden">
+          <div className="lg:col-span-5 relative bg-gradient-to-br from-[#0B1528] via-[#101F3C] to-[#1E3E70] p-6 sm:p-10 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-brand-steel/30 overflow-hidden">
             {/* Ambient subtle glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-royal/20 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
 
             <div className="relative w-full flex items-center justify-center p-2">
               <img
                 src={getAssetUrl('/resources/ai-in-boardrooms-infographic.png')}
                 alt={article.title}
-                className="w-full max-w-[420px] max-h-[420px] h-auto object-contain rounded-2xl drop-shadow-md group-hover:scale-105 transition-transform duration-500 ease-out"
+                className="w-full max-w-[420px] max-h-[420px] h-auto object-contain rounded-2xl drop-shadow-md group-hover:scale-105 group-hover:rotate-0.5 transition-transform duration-500 ease-out"
               />
             </div>
           </div>
@@ -67,8 +77,8 @@ function FeaturedSpotlightCard({ article, onSelect }) {
             <div>
               {/* Meta Bar */}
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm mb-4">
-                <span className="px-3.5 py-1 rounded-full bg-brand-royal/10 text-brand-royal font-bold border border-brand-royal/25 uppercase text-[11px] tracking-wider shadow-sm flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-brand-royal" />
+                <span className="px-3.5 py-1 rounded-full bg-brand-royal/10 text-brand-royal font-bold border border-brand-royal/25 uppercase text-[11px] tracking-wider shadow-sm flex items-center gap-1.5 group-hover:bg-brand-royal group-hover:text-white transition-all duration-300">
+                  <span className="w-2 h-2 rounded-full bg-brand-royal group-hover:bg-white transition-colors" />
                   <span>{article.category || 'STRATEGY'}</span>
                 </span>
                 <span className="text-slate-400">•</span>
@@ -78,7 +88,7 @@ function FeaturedSpotlightCard({ article, onSelect }) {
               </div>
 
               {/* Main Title - Maximized */}
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-extrabold text-brand-navy font-heading tracking-tight mb-4 leading-[1.2] group-hover:text-brand-royal transition-colors">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-extrabold text-brand-navy font-heading tracking-tight mb-4 leading-[1.2] group-hover:text-brand-royal transition-colors duration-300">
                 AI in Boardrooms: <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-brand-royal to-brand-steel">Transforming Strategic Decision-Making</span>
               </h2>
@@ -93,7 +103,7 @@ function FeaturedSpotlightCard({ article, onSelect }) {
                 {['Executive AI Strategy', 'Predictive Foresight Models', 'Risk Governance'].map((pill) => (
                   <span
                     key={pill}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-brand-light border border-brand-silver/60 hover:border-brand-royal/40 px-3 py-1.5 rounded-lg transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-brand-light border border-brand-silver/60 group-hover:border-brand-royal/40 px-3 py-1.5 rounded-lg transition-colors"
                   >
                     <CheckCircle2 className="w-3.5 h-3.5 text-brand-royal" />
                     <span>{pill}</span>
@@ -106,11 +116,11 @@ function FeaturedSpotlightCard({ article, onSelect }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-6 border-t border-brand-silver/40">
               {/* Author Block */}
               <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-full bg-brand-light text-brand-royal font-extrabold flex items-center justify-center text-sm shadow-sm ring-2 ring-brand-royal/20 border border-brand-silver/50">
+                <div className="w-12 h-12 rounded-full bg-brand-light text-brand-royal font-extrabold flex items-center justify-center text-sm shadow-sm ring-2 ring-brand-royal/20 group-hover:ring-brand-royal/50 border border-brand-silver/50 transition-all duration-300">
                   {article.authorInitials || 'TT'}
                 </div>
                 <div>
-                  <h4 className="text-sm sm:text-base font-bold text-brand-navy leading-snug">{article.author}</h4>
+                  <h4 className="text-sm sm:text-base font-bold text-brand-navy leading-snug group-hover:text-brand-royal transition-colors">{article.author}</h4>
                   <p className="text-xs text-slate-500 font-medium">{article.company}</p>
                 </div>
               </div>
@@ -118,16 +128,16 @@ function FeaturedSpotlightCard({ article, onSelect }) {
               {/* Action Button: Read Full Article */}
               <button
                 type="button"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brand-royal hover:bg-brand-navy text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md group/btn cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brand-royal group-hover:bg-brand-navy text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md group-hover:shadow-lg group/btn cursor-pointer active:scale-95"
               >
                 <span>Read Full Article</span>
-                <ArrowRight className="w-4 h-4 text-white group-hover/btn:translate-x-1.5 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white group-hover/btn:translate-x-1.5 transition-transform duration-200" />
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -311,15 +321,19 @@ export default function Resources() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {gridResources.map((item) => {
+              {gridResources.map((item, idx) => {
                 const tickerWords = (item.tags && item.tags.length >= 3)
                   ? [item.tags[0], item.tags[1], item.tags[2]]
                   : [item.badge || 'INSIGHTS', item.category || 'INNOVATION', item.type || 'NAVABHARATH'];
                 const isTapped = tappedCardId === item.id;
 
                 return (
-                  <article
+                  <motion.article
                     key={item.id}
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ delay: (idx % 3) * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     onClick={() => {
                       setTappedCardId(item.id);
                       if (item.toolUrl) {
@@ -341,10 +355,13 @@ export default function Resources() {
                         }
                       }
                     }}
-                    className={`resource-alpha-card group flex flex-col justify-between cursor-pointer select-none bg-white ${
+                    className={`resource-modern-card group flex flex-col justify-between cursor-pointer select-none bg-white ${
                       isTapped ? 'is-tapped' : ''
                     }`}
                   >
+                    {/* Subtle Background Radial Ambient Glow on Hover */}
+                    <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-brand-royal/5 blur-2xl group-hover:bg-brand-royal/10 transition-colors duration-500 pointer-events-none" />
+
                     {/* Card Thumbnail Image with Round Moving Motion & Organic Blob */}
                     <div className="relative h-48 sm:h-52 overflow-hidden bg-brand-light cursor-pointer">
                       {/* Organic Morphing Circular Blob Accent (Alpha Groups reference) */}
@@ -425,7 +442,7 @@ export default function Resources() {
                         </div>
                       </div>
                     </div>
-                  </article>
+                  </motion.article>
                 );
               })}
             </div>
