@@ -798,4 +798,79 @@
     background-color: #234F91;
     border-color: #234F91;
   }
+
+  /* ========================================================= */
+  /* Hiring Process Round Cards Glowing Animation              */
+  /* ========================================================= */
+  @keyframes hiring-pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px 1px rgba(35, 79, 145, 0.25),
+                  0 4px 12px rgba(16, 31, 60, 0.08);
+      border-color: rgba(35, 79, 145, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 25px 6px rgba(35, 79, 145, 0.55),
+                  0 0 45px 12px rgba(82, 116, 154, 0.3),
+                  0 6px 18px rgba(16, 31, 60, 0.12);
+      border-color: #234F91;
+    }
+  }
+
+  @keyframes hiring-radar-wave {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.85;
+      border-color: #234F91;
+    }
+    50% {
+      opacity: 0.45;
+      border-color: #52749A;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+      border-color: transparent;
+    }
+  }
+
+  .hiring-glow-circle {
+    position: relative;
+    width: 3.5rem; /* 56px */
+    height: 3.5rem;
+    border-radius: 9999px;
+    background: #FFFFFF;
+    color: #234F91;
+    border: 2.5px solid rgba(35, 79, 145, 0.35);
+    font-weight: 800;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: hiring-pulse-glow 3.5s ease-in-out infinite;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .hiring-glow-radar {
+    position: absolute;
+    inset: -6px;
+    border-radius: 9999px;
+    border: 2px solid #234F91;
+    pointer-events: none;
+    animation: hiring-radar-wave 3.5s cubic-bezier(0.1, 0.6, 0.2, 1) infinite;
+  }
+
+  /* Active & Hover glowing states */
+  .hiring-glow-circle.is-active,
+  .hiring-step-item:hover .hiring-glow-circle {
+    transform: translateY(-4px) scale(1.12);
+    background: linear-gradient(135deg, #234F91 0%, #101F3C 100%);
+    color: #FFFFFF;
+    border-color: #234F91;
+    box-shadow: 0 0 28px 8px rgba(35, 79, 145, 0.7),
+                0 0 50px 14px rgba(82, 116, 154, 0.4),
+                0 10px 20px -3px rgba(16, 31, 60, 0.2);
+    animation: none;
+  }
 }

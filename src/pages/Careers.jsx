@@ -58,6 +58,8 @@ export default function Careers() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [activeStep, setActiveStep] = useState(4);
+  const [hoveredStep, setHoveredStep] = useState(null);
 
   // Smooth scroll helpers
   const scrollToOpenRoles = () => {
@@ -562,33 +564,58 @@ export default function Careers() {
             </div>
 
             <div className="relative max-w-5xl mx-auto">
-              {/* Connecting line on desktop */}
-              <div className="hidden lg:block absolute top-6 left-12 right-12 h-0.5 border-t-2 border-dashed border-brand-silver/60 -z-0" />
+              {/* Connecting line on desktop passing directly through the center of the circles */}
+              <div className="hidden lg:block absolute top-7 left-12 right-12 h-0.5 border-t-2 border-dashed border-brand-silver/60 -z-0" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 relative z-10">
-                {hiringProcessSteps.map((step) => (
-                  <div
-                    key={step.step}
-                    className="flex flex-col items-center text-center group cursor-default"
-                  >
-                    {/* Circle badge */}
-                    <div 
-                      className={`w-12 h-12 rounded-full bg-brand-light text-brand-royal border-2 border-brand-royal/30 font-bold text-lg flex items-center justify-center shadow-sm transition-all duration-200 group-hover:bg-brand-royal group-hover:text-white ${
-                        step.step === 4 ? 'ring-4 ring-brand-royal/20 border-brand-royal' : ''
-                      }`}
+                {hiringProcessSteps.map((step, idx) => {
+                  const isCurrent = (hoveredStep !== null ? hoveredStep : activeStep) === step.step;
+                  const delaySec = `${idx * 0.7}s`;
+
+                  return (
+                    <div
+                      key={step.step}
+                      onClick={() => setActiveStep(step.step)}
+                      onMouseEnter={() => setHoveredStep(step.step)}
+                      onMouseLeave={() => setHoveredStep(null)}
+                      className="hiring-step-item flex flex-col items-center text-center cursor-pointer select-none group"
                     >
-                      {step.step}
+                      {/* Round Glowing Card Container */}
+                      <div className="relative flex items-center justify-center mb-4">
+                        {/* Glowing radar ring with staggered delay */}
+                        <div
+                          className="hiring-glow-radar"
+                          style={{ animationDelay: delaySec }}
+                        />
+
+                        {/* Outer ambient blur aura */}
+                        <div
+                          className={`absolute inset-0 rounded-full bg-brand-royal/25 blur-lg transition-all duration-300 pointer-events-none ${
+                            isCurrent ? 'opacity-100 scale-125' : 'opacity-0 group-hover:opacity-100 group-hover:scale-125'
+                          }`}
+                        />
+
+                        {/* Round Glowing Card */}
+                        <div
+                          className={`hiring-glow-circle ${isCurrent ? 'is-active' : ''}`}
+                          style={{ animationDelay: delaySec }}
+                        >
+                          <span className="relative z-10">{step.step}</span>
+                        </div>
+                      </div>
+
+                      <h3 className={`font-bold font-heading text-base sm:text-lg mb-1 transition-colors duration-300 ${
+                        isCurrent ? 'text-brand-royal font-extrabold' : 'text-brand-navy group-hover:text-brand-royal'
+                      }`}>
+                        {step.title}
+                      </h3>
+
+                      <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed max-w-[170px] group-hover:text-slate-700 transition-colors">
+                        {step.description}
+                      </p>
                     </div>
-
-                    <h3 className="font-bold text-brand-navy font-heading text-base sm:text-lg mt-4 mb-1 group-hover:text-brand-royal transition-colors">
-                      {step.title}
-                    </h3>
-
-                    <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed max-w-[170px]">
-                      {step.description}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
