@@ -109,6 +109,20 @@ export default function Home() {
     }
   };
 
+  const wordVariants = {
+    hidden: { y: '105%', opacity: 0, rotate: -2 },
+    visible: (i) => ({
+      y: '0%',
+      opacity: 1,
+      rotate: 0,
+      transition: {
+        delay: 0.12 + i * 0.12,
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    })
+  };
+
   return (
     <div className="relative pt-20 overflow-hidden bg-[#F8FAFD] text-slate-700">
       {/* ===================== HERO SECTION ===================== */}
@@ -134,35 +148,70 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* High-Impact Enterprise Editorial Heading */}
+              {/* High-Impact Animated Editorial Heading */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-[#101F3D] font-heading leading-[1.02] uppercase select-none">
                 {/* Sentence 1: SMARTER SOLUTIONS */}
-                <div className="flex flex-wrap gap-x-3 sm:gap-x-5 py-0.5">
-                  <span className="hero-word">
+                <div className="overflow-hidden flex flex-wrap gap-x-3 sm:gap-x-5 py-0.5">
+                  <motion.span
+                    custom={0}
+                    initial="hidden"
+                    animate="visible"
+                    variants={wordVariants}
+                    className="hero-word"
+                  >
                     Smarter
-                  </span>
-                  <span className="hero-word">
+                  </motion.span>
+                  <motion.span
+                    custom={1}
+                    initial="hidden"
+                    animate="visible"
+                    variants={wordVariants}
+                    className="hero-word"
+                  >
                     Solutions
-                  </span>
+                  </motion.span>
                 </div>
 
                 {/* Sentence 2: FOR BETTER FUTURE */}
-                <div className="flex flex-wrap gap-x-3 sm:gap-x-5 items-center py-0.5">
-                  <span className="hero-word">
+                <div className="overflow-hidden flex flex-wrap gap-x-3 sm:gap-x-5 items-center py-0.5">
+                  <motion.span
+                    custom={2}
+                    initial="hidden"
+                    animate="visible"
+                    variants={wordVariants}
+                    className="hero-word"
+                  >
                     For
-                  </span>
+                  </motion.span>
 
-                  <span className="hero-word text-[#315FA5] font-black">
+                  <motion.span
+                    custom={3}
+                    initial="hidden"
+                    animate="visible"
+                    variants={wordVariants}
+                    className="hero-word animate-hero-gradient font-black"
+                  >
                     Better
-                  </span>
+                  </motion.span>
 
-                  <span className="hero-word text-[#315FA5] font-black">
+                  <motion.span
+                    custom={4}
+                    initial="hidden"
+                    animate="visible"
+                    variants={wordVariants}
+                    className="hero-word animate-hero-gradient font-black"
+                  >
                     Future
-                  </span>
+                  </motion.span>
                 </div>
 
                 {/* Dynamic Royal Blue Accent Line */}
-                <div className="h-1 sm:h-1.5 w-32 sm:w-48 bg-[#315FA5] rounded-full origin-left mt-3" />
+                <motion.div
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ delay: 0.65, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="h-1 sm:h-1.5 w-32 sm:w-48 bg-gradient-to-r from-[#315FA5] via-[#4A80D4] to-transparent rounded-full origin-left mt-3"
+                />
               </h1>
 
               {/* Lede Paragraph - Always 100% Visible */}
