@@ -117,24 +117,6 @@ export default function Home() {
         <HomeDigitalGridBackground />
 
         <div className="relative max-w-7xl mx-auto w-full z-10">
-          {/* Editorial Metadata Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-[#E2E8F0] mb-8 sm:mb-12 text-xs font-mono"
-          >
-            <div className="flex items-center gap-2 text-[#101F3D]">
-              <span className="inline-block w-2 h-2 rounded-full bg-[#315FA5]" />
-              <span className="font-bold tracking-wider uppercase">SIGNAL: ACTIVE ARCHITECTURE</span>
-              <span className="text-slate-400">·</span>
-              <span className="text-slate-500 hidden sm:inline">MYSURU 12.2958° N, 76.6394° E</span>
-            </div>
-            <div className="flex items-center gap-2 text-[#315FA5] font-semibold tracking-wider uppercase text-[11px]">
-              <span>[00 // SOFTWARE ENGINEERING LAB]</span>
-            </div>
-          </motion.div>
-
           {/* Main Hero Grid */}
           <motion.div
             variants={containerVariants}
