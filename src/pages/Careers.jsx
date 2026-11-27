@@ -127,6 +127,24 @@ export default function Careers() {
     }
   };
 
+  const handlePhoneChange = (e) => {
+    const rawVal = e.target.value;
+    let digits = rawVal.replace(/\D/g, '');
+
+    if (digits.startsWith('91') && digits.length > 10) {
+      digits = digits.slice(2);
+    } else if (digits.startsWith('0') && digits.length > 10) {
+      digits = digits.slice(1);
+    }
+
+    digits = digits.slice(0, 10);
+
+    setFormData((prev) => ({ ...prev, phone: digits }));
+    if (formErrors.phone) {
+      setFormErrors((prev) => ({ ...prev, phone: null }));
+    }
+  };
+
   const validateForm = () => {
     const errors = {};
     if (!formData.fullName.trim()) {
@@ -135,8 +153,10 @@ export default function Careers() {
     if (!formData.email.trim() || !formData.email.includes('@')) {
       errors.email = 'Please provide a valid email address.';
     }
-    if (!formData.phone.trim() || formData.phone.length < 7) {
-      errors.phone = 'Please provide a valid contact number.';
+    if (!formData.phone.trim()) {
+      errors.phone = 'Please provide a contact phone number.';
+    } else if (formData.phone.length !== 10) {
+      errors.phone = 'Please enter a valid 10-digit mobile number.';
     }
     if (!resumeFile) {
       errors.resume = 'Please attach your resume document.';
@@ -713,18 +733,33 @@ export default function Careers() {
             </div>
 
             <div>
-              <label className="block font-semibold text-brand-navy mb-1">
-                Phone Number <span className="text-brand-royal">*</span>
-              </label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+91 98765 43210"
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-light border ${
-                  formErrors.phone ? 'border-red-400' : 'border-brand-silver/60'
-                } text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal text-xs`}
-              />
+              <div className="flex items-center justify-between mb-1">
+                <label className="block font-semibold text-brand-navy">
+                  Phone Number <span className="text-brand-royal">*</span>
+                </label>
+                <span className="text-[10px] font-mono text-slate-400">
+                  {formData.phone ? `${formData.phone.length}/10 digits` : '10 digits'}
+                </span>
+              </div>
+              <div className="relative flex items-center">
+                {/* Fixed +91 Country Code Badge */}
+                <div className="absolute left-0 top-0 bottom-0 flex items-center pl-3 pr-2.5 pointer-events-none border-r border-brand-silver/50 my-1.5 gap-1.5 select-none">
+                  <span className="text-sm leading-none" role="img" aria-label="India flag">🇮🇳</span>
+                  <span className="font-mono text-xs font-bold text-brand-navy">+91</span>
+                </div>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  maxLength={10}
+                  value={formData.phone}
+                  onChange={handlePhoneChange}
+                  placeholder="98765 43210"
+                  className={`w-full pl-[78px] pr-3.5 py-2.5 rounded-xl bg-brand-light border ${
+                    formErrors.phone ? 'border-red-400' : 'border-brand-silver/60'
+                  } text-brand-navy placeholder-slate-400 focus:outline-none focus:border-brand-royal focus:bg-white text-xs font-mono transition-colors`}
+                />
+              </div>
               {formErrors.phone && <p className="text-red-500 text-[11px] mt-1">{formErrors.phone}</p>}
             </div>
           </div>
