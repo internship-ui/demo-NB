@@ -126,6 +126,96 @@ function InteractiveProjectCard({
 }
 
 // =========================================================================
+// KINETIC WORD & LETTER ANIMATED HEADING
+// =========================================================================
+function AnimatedWordsHeading({ text, highlightText, className = "" }) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.04,
+        delayChildren: 0.08,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: {
+      opacity: 0,
+      y: 35,
+      rotateX: -55,
+      filter: "blur(5px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        damping: 14,
+        stiffness: 140,
+      },
+    },
+  };
+
+  return (
+    <h1
+      className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight mb-6 uppercase select-none ${className}`}
+      aria-label={`${text} ${highlightText}`}
+    >
+      <motion.span
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        className="inline-flex flex-wrap justify-center items-center gap-x-4"
+        style={{ perspective: 1000 }}
+      >
+        {/* Primary Word */}
+        <span className="inline-flex whitespace-nowrap text-brand-navy">
+          {text.split("").map((char, i) => (
+            <motion.span
+              key={`p-${i}`}
+              variants={letterVariants}
+              whileHover={{
+                y: -6,
+                scale: 1.18,
+                color: "#234F91",
+                transition: { duration: 0.15 },
+              }}
+              className="inline-block cursor-default transition-colors"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
+
+        {/* Highlight Word */}
+        <span className="inline-flex whitespace-nowrap text-brand-royal">
+          {highlightText.split("").map((char, i) => (
+            <motion.span
+              key={`h-${i}`}
+              variants={letterVariants}
+              whileHover={{
+                y: -6,
+                scale: 1.18,
+                color: "#101F3C",
+                transition: { duration: 0.15 },
+              }}
+              className="inline-block cursor-default transition-colors"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
+      </motion.span>
+    </h1>
+  );
+}
+
+// =========================================================================
 // MAIN PORTFOLIO PAGE
 // =========================================================================
 export default function Portfolio({ showLoader = false }) {
@@ -192,13 +282,8 @@ export default function Portfolio({ showLoader = false }) {
               <span>Proven Client Work &amp; Digital Engineering</span>
             </div>
 
-            {/* Heading - Always 100% Solid & Visible */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy font-heading tracking-tight mb-6 uppercase">
-              Client{' '}
-              <span className="text-brand-royal">
-                Portfolio
-              </span>
-            </h1>
+            {/* Heading: Kinetic Animated Client Portfolio */}
+            <AnimatedWordsHeading text="Client" highlightText="Portfolio" />
 
             {/* Description */}
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
